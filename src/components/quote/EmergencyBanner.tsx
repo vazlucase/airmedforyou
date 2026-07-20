@@ -1,4 +1,5 @@
-import { PhoneCall, MessageCircle } from "lucide-react";
+import { PhoneCall } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { CONTACT } from "@/lib/constants";
 import { emergencyCallHref, emergencyWhatsAppLink } from "@/lib/whatsapp";
 
@@ -31,7 +32,7 @@ export function EmergencyBanner() {
           rel="noopener noreferrer"
           className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-whatsapp px-5 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark sm:flex-none"
         >
-          <MessageCircle className="size-4" />
+          <WhatsAppIcon className="size-4" />
           WhatsApp
         </a>
       </div>

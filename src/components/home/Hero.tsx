@@ -4,7 +4,8 @@ import * as React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { HERO_SLIDES, whatsappHref } from "@/lib/constants";
 import { Container } from "@/components/ui/Container";
 
@@ -105,7 +106,7 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="glass inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-medium text-white transition-all duration-300 hover:bg-white/15 active:scale-[0.96]"
               >
-                <MessageCircle className="size-4" />
+                <WhatsAppIcon className="size-4" />
                 Falar agora
               </a>
             </div>

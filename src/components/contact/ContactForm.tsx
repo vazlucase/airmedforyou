@@ -3,7 +3,8 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, MessageCircle, RotateCcw } from "lucide-react";
+import { CheckCircle2, RotateCcw } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { contactFormSchema, type ContactFormSchema } from "@/lib/validations";
 import { buildContactWhatsAppLink } from "@/lib/whatsapp";
 import { cn, maskPhoneInput } from "@/lib/utils";
@@ -64,7 +65,7 @@ export function ContactForm() {
             onClick={resend}
             className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
           >
-            <MessageCircle className="size-4" />
+            <WhatsAppIcon className="size-4" />
             Abrir WhatsApp novamente
           </button>
           <button
@@ -162,7 +163,7 @@ export function ContactForm() {
         type="submit"
         className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-red-500 px-7 text-sm font-medium text-white shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-red-600 active:scale-[0.96]"
       >
-        <MessageCircle className="size-4" />
+        <WhatsAppIcon className="size-4" />
         Enviar pelo WhatsApp
       </button>
     </form>

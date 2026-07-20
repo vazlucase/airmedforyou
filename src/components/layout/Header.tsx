@@ -5,7 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Menu, X, MessageCircle } from "lucide-react";
+import { Menu, X } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { cn } from "@/lib/utils";
 import { NAV_ITEMS, CONTACT, whatsappHref } from "@/lib/constants";
 import logo from "@/assets/images/logo.svg";
@@ -93,7 +94,7 @@ export function Header() {
             )}
             aria-label="Falar no WhatsApp"
           >
-            <MessageCircle className="size-[1.15rem]" strokeWidth={2} />
+            <WhatsAppIcon className="size-[1.15rem]" />
           </a>
           <Link
             href="/cote-seu-voo"
@@ -147,7 +148,7 @@ export function Header() {
                 onClick={closeMobileMenu}
                 className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-whatsapp/10 px-5 text-[0.9rem] font-medium text-whatsapp-dark"
               >
-                <MessageCircle className="size-4" />
+                <WhatsAppIcon className="size-4" />
                 Falar no WhatsApp
               </a>
               <Link

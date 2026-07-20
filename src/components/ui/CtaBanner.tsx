@@ -1,4 +1,5 @@
-import { MessageCircle, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/ui/Reveal";
 import { Button } from "@/components/ui/Button";
@@ -38,7 +39,7 @@ export function CtaBanner({
                 href={whatsappHref(whatsappMessage)}
                 variant="glass"
                 size="lg"
-                icon={<MessageCircle />}
+                icon={<WhatsAppIcon />}
                 className="text-white [&:hover]:bg-white/15"
               >
                 Falar no WhatsApp

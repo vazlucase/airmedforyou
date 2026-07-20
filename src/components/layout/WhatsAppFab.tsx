@@ -1,9 +1,10 @@
 "use client";
 
 import * as React from "react";
-import { MessageCircle, X } from "lucide-react";
+import { X } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { CONTACT, whatsappHref } from "@/lib/constants";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 
 export function WhatsAppFab() {
   const [open, setOpen] = React.useState(false);
@@ -44,7 +45,7 @@ export function WhatsAppFab() {
                 rel="noopener noreferrer"
                 className="flex h-11 items-center justify-center gap-2 rounded-full bg-whatsapp text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
               >
-                <MessageCircle className="size-4" />
+                <WhatsAppIcon className="size-4" />
                 Iniciar conversa
               </a>
             </div>
@@ -67,7 +68,7 @@ export function WhatsAppFab() {
             exit={{ opacity: 0, rotate: 45 }}
             transition={{ duration: 0.2 }}
           >
-            {open ? <X className="size-6" /> : <MessageCircle className="size-6" />}
+            {open ? <X className="size-6" /> : <WhatsAppIcon className="size-6" />}
           </motion.span>
         </AnimatePresence>
       </motion.button>

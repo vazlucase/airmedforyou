@@ -4,7 +4,8 @@ import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowLeft, ArrowRight, CheckCircle2, MessageCircle, RotateCcw } from "lucide-react";
+import { ArrowLeft, ArrowRight, CheckCircle2, RotateCcw } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { quoteFormSchema, STEP_FIELDS, type QuoteFormSchema } from "@/lib/validations";
 import { buildQuoteWhatsAppLink } from "@/lib/whatsapp";
 import { QuoteProgress } from "@/components/quote/QuoteProgress";
@@ -106,7 +107,7 @@ export function QuoteWizard({
                 onClick={resendWhatsApp}
                 className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
               >
-                <MessageCircle className="size-4" />
+                <WhatsAppIcon className="size-4" />
                 Abrir WhatsApp novamente
               </button>
               <button
@@ -159,7 +160,7 @@ export function QuoteWizard({
                 {step === TOTAL_STEPS - 1 ? (
                   <>
                     Enviar pelo WhatsApp
-                    <MessageCircle className="size-4" />
+                    <WhatsAppIcon className="size-4" />
                   </>
                 ) : (
                   <>

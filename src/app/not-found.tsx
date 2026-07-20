@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { MessageCircle, PlaneTakeoff } from "lucide-react";
+import { PlaneTakeoff } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { whatsappHref } from "@/lib/constants";
 
@@ -33,7 +34,7 @@ export default function NotFound() {
             rel="noopener noreferrer"
             className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-ink-500/15 px-7 text-sm font-medium text-ink-500 transition-colors hover:bg-ink-50"
           >
-            <MessageCircle className="size-4" />
+            <WhatsAppIcon className="size-4" />
             Falar no WhatsApp
           </a>
         </div>

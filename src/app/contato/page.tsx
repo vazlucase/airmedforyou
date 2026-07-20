@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Clock3, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock3, Mail, MapPin, Phone } from "lucide-react";
+import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { Container } from "@/components/ui/Container";
 import { Badge } from "@/components/ui/Badge";
 import { Reveal } from "@/components/ui/Reveal";
@@ -47,7 +48,7 @@ export default function ContatoPage() {
                 className="flex items-center gap-4 rounded-3xl border border-ink-500/8 bg-white p-5 transition-colors hover:border-whatsapp/30 hover:bg-whatsapp/5"
               >
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-whatsapp/10 text-whatsapp-dark">
-                  <MessageCircle className="size-5" />
+                  <WhatsAppIcon className="size-5" />
                 </span>
                 <div>
                   <p className="text-sm text-ink-300">WhatsApp</p>

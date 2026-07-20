@@ -23,11 +23,18 @@ export const SITE = {
   locale: "pt_BR",
 };
 
+/**
+ * Número de WhatsApp e telefone da AirMedPlan.
+ * Configuráveis via variáveis de ambiente (.env) — veja .env.example.
+ * Caso a variável não esteja definida, um valor de fallback é usado.
+ */
 export const CONTACT = {
-  whatsappDigits: "5591974009540",
-  whatsappDisplay: "(91) 97400-9540",
-  phoneDigits: "+5591335353053",
-  phoneDisplay: "(91) 3353-3053",
+  whatsappDigits:
+    process.env.NEXT_PUBLIC_WHATSAPP_DIGITS ?? "5591974009540",
+  whatsappDisplay:
+    process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "(91) 97400-9540",
+  phoneDigits: process.env.NEXT_PUBLIC_PHONE_DIGITS ?? "+5591335353053",
+  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "(91) 3353-3053",
   email: "contato@airmedplan.com.br",
   addressLine1: "Rodovia BR-316, 1762 — Ed. Next Office",
   addressLine2: "Torre 01, Loja 02 — Térreo, ao lado do Shopping Castanheira",
