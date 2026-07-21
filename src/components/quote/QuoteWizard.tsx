@@ -88,16 +88,16 @@ export function QuoteWizard({
     <div className={cn("flex flex-col gap-6", className)}>
       {showEmergencyBanner ? <EmergencyBanner /> : null}
 
-      <div className="rounded-[2rem] border border-ink-500/8 bg-white p-6 shadow-elevated md:p-9">
+      <div className="rounded-[2rem] border border-navy-100 bg-white p-6 shadow-card md:p-9">
         {submitted ? (
           <div className="flex flex-col items-center py-6 text-center">
             <span className="flex size-16 items-center justify-center rounded-full bg-whatsapp/10 text-whatsapp-dark">
               <CheckCircle2 className="size-8" strokeWidth={1.5} />
             </span>
-            <h3 className="mt-5 text-xl font-semibold text-ink-500">
+            <h3 className="mt-5 text-xl font-semibold text-navy-900 font-heading">
               Sua solicitação está pronta!
             </h3>
-            <p className="text-pretty mt-2 max-w-sm text-sm leading-relaxed text-ink-400">
+            <p className="text-pretty mt-2 max-w-sm text-sm leading-relaxed text-granite-600">
               Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu, use o botão
               abaixo para enviar manualmente.
             </p>
@@ -113,7 +113,7 @@ export function QuoteWizard({
               <button
                 type="button"
                 onClick={startOver}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-ink-500/15 px-6 text-sm font-medium text-ink-500 transition-colors hover:bg-ink-50"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-navy-200 px-6 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50"
               >
                 <RotateCcw className="size-4" />
                 Nova cotação
@@ -142,12 +142,12 @@ export function QuoteWizard({
               </AnimatePresence>
             </div>
 
-            <div className="mt-8 flex items-center justify-between border-t border-ink-500/8 pt-6">
+            <div className="mt-8 flex items-center justify-between border-t border-navy-100 pt-6">
               <button
                 type="button"
                 onClick={goBack}
                 disabled={step === 0}
-                className="inline-flex h-12 items-center gap-1.5 rounded-full px-5 text-sm font-medium text-ink-400 transition-colors hover:bg-ink-50 disabled:pointer-events-none disabled:opacity-0"
+                className="inline-flex h-12 items-center gap-1.5 rounded-full px-5 text-sm font-medium text-granite-500 transition-colors hover:bg-navy-50 disabled:pointer-events-none disabled:opacity-0"
               >
                 <ArrowLeft className="size-4" />
                 Voltar

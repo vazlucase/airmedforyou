@@ -71,13 +71,13 @@ export default function VoosExecutivosPage() {
         </Container>
       </section>
 
-      <section className="bg-ink-900 py-24 md:py-32">
+      <section className="bg-navy-900 py-24 md:py-32">
         <Container className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           <Reveal>
-            <span className="font-mono text-2xs font-medium uppercase tracking-[0.14em] text-white/50">
+            <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/50">
               PARA QUEM É
             </span>
-            <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl">
+            <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl font-heading">
               De viagens corporativas a ocasiões que não podem esperar.
             </h2>
           </Reveal>

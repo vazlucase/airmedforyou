@@ -3,169 +3,140 @@
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CheckCircle2, RotateCcw } from "lucide-react";
-import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
-import { contactFormSchema, type ContactFormSchema } from "@/lib/validations";
-import { buildContactWhatsAppLink } from "@/lib/whatsapp";
-import { cn, maskPhoneInput } from "@/lib/utils";
+import { z } from "zod";
+import { Send, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/utils";
+import { whatsappHref } from "@/lib/constants";
 
-const inputClass =
-  "h-12 w-full rounded-2xl border border-ink-500/12 bg-white px-4 text-[0.95rem] text-ink-500 placeholder:text-ink-300 transition-colors duration-200 focus:border-red-500/40 focus:outline-none focus:ring-4 focus:ring-red-500/10";
-const labelClass = "text-sm font-medium text-ink-500";
+const contactSchema = z.object({
+  name: z.string().min(2, "Informe seu nome"),
+  email: z.string().email("E-mail inválido"),
+  phone: z.string().min(10, "Telefone inválido"),
+  message: z.string().min(5, "Escreva uma mensagem"),
+});
 
-function FieldError({ message }: { message?: string }) {
-  return <p className="mt-1.5 min-h-4 text-xs text-red-500">{message ?? ""}</p>;
-}
+type ContactFormData = z.infer<typeof contactSchema>;
 
 export function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
+
   const {
     register,
     handleSubmit,
-    setValue,
+    formState: { errors, isSubmitting },
     getValues,
-    reset,
-    formState: { errors },
-  } = useForm<ContactFormSchema>({
-    resolver: zodResolver(contactFormSchema),
-    defaultValues: {
-      fullName: "",
-      phone: "",
-      email: "",
-      subject: "",
-      message: "",
-      consent: false,
-    },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
   });
 
-  function onSubmit(values: ContactFormSchema) {
-    const link = buildContactWhatsAppLink(values);
+  const onSubmit = async (data: ContactFormData) => {
+    // Simulate send — in production send to API/email
+    await new Promise((r) => setTimeout(r, 800));
+    const message = `*Contato via Site*\n\n*Nome:* ${data.name}\n*E-mail:* ${data.email}\n*Telefone:* ${data.phone}\n\n*Mensagem:* ${data.message}`;
+    window.open(whatsappHref(message), "_blank");
     setSubmitted(true);
-    window.open(link, "_blank", "noopener,noreferrer");
-  }
-
-  function resend() {
-    window.open(buildContactWhatsAppLink(getValues()), "_blank", "noopener,noreferrer");
-  }
+  };
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center rounded-[2rem] border border-ink-500/8 bg-white p-10 text-center shadow-elevated">
-        <span className="flex size-16 items-center justify-center rounded-full bg-whatsapp/10 text-whatsapp-dark">
-          <CheckCircle2 className="size-8" strokeWidth={1.5} />
-        </span>
-        <h3 className="mt-5 text-xl font-semibold text-ink-500">Mensagem pronta para envio!</h3>
-        <p className="text-pretty mt-2 max-w-sm text-sm leading-relaxed text-ink-400">
-          Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu, use o botão
-          abaixo.
-        </p>
-        <div className="mt-7 flex flex-col gap-2.5 sm:flex-row">
-          <button
-            type="button"
-            onClick={resend}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
-          >
-            <WhatsAppIcon className="size-4" />
-            Abrir WhatsApp novamente
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              reset();
-              setSubmitted(false);
-            }}
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-ink-500/15 px-6 text-sm font-medium text-ink-500 transition-colors hover:bg-ink-50"
-          >
-            <RotateCcw className="size-4" />
-            Enviar outra mensagem
-          </button>
+      <div className="rounded-2xl bg-navy-50 p-8 text-center">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-navy-100">
+          <Send className="size-6 text-navy-600" />
         </div>
+        <h3 className="mt-5 text-xl font-semibold text-navy-900 font-heading">Mensagem enviada!</h3>
+        <p className="mt-2 text-sm text-granite-600">
+          Você será redirecionado ao WhatsApp para finalizar.
+        </p>
       </div>
     );
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-4 rounded-[2rem] border border-ink-500/8 bg-white p-6 shadow-elevated md:p-9"
-    >
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="fullName" className={labelClass}>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+      <div>
+        <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-granite-700">
           Nome completo
         </label>
-        <input id="fullName" className={inputClass} placeholder="Seu nome" {...register("fullName")} />
-        <FieldError message={errors.fullName?.message} />
+        <input
+          id="name"
+          {...register("name")}
+          placeholder="Seu nome"
+          className={cn(
+            "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
+            errors.name && "border-red-400 focus:border-red-400 focus:ring-red-100"
+          )}
+        />
+        {errors.name ? (
+          <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+        ) : null}
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="phone" className={labelClass}>
-            WhatsApp
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-granite-700">
+            E-mail
+          </label>
+          <input
+            id="email"
+            type="email"
+            {...register("email")}
+            placeholder="seu@email.com"
+            className={cn(
+              "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
+              errors.email && "border-red-400 focus:border-red-400 focus:ring-red-100"
+            )}
+          />
+          {errors.email ? (
+            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+          ) : null}
+        </div>
+        <div>
+          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-granite-700">
+            Telefone
           </label>
           <input
             id="phone"
-            inputMode="tel"
-            placeholder="(00) 00000-0000"
-            className={inputClass}
-            {...register("phone", { onChange: (e) => setValue("phone", maskPhoneInput(e.target.value)) })}
+            {...register("phone")}
+            placeholder="(91) 99999-9999"
+            className={cn(
+              "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
+              errors.phone && "border-red-400 focus:border-red-400 focus:ring-red-100"
+            )}
           />
-          <FieldError message={errors.phone?.message} />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="email" className={labelClass}>
-            E-mail <span className="text-ink-300">(opcional)</span>
-          </label>
-          <input id="email" type="email" placeholder="voce@email.com" className={inputClass} {...register("email")} />
-          <FieldError message={errors.email?.message} />
+          {errors.phone ? (
+            <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>
+          ) : null}
         </div>
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="subject" className={labelClass}>
-          Assunto
-        </label>
-        <input
-          id="subject"
-          placeholder="Ex.: Dúvida sobre o ClubMed"
-          className={inputClass}
-          {...register("subject")}
-        />
-        <FieldError message={errors.subject?.message} />
-      </div>
-
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="message" className={labelClass}>
+      <div>
+        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-granite-700">
           Mensagem
         </label>
         <textarea
           id="message"
-          rows={5}
-          placeholder="Como podemos ajudar?"
-          className={cn(inputClass, "h-auto resize-none py-3 leading-relaxed")}
           {...register("message")}
+          rows={4}
+          placeholder="Como podemos ajudar?"
+          className={cn(
+            "w-full resize-none rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
+            errors.message && "border-red-400 focus:border-red-400 focus:ring-red-100"
+          )}
         />
-        <FieldError message={errors.message?.message} />
+        {errors.message ? (
+          <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
+        ) : null}
       </div>
 
-      <label className="flex cursor-pointer items-start gap-3 rounded-2xl border border-ink-500/10 bg-mist-50 p-4">
-        <input type="checkbox" className="mt-0.5 size-4 shrink-0 accent-red-500" {...register("consent")} />
-        <span className="text-[0.83rem] leading-relaxed text-ink-400">
-          Concordo com o uso dos meus dados para contato, conforme a{" "}
-          <a href="/politica-de-privacidade" className="font-medium text-ink-500 underline underline-offset-2">
-            Política de Privacidade
-          </a>
-          .
-        </span>
-      </label>
-      <FieldError message={errors.consent?.message} />
-
-      <button
-        type="submit"
-        className="mt-2 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-red-500 px-7 text-sm font-medium text-white shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-red-600 active:scale-[0.96]"
-      >
-        <WhatsAppIcon className="size-4" />
-        Enviar pelo WhatsApp
-      </button>
+      <Button type="submit" variant="secondary" size="lg" disabled={isSubmitting}>
+        {isSubmitting ? (
+          <Loader2 className="size-4 animate-spin" />
+        ) : (
+          <Send className="size-4" />
+        )}
+        {isSubmitting ? "Enviando..." : "Enviar mensagem"}
+      </Button>
     </form>
   );
 }

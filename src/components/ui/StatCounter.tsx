@@ -1,43 +1,69 @@
 "use client";
 
 import * as React from "react";
-import { useInView, useMotionValue, useSpring } from "motion/react";
+import { motion } from "motion/react";
+import { cn } from "@/lib/utils";
 import type { StatItem } from "@/types";
 
-function AnimatedNumber({ value, decimals = 0 }: { value: number; decimals?: number }) {
-  const ref = React.useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const motionValue = useMotionValue(0);
-  const spring = useSpring(motionValue, { damping: 26, stiffness: 90 });
-  const [display, setDisplay] = React.useState("0");
+export function StatCounter({ stat }: { stat: StatItem }) {
+  const [count, setCount] = React.useState(0);
+  const ref = React.useRef<HTMLDivElement>(null);
+  const hasAnimated = React.useRef(false);
 
   React.useEffect(() => {
-    if (isInView) motionValue.set(value);
-  }, [isInView, motionValue, value]);
+    const el = ref.current;
+    if (!el) return;
 
-  React.useEffect(() => {
-    const unsub = spring.on("change", (latest) => {
-      setDisplay(latest.toFixed(decimals));
-    });
-    return unsub;
-  }, [spring, decimals]);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry?.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          const target = stat.value;
+          const duration = 1200;
+          const startTime = performance.now();
+
+          const animate = (now: number) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            setCount(Math.round(eased * target));
+            if (progress < 1) requestAnimationFrame(animate);
+          };
+
+          requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [stat.value]);
 
   return (
-    <span ref={ref} className="tabular-nums">
-      {display}
-    </span>
+    <div ref={ref} className="flex flex-col items-center gap-1 text-center">
+      <motion.span
+        initial={{ opacity: 0, scale: 0.8 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="text-4xl font-semibold leading-none text-white md:text-5xl font-heading"
+      >
+        {count}
+        {stat.suffix ?? ""}
+      </motion.span>
+      <span className="text-sm font-medium text-white/60">{stat.label}</span>
+    </div>
   );
 }
 
-export function StatCounter({ stat }: { stat: StatItem }) {
+export function StatItemStatic({ stat, className }: { stat: StatItem; className?: string }) {
   return (
-    <div className="flex flex-col gap-1.5">
-      <p className="font-mono text-4xl font-medium tracking-tight text-white md:text-5xl">
-        {stat.prefix}
-        <AnimatedNumber value={stat.value} decimals={stat.decimals} />
-        {stat.suffix}
-      </p>
-      <p className="text-sm leading-snug text-white/65 md:text-[0.95rem]">{stat.label}</p>
+    <div className={cn("flex flex-col items-center gap-1 text-center", className)}>
+      <span className="text-4xl font-semibold leading-none text-navy-800 md:text-5xl font-heading">
+        {stat.value}
+        {stat.suffix ?? ""}
+      </span>
+      <span className="text-sm font-medium text-granite-400">{stat.label}</span>
     </div>
   );
 }

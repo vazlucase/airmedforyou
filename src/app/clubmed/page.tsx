@@ -73,10 +73,10 @@ export default function ClubMedPage() {
         </Container>
       </section>
 
-      <section className="bg-sky-50 py-24 md:py-32">
+      <section className="bg-navy-50 py-24 md:py-32">
         <Container className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-card">
               <Image
                 src={suporteUti}
                 alt="Cabine de aeronave equipada como UTI aérea, com maca e monitores"
@@ -88,17 +88,17 @@ export default function ClubMedPage() {
           </Reveal>
           <div>
             <Reveal>
-              <span className="font-mono text-2xs font-medium uppercase tracking-[0.14em] text-ink-300">
+              <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-navy-400">
                 COMPLEMENTA, NÃO SUBSTITUI
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-ink-500 sm:text-4xl">
+              <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-navy-900 sm:text-4xl font-heading">
                 O ClubMed não substitui um plano de saúde.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-ink-400 md:text-lg">
+              <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-granite-600 md:text-lg">
                 Ele foi desenhado para complementar sua cobertura atual, somando assistência de
                 urgência, telemedicina e vantagens de bem-estar — o suporte que, muitas vezes,
                 falta no dia a dia.

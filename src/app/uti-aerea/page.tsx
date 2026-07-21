@@ -106,7 +106,7 @@ export default function UtiAereaPage() {
         </Container>
       </section>
 
-      <section className="bg-sky-50 py-24 md:py-32">
+      <section className="bg-navy-50 py-24 md:py-32">
         <Container className="grid grid-cols-1 gap-16 lg:grid-cols-2">
           <SectionHeading
             eyebrow="COMO FUNCIONA"

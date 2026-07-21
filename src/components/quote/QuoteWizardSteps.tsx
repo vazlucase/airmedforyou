@@ -15,9 +15,9 @@ import { cn, maskPhoneInput } from "@/lib/utils";
 import type { QuoteFormSchema } from "@/lib/validations";
 
 const inputClass =
-  "h-12 w-full rounded-2xl border border-ink-500/12 bg-white px-4 text-[0.95rem] text-ink-500 placeholder:text-ink-300 transition-colors duration-200 focus:border-red-500/40 focus:outline-none focus:ring-4 focus:ring-red-500/10";
+  "h-12 w-full rounded-2xl border border-navy-200 bg-white px-4 text-[0.95rem] text-navy-800 placeholder:text-granite-300 transition-colors duration-200 focus:border-navy-400 focus:outline-none focus:ring-4 focus:ring-navy-100";
 
-const labelClass = "text-sm font-medium text-ink-500";
+const labelClass = "text-sm font-medium text-navy-800";
 
 function FieldError({ message }: { message?: string }) {
   return <p className="mt-1.5 min-h-4 text-xs text-red-500">{message ?? ""}</p>;
@@ -58,10 +58,10 @@ export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema>
   const selected = form.watch("requestType");
   return (
     <fieldset>
-      <legend className="mb-1 text-lg font-semibold text-ink-500">
+      <legend className="mb-1 text-lg font-semibold text-navy-900 font-heading">
         Como podemos ajudar agora?
       </legend>
-      <p className="mb-6 text-sm text-ink-400">Selecione a opção que melhor descreve sua solicitação.</p>
+      <p className="mb-6 text-sm text-granite-600">Selecione a opção que melhor descreve sua solicitação.</p>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {REQUEST_OPTIONS.map((option) => {
           const Icon = option.icon;
@@ -73,7 +73,7 @@ export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema>
                 "flex cursor-pointer items-start gap-3.5 rounded-2xl border p-4 transition-all duration-200",
                 active
                   ? "border-red-500/40 bg-red-50 ring-4 ring-red-500/10"
-                  : "border-ink-500/10 bg-white hover:border-ink-500/20 hover:bg-ink-50/50"
+                  : "border-navy-100 bg-white hover:border-navy-200 hover:bg-navy-50"
               )}
             >
               <input
@@ -85,16 +85,16 @@ export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema>
               <span
                 className={cn(
                   "flex size-10 shrink-0 items-center justify-center rounded-full transition-colors",
-                  active ? "bg-red-500 text-white" : "bg-ink-50 text-ink-400"
+                  active ? "bg-red-500 text-white" : "bg-navy-50 text-navy-400"
                 )}
               >
                 <Icon className="size-[1.1rem]" strokeWidth={1.75} />
               </span>
               <span>
-                <span className="block text-[0.95rem] font-medium text-ink-500">
+                <span className="block text-[0.95rem] font-medium text-navy-900">
                   {option.title}
                 </span>
-                <span className="mt-0.5 block text-[0.83rem] leading-snug text-ink-400">
+                <span className="mt-0.5 block text-[0.83rem] leading-snug text-granite-600">
                   {option.desc}
                 </span>
               </span>
@@ -128,8 +128,8 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
   if (requestType === "clubmed") {
     return (
       <fieldset>
-        <legend className="mb-1 text-lg font-semibold text-ink-500">Ótima escolha.</legend>
-        <p className="mb-6 text-sm text-ink-400">
+        <legend className="mb-1 text-lg font-semibold text-navy-900 font-heading">Ótima escolha.</legend>
+        <p className="mb-6 text-sm text-granite-600">
           Para te apresentar o ClubMed, só precisamos saber de onde você fala.
         </p>
         <div className="flex flex-col gap-1.5">
@@ -150,8 +150,8 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
   return (
     <fieldset className="flex flex-col gap-5">
       <div>
-        <legend className="mb-1 text-lg font-semibold text-ink-500">Para onde vamos?</legend>
-        <p className="text-sm text-ink-400">Nos diga a origem, o destino e a data desejada.</p>
+        <legend className="mb-1 text-lg font-semibold text-navy-900 font-heading">Para onde vamos?</legend>
+        <p className="text-sm text-granite-600">Nos diga a origem, o destino e a data desejada.</p>
       </div>
 
       <div className="flex flex-wrap gap-2">
@@ -163,8 +163,8 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
               className={cn(
                 "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                 active
-                  ? "border-ink-500 bg-ink-500 text-white"
-                  : "border-ink-500/15 text-ink-400 hover:border-ink-500/30"
+                  ? "bg-navy-800 border-navy-800 text-white"
+                  : "border-navy-200 text-granite-500 hover:border-navy-300"
               )}
             >
               <input type="radio" value={value} className="sr-only" {...register("tripType")} />
@@ -244,7 +244,7 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
                     "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                     active
                       ? "border-red-500/40 bg-red-50 text-red-600"
-                      : "border-ink-500/15 text-ink-400 hover:border-ink-500/30"
+                      : "border-navy-200 text-granite-500 hover:border-navy-300"
                   )}
                 >
                   <input
@@ -272,8 +272,8 @@ export function StepNotes({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
   const notes = form.watch("notes") ?? "";
   return (
     <fieldset>
-      <legend className="mb-1 text-lg font-semibold text-ink-500">Mais algum detalhe?</legend>
-      <p className="mb-6 text-sm text-ink-400">
+      <legend className="mb-1 text-lg font-semibold text-navy-900 font-heading">Mais algum detalhe?</legend>
+      <p className="mb-6 text-sm text-granite-600">
         Conte o que for importante para a nossa equipe médica já chegar preparada. Este campo é
         opcional.
       </p>
@@ -289,12 +289,12 @@ export function StepNotes({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
           className={cn(inputClass, "h-auto resize-none py-3 leading-relaxed")}
           {...form.register("notes")}
         />
-        <span className="self-end text-xs text-ink-300">{notes.length}/500</span>
+        <span className="self-end text-xs text-granite-400">{notes.length}/500</span>
       </div>
 
-      <div className="mt-2 flex items-start gap-3 rounded-2xl bg-sky-50 p-4">
-        <Sparkles className="mt-0.5 size-4 shrink-0 text-sky-600" />
-        <p className="text-[0.83rem] leading-relaxed text-ink-400">
+      <div className="mt-2 flex items-start gap-3 rounded-2xl bg-navy-50 p-4">
+        <Sparkles className="mt-0.5 size-4 shrink-0 text-navy-500" />
+        <p className="text-[0.83rem] leading-relaxed text-granite-600">
           Quanto mais contexto você nos der, mais rápida e precisa será a nossa resposta —
           especialmente em casos clínicos.
         </p>
@@ -317,8 +317,8 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
   return (
     <fieldset className="flex flex-col gap-4">
       <div>
-        <legend className="mb-1 text-lg font-semibold text-ink-500">Quase lá.</legend>
-        <p className="text-sm text-ink-400">
+        <legend className="mb-1 text-lg font-semibold text-navy-900 font-heading">Quase lá.</legend>
+        <p className="text-sm text-granite-600">
           Precisamos só do seu contato para enviar a cotação pelo WhatsApp.
         </p>
       </div>
@@ -354,7 +354,7 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="email" className={labelClass}>
-            E-mail <span className="text-ink-300">(opcional)</span>
+            E-mail <span className="text-granite-400">(opcional)</span>
           </label>
           <input
             id="email"
@@ -367,16 +367,16 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
         </div>
       </div>
 
-      <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-2xl border border-ink-500/10 bg-mist-50 p-4">
+      <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-2xl border border-navy-100 bg-navy-50 p-4">
         <input
           type="checkbox"
           className="mt-0.5 size-4 shrink-0 accent-red-500"
           {...register("consent")}
         />
-        <span className="text-[0.83rem] leading-relaxed text-ink-400">
+        <span className="text-[0.83rem] leading-relaxed text-granite-600">
           Concordo com o uso dos meus dados para que a AirMedPlan entre em contato sobre esta
           solicitação, conforme a{" "}
-          <a href="/politica-de-privacidade" className="font-medium text-ink-500 underline underline-offset-2">
+          <a href="/politica-de-privacidade" className="font-medium text-navy-700 underline underline-offset-2">
             Política de Privacidade
           </a>
           .
@@ -384,7 +384,7 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
       </label>
       <FieldError message={errors.consent?.message} />
 
-      <div className="flex items-center gap-2 text-xs text-ink-300">
+      <div className="flex items-center gap-2 text-xs text-granite-400">
         <Clock className="size-3.5" />
         Tempo médio de resposta: poucos minutos, 24 horas por dia.
       </div>

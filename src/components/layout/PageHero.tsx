@@ -34,14 +34,14 @@ export function PageHero({
         sizes="100vw"
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/55 to-ink-900/25" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ink-900/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 amapil-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-r from-navy-900/50 via-transparent to-transparent" />
 
       <Container className="relative pb-16 pt-40 md:pb-20 md:pt-48">
         <Badge tone="white" className="mb-5">
           {eyebrow}
         </Badge>
-        <h1 className="text-balance max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl">
+        <h1 className="text-balance max-w-3xl text-4xl font-semibold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl font-heading">
           {title}
         </h1>
         {description ? (

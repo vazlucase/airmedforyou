@@ -22,8 +22,8 @@ export function CtaBanner({
     <section className="bg-white py-20 md:py-24">
       <Container>
         <Reveal>
-          <div className="flex flex-col items-center gap-6 rounded-[2.5rem] bg-ink-500 px-8 py-14 text-center md:px-16 md:py-20">
-            <h2 className="text-balance max-w-2xl text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl">
+          <div className="flex flex-col items-center gap-6 rounded-[2.5rem] bg-navy-900 px-8 py-14 text-center md:px-16 md:py-20">
+            <h2 className="text-balance max-w-2xl text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl font-heading">
               {title}
             </h2>
             {description ? (
@@ -37,10 +37,9 @@ export function CtaBanner({
               </Button>
               <Button
                 href={whatsappHref(whatsappMessage)}
-                variant="glass"
+                variant="whatsapp"
                 size="lg"
                 icon={<WhatsAppIcon />}
-                className="text-white [&:hover]:bg-white/15"
               >
                 Falar no WhatsApp
               </Button>

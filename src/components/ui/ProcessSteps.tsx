@@ -1,29 +1,28 @@
 import { Reveal } from "@/components/ui/Reveal";
 
-export interface ProcessStep {
+interface Step {
   title: string;
   description: string;
 }
 
-export function ProcessSteps({ steps }: { steps: ProcessStep[] }) {
+export function ProcessSteps({ steps }: { steps: Step[] }) {
   return (
-    <ol className="relative flex flex-col gap-8 sm:gap-10">
-      <div className="absolute bottom-6 left-[19px] top-6 hidden w-px bg-ink-500/10 sm:block" aria-hidden />
+    <div className="relative flex flex-col gap-6 pl-10 before:absolute before:left-[15px] before:top-0 before:h-full before:w-px before:bg-navy-200">
       {steps.map((step, i) => (
-        <Reveal key={step.title} delay={i * 0.08} as="li">
-          <div className="relative flex gap-5">
-            <span className="relative z-10 flex size-10 shrink-0 items-center justify-center rounded-full bg-ink-500 font-mono text-sm font-medium text-white">
-              {String(i + 1).padStart(2, "0")}
+        <Reveal key={step.title} delay={i * 0.08}>
+          <div className="relative">
+            <span className="absolute -left-[30px] flex size-8 items-center justify-center rounded-full bg-navy-600 text-xs font-semibold text-white font-heading">
+              {i + 1}
             </span>
-            <div className="pt-1.5">
-              <h3 className="text-[1.05rem] font-semibold text-ink-500">{step.title}</h3>
-              <p className="text-pretty mt-1.5 max-w-lg text-sm leading-relaxed text-ink-400">
-                {step.description}
-              </p>
-            </div>
+            <h3 className="text-lg font-semibold leading-snug text-navy-900 font-heading">
+              {step.title}
+            </h3>
+            <p className="mt-1.5 text-sm leading-relaxed text-granite-600">
+              {step.description}
+            </p>
           </div>
         </Reveal>
       ))}
-    </ol>
+    </div>
   );
 }

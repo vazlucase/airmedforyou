@@ -15,8 +15,8 @@ export function QuoteProgress({ current }: { current: number }) {
                 className={cn(
                   "flex size-8 items-center justify-center rounded-full font-mono text-xs font-medium transition-colors duration-300 md:size-9",
                   state === "done" && "bg-red-500 text-white",
-                  state === "active" && "bg-ink-500 text-white",
-                  state === "upcoming" && "bg-ink-50 text-ink-300"
+                  state === "active" && "bg-navy-800 text-white",
+                  state === "upcoming" && "bg-navy-50 text-granite-400"
                 )}
               >
                 {state === "done" ? <Check className="size-3.5" strokeWidth={2.5} /> : i + 1}
@@ -24,7 +24,7 @@ export function QuoteProgress({ current }: { current: number }) {
               <span
                 className={cn(
                   "hidden text-2xs font-medium uppercase tracking-[0.08em] sm:block",
-                  state === "upcoming" ? "text-ink-300" : "text-ink-500"
+                  state === "upcoming" ? "text-granite-400" : "text-navy-800"
                 )}
               >
                 {label}
@@ -34,7 +34,7 @@ export function QuoteProgress({ current }: { current: number }) {
               <div
                 className={cn(
                   "mx-2 h-px flex-1 transition-colors duration-500 md:mx-3",
-                  i < current ? "bg-red-500" : "bg-ink-100"
+                  i < current ? "bg-red-500" : "bg-navy-100"
                 )}
               />
             ) : null}

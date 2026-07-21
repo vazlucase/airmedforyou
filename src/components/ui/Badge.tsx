@@ -1,36 +1,31 @@
-import * as React from "react";
 import { cn } from "@/lib/utils";
 
-type Tone = "red" | "ink" | "sky" | "white" | "whatsapp";
+type BadgeTone = "navy" | "red" | "white" | "ghost";
 
-const TONE_CLASSES: Record<Tone, string> = {
+const TONE_CLASSES: Record<BadgeTone, string> = {
+  navy: "bg-navy-100 text-navy-800",
   red: "bg-red-50 text-red-600",
-  ink: "bg-ink-50 text-ink-500",
-  sky: "bg-sky-100 text-sky-600",
-  white: "bg-white/15 text-white",
-  whatsapp: "bg-whatsapp/10 text-whatsapp-dark",
+  white: "bg-white/15 text-white backdrop-blur-sm",
+  ghost: "bg-transparent text-navy-400 border border-navy-200",
 };
 
 export function Badge({
   children,
-  tone = "red",
+  tone = "navy",
   className,
-  icon,
 }: {
   children: React.ReactNode;
-  tone?: Tone;
+  tone?: BadgeTone;
   className?: string;
-  icon?: React.ReactNode;
 }) {
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-mono text-2xs font-medium uppercase tracking-[0.14em]",
+        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-heading text-[0.68rem] font-semibold uppercase tracking-[0.12em]",
         TONE_CLASSES[tone],
         className
       )}
     >
-      {icon}
       {children}
     </span>
   );

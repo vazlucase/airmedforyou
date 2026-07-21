@@ -50,28 +50,28 @@ export default function PoliticaDePrivacidadePage() {
   return (
     <section className="bg-white py-20 pt-40 md:py-28 md:pt-48">
       <Container className="max-w-3xl">
-        <span className="font-mono text-2xs font-medium uppercase tracking-[0.14em] text-red-500">
+        <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-navy-500">
           LGPD
         </span>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink-500 sm:text-4xl">
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl font-heading">
           Política de Privacidade
         </h1>
-        <p className="mt-4 text-sm text-ink-300">Última atualização: julho de 2026</p>
+        <p className="mt-4 text-sm text-granite-400">Última atualização: julho de 2026</p>
 
         <div className="mt-12 flex flex-col gap-10">
           {SECTIONS.map((section) => (
             <div key={section.title}>
-              <h2 className="text-lg font-semibold text-ink-500">{section.title}</h2>
-              <p className="text-pretty mt-3 leading-relaxed text-ink-400">{section.body}</p>
+              <h2 className="text-lg font-semibold text-navy-900 font-heading">{section.title}</h2>
+              <p className="text-pretty mt-3 leading-relaxed text-granite-600">{section.body}</p>
             </div>
           ))}
 
-          <div className="rounded-3xl bg-mist-50 p-6">
-            <h2 className="text-lg font-semibold text-ink-500">Fale com nosso encarregado de dados</h2>
-            <p className="mt-3 leading-relaxed text-ink-400">
+          <div className="rounded-2xl bg-navy-50 p-6">
+            <h2 className="text-lg font-semibold text-navy-900 font-heading">Fale com nosso encarregado de dados</h2>
+            <p className="mt-3 leading-relaxed text-granite-600">
               Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em
               contato pelo e-mail{" "}
-              <a href={`mailto:${CONTACT.email}`} className="font-medium text-ink-500 underline underline-offset-2">
+              <a href={`mailto:${CONTACT.email}`} className="font-medium text-navy-700 underline underline-offset-2">
                 {CONTACT.email}
               </a>{" "}
               ou pelo telefone {CONTACT.phoneDisplay}.

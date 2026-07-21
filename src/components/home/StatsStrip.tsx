@@ -5,15 +5,8 @@ import { STATS } from "@/lib/constants";
 
 export function StatsStrip() {
   return (
-    <section className="relative overflow-hidden bg-ink-900 py-16 md:py-20">
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.05]"
-        style={{
-          backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)",
-          backgroundSize: "26px 26px",
-        }}
-        aria-hidden
-      />
+    <section className="relative overflow-hidden bg-navy-900 py-16 md:py-20">
+      <div className="pointer-events-none absolute inset-0 hex-bg opacity-30" aria-hidden />
       <Container className="relative">
         <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-8">
           {STATS.map((stat, i) => (

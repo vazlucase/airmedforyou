@@ -33,11 +33,11 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-ink-900"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-navy-900"
       aria-roledescription="carrossel"
       aria-label="Destaques AirMedPlan"
     >
-      {/* Camada de imagens de fundo */}
+      {/* Background images */}
       <div className="absolute inset-0">
         <AnimatePresence mode="sync">
           <motion.div
@@ -50,7 +50,7 @@ export function Hero() {
           >
             <motion.div
               initial={{ scale: 1 }}
-              animate={{ scale: reduceMotion ? 1 : 1.09 }}
+              animate={{ scale: reduceMotion ? 1 : 1.08 }}
               transition={{ duration: (SLIDE_DURATION / 1000) + 1, ease: "linear" }}
               className="absolute inset-0"
             >
@@ -65,28 +65,29 @@ export function Hero() {
             </motion.div>
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-t from-ink-900 via-ink-900/50 to-ink-900/20" />
-        <div className="absolute inset-0 bg-gradient-to-r from-ink-900/60 via-ink-900/10 to-transparent" />
+        {/* Amapil-style gradient overlay */}
+        <div className="absolute inset-0 amapil-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 via-navy-900/10 to-transparent" />
       </div>
 
       <Container className="relative flex w-full flex-col gap-10 pb-16 pt-40 md:pb-20 md:pt-48">
         <AnimatePresence mode="wait">
           <motion.div
             key={slide.id}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-3.5 py-1.5 font-mono text-2xs font-medium uppercase tracking-[0.14em] text-white backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-1.5 font-medium text-[0.68rem] uppercase tracking-[0.12em] text-white backdrop-blur-sm font-heading">
               <span className="relative flex size-1.5">
                 <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-red-400" />
                 <span className="relative inline-flex size-1.5 rounded-full bg-red-400" />
               </span>
               {slide.eyebrow}
             </span>
-            <h1 className="text-balance mt-5 text-[2.5rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-6xl md:text-7xl">
+            <h1 className="text-balance mt-6 text-[2.5rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-6xl md:text-7xl font-heading">
               {slide.title}
             </h1>
             <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
@@ -104,7 +105,7 @@ export function Hero() {
                 href={whatsappHref("Olá! Vim pelo site da AirMedPlan e gostaria de falar com um atendente.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="glass inline-flex h-14 items-center justify-center gap-2 rounded-full px-6 text-[0.95rem] font-medium text-white transition-all duration-300 hover:bg-white/15 active:scale-[0.96]"
+                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-6 text-[0.95rem] font-medium text-white transition-all duration-300 hover:bg-white/25 active:scale-[0.96]"
               >
                 <WhatsAppIcon className="size-4" />
                 Falar agora
@@ -113,14 +114,14 @@ export function Hero() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Indicadores / progresso do carrossel */}
+        {/* Progress indicators */}
         <div className="flex items-center gap-2">
           {HERO_SLIDES.map((s, i) => (
             <button
               key={s.id}
               type="button"
               onClick={() => setIndex(i)}
-              className="group relative h-1 flex-1 max-w-16 overflow-hidden rounded-full bg-white/20"
+              className="group relative h-1 flex-1 max-w-20 overflow-hidden rounded-full bg-white/25"
               aria-label={`Mostrar destaque: ${s.eyebrow}`}
               aria-current={i === index}
             >

@@ -2,20 +2,20 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "whatsapp" | "glass";
+type Variant = "primary" | "secondary" | "outline" | "ghost" | "whatsapp";
 type Size = "sm" | "md" | "lg";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
     "bg-red-500 text-white shadow-[var(--shadow-button)] hover:bg-red-600 active:bg-red-700",
   secondary:
-    "bg-ink-500 text-white shadow-soft hover:bg-ink-600 active:bg-ink-700",
+    "bg-navy-600 text-white hover:bg-navy-700 active:bg-navy-800",
   outline:
-    "border border-ink-500/15 bg-white text-ink-500 hover:border-ink-500/30 hover:bg-ink-50 active:bg-ink-100",
-  ghost: "text-ink-500 hover:bg-ink-500/6 active:bg-ink-500/10",
+    "border border-navy-200 bg-white text-navy-700 hover:border-navy-400 hover:bg-navy-50 active:bg-navy-100",
+  ghost:
+    "text-navy-600 hover:bg-navy-50 active:bg-navy-100",
   whatsapp:
-    "bg-whatsapp text-white shadow-[0_8px_20px_-6px_rgba(52,175,35,0.5)] hover:bg-whatsapp-dark active:bg-whatsapp-dark",
-  glass: "glass text-ink-500 hover:bg-white/85",
+    "bg-whatsapp text-white hover:bg-whatsapp-dark active:bg-whatsapp-dark",
 };
 
 const SIZE_CLASSES: Record<Size, string> = {
@@ -28,7 +28,7 @@ const baseClasses =
   "inline-flex select-none items-center justify-center whitespace-nowrap rounded-full font-medium " +
   "transition-all duration-300 ease-[var(--ease-fluid)] active:scale-[0.96] " +
   "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 " +
-  "focus-visible:outline-offset-2 focus-visible:outline-red-500";
+  "focus-visible:outline-offset-2 focus-visible:outline-navy-500";
 
 interface CommonProps {
   variant?: Variant;
@@ -46,6 +46,8 @@ type ButtonAsLink = CommonProps &
   Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, "href"> & {
     href: string;
     external?: boolean;
+    target?: string;
+    rel?: string;
   };
 
 export type ButtonProps = ButtonAsButton | ButtonAsLink;
@@ -85,10 +87,13 @@ export function Button(props: ButtonProps) {
     const restAsAnchor = rest as React.AnchorHTMLAttributes<HTMLAnchorElement> & {
       external?: boolean;
       href?: string;
+      target?: string;
+      rel?: string;
     };
-    const { external, href: _omit, ...anchorRest } = restAsAnchor;
+    const { external, target, rel, href: _omit, ...anchorRest } = restAsAnchor;
     void _omit;
-    if (external || href.startsWith("http") || href.startsWith("tel:") || href.startsWith("mailto:")) {
+    const isExternal = external || href.startsWith("http") || href.startsWith("tel:") || href.startsWith("mailto:");
+    if (isExternal) {
       return (
         <a
           className={classes}

@@ -6,6 +6,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Badge } from "@/components/ui/Badge";
 import { Accordion } from "@/components/ui/Accordion";
 import { QuoteWizard } from "@/components/quote/QuoteWizard";
+import { Button } from "@/components/ui/Button";
+import { whatsappHref } from "@/lib/constants";
 import heroExecutive from "@/assets/images/hero-executive.jpg";
 import type { QuoteRequestType } from "@/types";
 
@@ -60,7 +62,7 @@ export default async function CoteSeuVooPage({
         compact
       />
 
-      <section className="bg-mist-50 py-20 md:py-28">
+      <section className="bg-navy-50 py-20 md:py-28">
         <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
           <Reveal>
             <QuoteWizard defaultRequestType={tipo} />
@@ -68,30 +70,30 @@ export default async function CoteSeuVooPage({
 
           <div className="flex flex-col gap-6 lg:sticky lg:top-32 lg:self-start">
             <Reveal delay={0.1}>
-              <div className="rounded-3xl border border-ink-500/8 bg-white p-6">
-                <Badge tone="ink">O QUE ACONTECE DEPOIS</Badge>
+              <div className="rounded-2xl border border-navy-100 bg-white p-6 shadow-card">
+                <Badge tone="navy">O QUE ACONTECE DEPOIS</Badge>
                 <ul className="mt-5 flex flex-col gap-4">
                   <li className="flex items-start gap-3">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
                       <MessagesSquare className="size-3.5" />
                     </span>
-                    <span className="text-sm leading-relaxed text-ink-400">
+                    <span className="text-sm leading-relaxed text-granite-600">
                       Você é direcionado ao WhatsApp com a mensagem já preenchida — é só enviar.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
                       <Clock3 className="size-3.5" />
                     </span>
-                    <span className="text-sm leading-relaxed text-ink-400">
+                    <span className="text-sm leading-relaxed text-granite-600">
                       Nossa equipe analisa o caso e retorna com a cotação e os próximos passos.
                     </span>
                   </li>
                   <li className="flex items-start gap-3">
-                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-500">
+                    <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-navy-50 text-navy-600">
                       <ShieldCheck className="size-3.5" />
                     </span>
-                    <span className="text-sm leading-relaxed text-ink-400">
+                    <span className="text-sm leading-relaxed text-granite-600">
                       Aprovando a proposta, iniciamos a regulação médica e a operação imediatamente.
                     </span>
                   </li>
@@ -100,11 +102,11 @@ export default async function CoteSeuVooPage({
             </Reveal>
 
             <Reveal delay={0.15}>
-              <div className="rounded-3xl bg-ink-500 p-6 text-white">
+              <div className="rounded-2xl bg-navy-900 p-6 text-white">
                 <p className="text-sm leading-relaxed text-white/80">
                   Certificações ANAC, ANVISA e supervisão médica pelo CRM em cada operação.
                 </p>
-                <p className="mt-3 font-mono text-2xs uppercase tracking-[0.14em] text-white/50">
+                <p className="mt-3 font-heading text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-white/50">
                   Atendimento 24 horas, todos os dias
                 </p>
               </div>
@@ -116,7 +118,7 @@ export default async function CoteSeuVooPage({
       <section className="bg-white py-24 md:py-32">
         <Container className="max-w-3xl">
           <Reveal>
-            <h2 className="text-balance text-3xl font-semibold tracking-tight text-ink-500 sm:text-4xl">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl font-heading">
               Perguntas sobre a cotação
             </h2>
           </Reveal>
