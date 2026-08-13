@@ -30,12 +30,12 @@ export const SITE = {
  */
 export const CONTACT = {
   whatsappDigits:
-    process.env.NEXT_PUBLIC_WHATSAPP_DIGITS ?? "5591974009540",
+    process.env.NEXT_PUBLIC_WHATSAPP_DIGITS ?? "5591991014152",
   whatsappDisplay:
-    process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "(91) 97400-9540",
-  phoneDigits: process.env.NEXT_PUBLIC_PHONE_DIGITS ?? "+5591335353053",
-  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "(91) 3353-3053",
-  email: "contato@airmedplan.com.br",
+    process.env.NEXT_PUBLIC_WHATSAPP_DISPLAY ?? "(91) 99101-4152",
+  phoneDigits: process.env.NEXT_PUBLIC_PHONE_DIGITS ?? "+5591991014152",
+  phoneDisplay: process.env.NEXT_PUBLIC_PHONE_DISPLAY ?? "(91) 99101-4152",
+  email: "contato@airmed4you.com.br",
   addressLine1: "Rodovia BR-316, 1762 — Ed. Next Office",
   addressLine2: "Torre 01, Loja 02 — Térreo, ao lado do Shopping Castanheira",
   city: "Ananindeua",

@@ -10,7 +10,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 /**
- * Formata um número de telefone brasileiro para exibição: (91) 97400-9540
+ * Formata um número de telefone brasileiro para exibição: (91) 99101-4152
  */
 export function formatPhoneDisplay(digits: string): string {
   const clean = digits.replace(/\D/g, "");
