@@ -88,16 +88,16 @@ export function QuoteWizard({
     <div className={cn("flex flex-col gap-6", className)}>
       {showEmergencyBanner ? <EmergencyBanner /> : null}
 
-      <div className="rounded-[2rem] border border-navy-100 bg-white p-6 shadow-card md:p-9">
+      <div className="rounded-[20px] border border-[#d9e2f0] bg-white p-6 shadow-card md:p-9">
         {submitted ? (
           <div className="flex flex-col items-center py-6 text-center">
-            <span className="flex size-16 items-center justify-center rounded-full bg-whatsapp/10 text-whatsapp-dark">
+            <span className="flex size-16 items-center justify-center rounded-full bg-[#e0edff] text-[#002b60]">
               <CheckCircle2 className="size-8" strokeWidth={1.5} />
             </span>
-            <h3 className="mt-5 text-xl font-semibold text-navy-900 font-heading">
+            <h3 className="mt-5 font-heading text-xl font-medium text-[#002b60]">
               Sua solicitação está pronta!
             </h3>
-            <p className="text-pretty mt-2 max-w-sm text-sm leading-relaxed text-granite-600">
+            <p className="text-pretty mt-2 max-w-sm text-sm leading-relaxed text-[#5a6f92]">
               Abrimos o WhatsApp com sua mensagem preenchida. Se a janela não abriu, use o botão
               abaixo para enviar manualmente.
             </p>
@@ -105,7 +105,7 @@ export function QuoteWizard({
               <button
                 type="button"
                 onClick={resendWhatsApp}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-whatsapp px-6 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark"
+                className="whatsapp-gradient inline-flex h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white transition-all hover:brightness-105"
               >
                 <WhatsAppIcon className="size-4" />
                 Abrir WhatsApp novamente
@@ -113,7 +113,7 @@ export function QuoteWizard({
               <button
                 type="button"
                 onClick={startOver}
-                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-navy-200 px-6 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-50"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#002b60]/35 px-6 text-sm font-medium text-[#002b60] transition-colors hover:bg-[#f4f8ff]"
               >
                 <RotateCcw className="size-4" />
                 Nova cotação
@@ -142,12 +142,12 @@ export function QuoteWizard({
               </AnimatePresence>
             </div>
 
-            <div className="mt-8 flex items-center justify-between border-t border-navy-100 pt-6">
+            <div className="mt-8 flex items-center justify-between border-t border-[#d9e2f0] pt-6">
               <button
                 type="button"
                 onClick={goBack}
                 disabled={step === 0}
-                className="inline-flex h-12 items-center gap-1.5 rounded-full px-5 text-sm font-medium text-granite-500 transition-colors hover:bg-navy-50 disabled:pointer-events-none disabled:opacity-0"
+                className="inline-flex h-12 items-center gap-1.5 rounded-full px-5 text-sm font-medium text-[#5a6f92] transition-colors hover:bg-[#f4f8ff] disabled:pointer-events-none disabled:opacity-0"
               >
                 <ArrowLeft className="size-4" />
                 Voltar
@@ -155,7 +155,7 @@ export function QuoteWizard({
               <button
                 type="button"
                 onClick={goNext}
-                className="inline-flex h-12 items-center gap-2 rounded-full bg-red-500 px-7 text-sm font-medium text-white shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-red-600 active:scale-[0.96]"
+                className="inline-flex h-12 items-center gap-2 rounded-full bg-[#002b60] px-7 text-sm font-medium uppercase tracking-[0.05em] text-white transition-all duration-300 hover:bg-teal-700 active:scale-[0.97]"
               >
                 {step === TOTAL_STEPS - 1 ? (
                   <>

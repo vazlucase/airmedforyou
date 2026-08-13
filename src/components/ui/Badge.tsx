@@ -1,17 +1,18 @@
 import { cn } from "@/lib/utils";
 
-type BadgeTone = "navy" | "red" | "white" | "ghost";
+type BadgeTone = "teal" | "neutral" | "ember" | "light" | "ghost";
 
 const TONE_CLASSES: Record<BadgeTone, string> = {
-  navy: "bg-navy-100 text-navy-800",
-  red: "bg-red-50 text-red-600",
-  white: "bg-white/15 text-white backdrop-blur-sm",
-  ghost: "bg-transparent text-navy-400 border border-navy-200",
+  teal: "bg-[#e0edff] text-[#002b60]",
+  neutral: "bg-[#f4f8ff] text-[#002b60] border border-[#d2e3fb]",
+  ember: "bg-ember-100 text-ember-700",
+  light: "bg-white/12 text-white backdrop-blur-sm",
+  ghost: "bg-transparent text-[#002b60] border border-[#002b60]/40",
 };
 
 export function Badge({
   children,
-  tone = "navy",
+  tone = "teal",
   className,
 }: {
   children: React.ReactNode;
@@ -21,7 +22,7 @@ export function Badge({
   return (
     <span
       className={cn(
-        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 font-heading text-[0.68rem] font-semibold uppercase tracking-[0.12em]",
+        "inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-[0.68rem] font-medium uppercase tracking-[0.12em]",
         TONE_CLASSES[tone],
         className
       )}

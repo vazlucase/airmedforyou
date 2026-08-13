@@ -2,83 +2,91 @@
 
 @theme {
   /* =========================================================
-     PALETA — inspirada no Amapil (azul corporativo premium)
-     + identidade AirMedPlan (vermelho)
+     PALETA — AEROMÉDICO INSTITUCIONAL (referência Sete Táxi Aéreo)
+     Azul-marinho #002B60 como cor única de marca, azuis claros
+     para superfícies e chips, verde gradiente para WhatsApp.
   ========================================================= */
-  --color-navy-950: #001429;
-  --color-navy-900: #00203f;
-  --color-navy-850: #002b55;
-  --color-navy-800: #003566;
-  --color-navy-700: #004182;
-  --color-navy-600: #0056a7;
-  --color-navy-500: #1863dc;
-  --color-navy-400: #3d7fe0;
-  --color-navy-300: #6ea0e8;
-  --color-navy-200: #a3c3f0;
-  --color-navy-100: #d4e2f7;
-  --color-navy-50: #eef4fb;
+  --color-canvas: #ffffff;        /* superfície principal */
+  --color-paper: #f4f8ff;         /* fundo alternativo (azul bem claro) */
+  --color-mist: #e0edff;          /* fundo de seções destacadas */
+  --color-mist-deep: #d2e3fb;     /* chips de ícones / hover */
 
-  --color-red-700: #8f0000;
-  --color-red-600: #c40000;
-  --color-red-500: #e60000;
-  --color-red-400: #ff3b30;
-  --color-red-100: #fbdcdc;
-  --color-red-50: #fdf3f3;
+  --color-ink: #002b60;           /* títulos / texto principal (navy) */
+  --color-ink-soft: #0e2e5c;      /* corpo com força */
+  --color-ink-muted: #5a6f92;     /* texto secundário */
+  --color-ink-faint: #94a6c4;     /* metadados / captions */
+  --color-hairline: #d9e2f0;      /* bordas / divisórias */
+  --color-hairline-strong: #b7c8e4; /* bordas em destaque/hover */
 
-  --color-sky-500: #0088cc;
-  --color-sky-100: #e8f1f8;
-  --color-sky-50: #f5f9fc;
+  /* Painéis escuros — o navy é a cor de marca */
+  --color-ink-panel: #002b60;
+  --color-ink-panel-soft: #0a3a6e;
 
+  /* Acento sobre superfícies (texto/ícones em fundo claro) */
+  --color-accent: #002b60;
+  --color-accent-tint: #e0edff;
+
+  /* Escala navy/azul (token `teal` mantido p/ compatibilidade) */
+  --color-teal-950: #00152b;
+  --color-teal-900: #001c3c;
+  --color-teal-800: #002349;
+  --color-teal-700: #00264f;
+  --color-teal-600: #002b60;
+  --color-teal-500: #0f3e7e;
+  --color-teal-400: #35649f;
+  --color-teal-300: #97c3ff;
+  --color-teal-200: #bcd7ff;
+  --color-teal-100: #e0edff;
+  --color-teal-50: #f4f8ff;
+
+  /* Urgência (carmim — só onde importa) */
+  --color-ember-700: #8f1d16;
+  --color-ember-600: #b3271e;
+  --color-ember-500: #c63a30;
+  --color-ember-100: #faddda;
+  --color-ember-50: #fbf1f0;
+
+  /* Apoio / confiança técnica */
+  --color-sky-700: #1d4b8f;
+  --color-sky-600: #2f63b0;
+  --color-sky-100: #dce9fa;
+  --color-sky-50: #f2f7fd;
+
+  /* WhatsApp (gradiente verde da referência) */
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #128c7e;
-
-  /* Tons neutros */
-  --color-granite-900: #1e1e2a;
-  --color-granite-800: #2a2a38;
-  --color-granite-700: #3a3a4a;
-  --color-granite-600: #4a4a5a;
-  --color-granite-500: #5a5a6a;
-  --color-granite-400: #7a7a8a;
-  --color-granite-300: #9a9aaa;
-  --color-granite-200: #babac8;
-  --color-granite-100: #dddde6;
-  --color-granite-50: #f2f2f8;
+  --color-whatsapp-deep: #148e45;
 
   /* =========================================================
-     TIPOGRAFIA — Raleway + Poppins (Amapil style)
+     TIPOGRAFIA — Playfair Display (títulos serif) + Roboto (corpo)
   ========================================================= */
-  --font-sans: var(--font-raleway), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-playfair), ui-serif, Georgia, serif;
   --font-mono: "SF Mono", ui-monospace, "Fira Code", monospace;
 
-  --text-2xs: 0.6875rem;
-  --text-2xs--line-height: 1rem;
-
   /* =========================================================
-     RAIO
+     RAIO — botões pill, cartões levemente arredondados
   ========================================================= */
-  --radius-xs: 8px;
-  --radius-sm: 12px;
-  --radius-md: 16px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --radius-2xl: 40px;
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  --radius-2xl: 20px;
   --radius-pill: 999px;
 
   /* =========================================================
-     SOMBRAS — estilo Amapil (suaves, profissionais)
+     SOMBRAS — discretas, com hairline
   ========================================================= */
-  --shadow-soft: 0 2px 8px rgba(0, 32, 63, 0.06), 0 4px 16px rgba(0, 32, 63, 0.04);
-  --shadow-elevated: 0 8px 30px rgba(0, 32, 63, 0.08), 0 20px 60px rgba(0, 32, 63, 0.06);
-  --shadow-card: 0 2px 12px rgba(0, 32, 63, 0.06), 0 8px 24px -8px rgba(0, 32, 63, 0.10);
-  --shadow-button: 0 4px 16px rgba(230, 0, 0, 0.25);
+  --shadow-hairline: 0 0 0 1px var(--color-hairline);
+  --shadow-card: 0 1px 3px rgba(0, 43, 96, 0.06), 0 8px 24px -12px rgba(0, 43, 96, 0.1);
+  --shadow-elevated: 0 2px 8px rgba(0, 43, 96, 0.05), 0 20px 50px -20px rgba(0, 43, 96, 0.18);
 
   /* =========================================================
-     EASING / ANIMAÇÕES — fadeInDown, fadeInUp (Amapil style)
+     EASING / ANIMAÇÕES
   ========================================================= */
   --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-fluid: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
   --animate-fade-in: fade-in 0.6s var(--ease-smooth) both;
   --animate-fade-in-down: fade-in-down 0.7s var(--ease-smooth) both;
@@ -118,35 +126,43 @@
 ========================================================= */
 @layer base {
   * {
-    border-color: var(--color-granite-200);
+    border-color: var(--color-hairline);
   }
 
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    scroll-padding-top: 5.5rem;
+    color-scheme: light;
   }
 
   body {
     font-family: var(--font-sans);
-    background-color: #ffffff;
-    color: var(--color-navy-800);
+    background-color: var(--color-canvas);
+    color: var(--color-ink-soft);
     font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.01em;
-    font-weight: 600;
-    color: var(--color-navy-900);
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  a {
+    color: var(--color-ink);
   }
 
   ::selection {
-    background-color: var(--color-navy-500);
+    background-color: var(--color-teal-600);
     color: #fff;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-navy-500);
+    outline: 2px solid var(--color-teal-600);
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -164,39 +180,35 @@
 }
 
 /* =========================================================
-   COMPONENTES
+   COMPONENTES HELPER
 ========================================================= */
 @layer components {
-  .glass {
-    background-color: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(16px) saturate(1.4);
-    -webkit-backdrop-filter: blur(16px) saturate(1.4);
-    border: 1px solid rgba(255, 255, 255, 0.6);
+  .hairline-top {
+    border-top: 1px solid var(--color-hairline);
+  }
+  .hairline-b {
+    border-bottom: 1px solid var(--color-hairline);
   }
 
-  .glass-dark {
-    background-color: rgba(0, 32, 63, 0.65);
-    backdrop-filter: blur(16px) saturate(1.3);
-    -webkit-backdrop-filter: blur(16px) saturate(1.3);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .amapil-overlay {
+  /* Sobreposição editorial navy sobre imagens */
+  .editorial-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(0, 32, 63, 0.15) 0%,
-      rgba(0, 32, 63, 0.55) 50%,
-      rgba(0, 32, 63, 0.85) 100%
+      rgba(0, 43, 96, 0.06) 0%,
+      rgba(0, 43, 96, 0.38) 55%,
+      rgba(0, 43, 96, 0.86) 100%
     );
   }
 
-  .amapil-overlay-light {
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(0, 32, 63, 0.35) 60%,
-      rgba(0, 32, 63, 0.7) 100%
-    );
+  /* Botão/faixa WhatsApp no gradiente verde da referência */
+  .whatsapp-gradient {
+    background: linear-gradient(90deg, #148e45, #00f562);
+  }
+
+  /* Divisória navy translúcida (30% de alpha) */
+  .navy-divider {
+    background-color: rgba(0, 43, 96, 0.3);
+    height: 1px;
   }
 
   .text-balance {
@@ -205,15 +217,6 @@
 
   .text-pretty {
     text-wrap: pretty;
-  }
-
-  .hex-bg {
-    background-image: radial-gradient(
-      circle at 1px 1px,
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 0
-    );
-    background-size: 24px 24px;
   }
 }
 

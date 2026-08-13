@@ -1,22 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Raleway, Poppins } from "next/font/google";
+import { Playfair_Display, Roboto } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
+import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { CONTACT, SITE } from "@/lib/constants";
 import "./globals.css";
 
-const raleway = Raleway({
+const playfair = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-raleway",
+  variable: "--font-playfair",
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const poppins = Poppins({
+const roboto = Roboto({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-poppins",
+  variable: "--font-roboto",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -60,7 +62,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#00203f",
+  themeColor: "#002b60",
 };
 
 export default function RootLayout({
@@ -87,15 +89,24 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${raleway.variable} ${poppins.variable}`}>
-      <body className="flex min-h-svh flex-col antialiased">
+    <html lang="pt-BR" className={`${playfair.variable} ${roboto.variable}`}>
+      <body className="flex min-h-svh flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] antialiased lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <a
+            href="#conteudo"
+            className="sr-only z-[60] rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+          >
+            Pular para o conteúdo
+          </a>
+          <Header />
+          <main id="conteudo" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        <MobileActionBar />
         <WhatsAppFab />
       </body>
     </html>

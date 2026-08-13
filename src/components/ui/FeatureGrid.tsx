@@ -16,7 +16,7 @@ export function FeatureGrid({
   return (
     <div
       className={cn(
-        "grid grid-cols-1 gap-5 md:grid-cols-2",
+        "grid grid-cols-1 gap-6 md:grid-cols-2",
         columns === 3 && "lg:grid-cols-3",
         columns === 4 && "lg:grid-cols-4"
       )}
@@ -24,16 +24,16 @@ export function FeatureGrid({
       {items.map((item, i) => (
         <div
           key={item.title}
-          className="group rounded-2xl border border-navy-100 bg-white p-6 transition-all duration-300 hover:shadow-card hover:border-navy-200"
+          className="group rounded-[20px] border border-[#d9e2f0] bg-canvas p-8 transition-all duration-300 hover:shadow-card hover:border-[#b7c8e4]"
         >
-          <span className="flex size-11 items-center justify-center rounded-full bg-navy-50 text-navy-600 transition-colors group-hover:bg-navy-100">
+          <span className="flex size-11 items-center justify-center rounded-[5px] bg-[#d2e3fb] text-[#002b60] transition-colors group-hover:bg-[#bcd7ff]">
             <item.icon className="size-5" strokeWidth={1.75} />
           </span>
-          <h3 className="mt-5 text-lg font-semibold leading-snug text-navy-900 font-heading">
+          <h3 className="mt-5 font-heading text-2xl font-semibold leading-snug text-[#002b60]">
             {item.title}
           </h3>
           {item.description ? (
-            <p className="mt-2 text-sm leading-relaxed text-granite-600">
+            <p className="mt-2.5 text-[0.95rem] leading-relaxed text-[#5a6f92]">
               {item.description}
             </p>
           ) : null}

@@ -14,7 +14,7 @@ const POINTS = [
 
 export function QuoteSection() {
   return (
-    <section className="relative overflow-hidden bg-navy-900 py-24 md:py-32">
+    <section className="relative overflow-hidden bg-ink-panel py-24 md:py-28">
       <Image
         src={heroExecutive}
         alt=""
@@ -23,15 +23,15 @@ export function QuoteSection() {
         className="object-cover opacity-[0.12]"
         aria-hidden
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-navy-900 via-navy-900/95 to-navy-900" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-panel via-ink-panel/95 to-ink-panel" />
 
-      <Container className="relative grid grid-cols-1 gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+      <Container className="relative grid grid-cols-1 gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <Reveal>
-            <Badge tone="white">COTE SEU VOO</Badge>
+            <Badge tone="light">COTE SEU VOO</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="text-balance mt-5 text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl md:text-[2.6rem] font-heading">
+            <h2 className="text-balance mt-5 text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-4xl md:text-4xl font-heading">
               Faça sua cotação agora mesmo.
             </h2>
           </Reveal>

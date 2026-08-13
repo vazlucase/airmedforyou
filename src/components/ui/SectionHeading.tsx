@@ -16,21 +16,21 @@ export function SectionHeading({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3",
+        "flex flex-col gap-4",
         align === "center" && "items-center text-center",
         className
       )}
     >
       {eyebrow ? (
-        <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.15em] text-navy-500">
+        <span className="text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[#002b60]/70">
           {eyebrow}
         </span>
       ) : null}
-      <h2 className="text-balance max-w-2xl text-3xl font-semibold leading-[1.12] tracking-tight text-navy-900 sm:text-4xl md:text-[2.4rem]">
+      <h2 className="text-balance max-w-2xl font-heading text-3xl font-medium leading-[1.15] tracking-tight text-[#002b60] sm:text-4xl">
         {title}
       </h2>
       {description ? (
-        <p className="text-pretty max-w-lg text-base leading-relaxed text-granite-500 md:text-lg">
+        <p className="text-pretty max-w-lg text-base leading-relaxed text-[#5a6f92] md:text-lg">
           {description}
         </p>
       ) : null}

@@ -48,30 +48,30 @@ const SECTIONS = [
 
 export default function PoliticaDePrivacidadePage() {
   return (
-    <section className="bg-white py-20 pt-40 md:py-28 md:pt-48">
+    <section className="bg-canvas py-24 pt-40 md:py-32 md:pt-48">
       <Container className="max-w-3xl">
-        <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-navy-500">
+        <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-accent">
           LGPD
         </span>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-navy-900 sm:text-4xl font-heading">
+        <h1 className="mt-4 text-3xl font-medium tracking-tight text-ink sm:text-4xl font-heading">
           Política de Privacidade
         </h1>
-        <p className="mt-4 text-sm text-granite-400">Última atualização: julho de 2026</p>
+        <p className="mt-4 text-sm text-ink-muted">Última atualização: julho de 2026</p>
 
         <div className="mt-12 flex flex-col gap-10">
           {SECTIONS.map((section) => (
             <div key={section.title}>
-              <h2 className="text-lg font-semibold text-navy-900 font-heading">{section.title}</h2>
-              <p className="text-pretty mt-3 leading-relaxed text-granite-600">{section.body}</p>
+              <h2 className="text-lg font-medium text-ink font-heading">{section.title}</h2>
+              <p className="text-pretty mt-3 leading-relaxed text-ink-muted">{section.body}</p>
             </div>
           ))}
 
-          <div className="rounded-2xl bg-navy-50 p-6">
-            <h2 className="text-lg font-semibold text-navy-900 font-heading">Fale com nosso encarregado de dados</h2>
-            <p className="mt-3 leading-relaxed text-granite-600">
+          <div className="rounded-2xl bg-mist p-6">
+            <h2 className="text-lg font-medium text-ink font-heading">Fale com nosso encarregado de dados</h2>
+            <p className="mt-3 leading-relaxed text-ink-muted">
               Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em
               contato pelo e-mail{" "}
-              <a href={`mailto:${CONTACT.email}`} className="font-medium text-navy-700 underline underline-offset-2">
+              <a href={`mailto:${CONTACT.email}`} className="font-medium text-accent underline underline-offset-2">
                 {CONTACT.email}
               </a>{" "}
               ou pelo telefone {CONTACT.phoneDisplay}.

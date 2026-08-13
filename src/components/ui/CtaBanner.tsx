@@ -19,15 +19,15 @@ export function CtaBanner({
   whatsappMessage?: string;
 }) {
   return (
-    <section className="bg-white py-20 md:py-24">
+    <section className="border-t border-[#d9e2f0] bg-[#f4f8ff] py-24 md:py-28">
       <Container>
         <Reveal>
-          <div className="flex flex-col items-center gap-6 rounded-[2.5rem] bg-navy-900 px-8 py-14 text-center md:px-16 md:py-20">
-            <h2 className="text-balance max-w-2xl text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl font-heading">
+          <div className="flex flex-col items-center gap-6 text-center">
+            <h2 className="text-balance max-w-2xl font-heading text-3xl font-medium leading-[1.15] tracking-tight text-[#002b60] sm:text-4xl">
               {title}
             </h2>
             {description ? (
-              <p className="text-pretty max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
+              <p className="text-pretty max-w-xl text-base leading-relaxed text-[#5a6f92] md:text-lg">
                 {description}
               </p>
             ) : null}

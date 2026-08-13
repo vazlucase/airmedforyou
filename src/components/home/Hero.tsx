@@ -33,7 +33,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-navy-900"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#002b60]"
       aria-roledescription="carrossel"
       aria-label="Destaques AirMedPlan"
     >
@@ -60,14 +60,15 @@ export function Hero() {
                 fill
                 priority
                 sizes="100vw"
+                quality={80}
                 className="object-cover"
               />
             </motion.div>
           </motion.div>
         </AnimatePresence>
-        {/* Amapil-style gradient overlay */}
-        <div className="absolute inset-0 amapil-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-900/60 via-navy-900/10 to-transparent" />
+        {/* Overlay editorial navy */}
+        <div className="absolute inset-0 editorial-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#002b60]/65 via-[#002b60]/15 to-transparent" />
       </div>
 
       <Container className="relative flex w-full flex-col gap-10 pb-16 pt-40 md:pb-20 md:pt-48">
@@ -80,23 +81,23 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-1.5 font-medium text-[0.68rem] uppercase tracking-[0.12em] text-white backdrop-blur-sm font-heading">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-1.5 font-medium text-[0.68rem] uppercase tracking-[0.12em] text-white backdrop-blur-sm">
               <span className="relative flex size-1.5">
-                <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-red-400" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-red-400" />
+                <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-[#97c3ff]" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-[#97c3ff]" />
               </span>
               {slide.eyebrow}
             </span>
-            <h1 className="text-balance mt-6 text-[2.5rem] font-semibold leading-[1.08] tracking-tight text-white sm:text-6xl md:text-7xl font-heading">
+            <h1 className="text-balance mt-6 font-heading text-[clamp(2rem,6vw,2.6rem)] font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
               {slide.title}
             </h1>
-            <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-white/75 md:text-lg">
+            <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-white/80 md:text-lg">
               {slide.subtitle}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href={slide.ctaHref}
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-red-500 px-7 text-[0.95rem] font-medium text-white shadow-[var(--shadow-button)] transition-all duration-300 hover:bg-red-600 active:scale-[0.96]"
+                className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-[0.05em] text-[#002b60] transition-all duration-300 hover:bg-[#e0edff] active:scale-[0.97]"
               >
                 {slide.ctaLabel}
                 <ArrowRight className="size-4" />
@@ -105,7 +106,7 @@ export function Hero() {
                 href={whatsappHref("Olá! Vim pelo site da AirMedPlan e gostaria de falar com um atendente.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-white/15 backdrop-blur-sm px-6 text-[0.95rem] font-medium text-white transition-all duration-300 hover:bg-white/25 active:scale-[0.96]"
+                className="whatsapp-gradient inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium uppercase tracking-[0.05em] text-white transition-all duration-300 hover:brightness-105 active:scale-[0.97]"
               >
                 <WhatsAppIcon className="size-4" />
                 Falar agora

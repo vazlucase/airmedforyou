@@ -2,33 +2,31 @@ import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-type Variant = "primary" | "secondary" | "outline" | "ghost" | "whatsapp";
+type Variant = "primary" | "secondary" | "outline" | "ghost" | "urgent" | "whatsapp";
 type Size = "sm" | "md" | "lg";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
-  primary:
-    "bg-red-500 text-white shadow-[var(--shadow-button)] hover:bg-red-600 active:bg-red-700",
+  primary: "bg-[#002b60] text-white hover:bg-teal-700 active:bg-teal-800",
   secondary:
-    "bg-navy-600 text-white hover:bg-navy-700 active:bg-navy-800",
+    "bg-[#002b60] text-white hover:bg-teal-700 active:bg-teal-800",
   outline:
-    "border border-navy-200 bg-white text-navy-700 hover:border-navy-400 hover:bg-navy-50 active:bg-navy-100",
-  ghost:
-    "text-navy-600 hover:bg-navy-50 active:bg-navy-100",
-  whatsapp:
-    "bg-whatsapp text-white hover:bg-whatsapp-dark active:bg-whatsapp-dark",
+    "border border-[#002b60]/35 bg-canvas text-[#002b60] hover:border-[#002b60] hover:bg-[#f4f8ff] active:bg-mist",
+  ghost: "text-[#002b60] hover:bg-[#e0edff] active:bg-[#d2e3fb]",
+  urgent: "bg-[#c63a30] text-white hover:bg-ember-700 active:bg-ember-700",
+  whatsapp: "whatsapp-gradient text-white hover:brightness-105 active:brightness-95",
 };
 
 const SIZE_CLASSES: Record<Size, string> = {
-  sm: "h-10 px-4 text-sm gap-1.5",
-  md: "h-12 px-6 text-[0.95rem] gap-2",
-  lg: "h-14 px-8 text-base gap-2.5",
+  sm: "h-10 px-5 text-[0.78rem] gap-1.5",
+  md: "h-12 px-7 text-[0.85rem] gap-2",
+  lg: "h-14 px-9 text-[0.9rem] gap-2.5",
 };
 
 const baseClasses =
-  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-full font-medium " +
-  "transition-all duration-300 ease-[var(--ease-fluid)] active:scale-[0.96] " +
+  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-full font-medium uppercase tracking-[0.05em] " +
+  "transition-all duration-300 ease-[var(--ease-fluid)] active:scale-[0.97] " +
   "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 " +
-  "focus-visible:outline-offset-2 focus-visible:outline-navy-500";
+  "focus-visible:outline-offset-2 focus-visible:outline-teal-600";
 
 interface CommonProps {
   variant?: Variant;

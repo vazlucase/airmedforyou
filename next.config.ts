@@ -17,7 +17,9 @@ const nextConfig: NextConfig = {
   compress: true,
   images: {
     formats: ["image/avif", "image/webp"],
+    qualities: [75, 80],
   },
+  allowedDevOrigins: ["192.168.100.11", "127.0.0.1"],
   async headers() {
     return [
       {

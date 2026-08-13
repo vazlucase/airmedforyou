@@ -5,8 +5,10 @@ import { STATS } from "@/lib/constants";
 
 export function StatsStrip() {
   return (
-    <section className="relative overflow-hidden bg-navy-900 py-16 md:py-20">
-      <div className="pointer-events-none absolute inset-0 hex-bg opacity-30" aria-hidden />
+    <section className="relative overflow-hidden bg-ink-panel py-20 md:py-24">
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-teal-600/50 to-transparent" aria-hidden />
+      </div>
       <Container className="relative">
         <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-8">
           {STATS.map((stat, i) => (

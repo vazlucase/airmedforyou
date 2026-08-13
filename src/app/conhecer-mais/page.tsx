@@ -16,10 +16,10 @@ export const metadata: Metadata = {
 export default function ConhecerMaisPage() {
   return (
     <>
-      <section className="bg-navy-900 pb-16 pt-40 md:pb-20 md:pt-48">
+      <section className="bg-ink-panel pb-16 pt-40 md:pb-20 md:pt-48">
         <Container>
           <Reveal>
-            <Badge tone="white">CONHECER MAIS</Badge>
+            <Badge tone="light">CONHECER MAIS</Badge>
           </Reveal>
           <Reveal delay={0.05}>
             <h1 className="text-balance mt-5 max-w-2xl text-4xl font-semibold leading-[1.1] tracking-tight text-white sm:text-5xl font-heading">
@@ -47,21 +47,21 @@ export default function ConhecerMaisPage() {
         </Container>
       </section>
 
-      <section className="bg-white py-20 md:py-28">
+      <section className="bg-canvas py-24 md:py-32">
         <Container className="max-w-3xl">
           <article id="como-funciona-uma-remocao-aeromedica" className="scroll-mt-28">
             <Reveal>
-              <span className="flex size-11 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+              <span className="flex size-11 items-center justify-center rounded-full bg-accent-tint text-accent">
                 <BookOpen className="size-5" strokeWidth={1.75} />
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-5 text-3xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-4xl font-heading">
+              <h2 className="text-balance mt-5 text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl font-heading">
                 Como funciona uma remoção aeromédica, do início ao fim
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-granite-600">
+              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-ink-soft">
                 <p>
                   Uma remoção aeromédica começa muito antes da decolagem. Tudo se inicia com o
                   contato da família ou do hospital de origem com a nossa central, relatando o
@@ -95,21 +95,21 @@ export default function ConhecerMaisPage() {
             </Reveal>
           </article>
 
-          <div className="my-16 h-px bg-navy-100" />
+          <div className="my-16 h-px bg-hairline" />
 
           <article id="quando-a-uti-aerea-e-indicada" className="scroll-mt-28">
             <Reveal>
-              <span className="flex size-11 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+              <span className="flex size-11 items-center justify-center rounded-full bg-accent-tint text-accent">
                 <BookOpen className="size-5" strokeWidth={1.75} />
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-5 text-3xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-4xl font-heading">
+              <h2 className="text-balance mt-5 text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl font-heading">
                 Quando a UTI aérea é a opção certa?
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-granite-600">
+              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-ink-soft">
                 <p>
                   Nem toda transferência de paciente exige uma aeronave — mas alguns fatores
                   tornam a UTI aérea não apenas recomendável, e sim a opção mais segura
@@ -141,21 +141,21 @@ export default function ConhecerMaisPage() {
             </Reveal>
           </article>
 
-          <div className="my-16 h-px bg-navy-100" />
+          <div className="my-16 h-px bg-hairline" />
 
           <article id="o-que-e-o-clubmed" className="scroll-mt-28">
             <Reveal>
-              <span className="flex size-11 items-center justify-center rounded-full bg-navy-50 text-navy-600">
+              <span className="flex size-11 items-center justify-center rounded-full bg-accent-tint text-accent">
                 <BookOpen className="size-5" strokeWidth={1.75} />
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-5 text-3xl font-semibold leading-tight tracking-tight text-navy-900 sm:text-4xl font-heading">
+              <h2 className="text-balance mt-5 text-3xl font-medium leading-tight tracking-tight text-ink sm:text-4xl font-heading">
                 O que é o ClubMed e como ele funciona
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-granite-600">
+              <div className="mt-6 flex flex-col gap-5 text-[1.05rem] leading-relaxed text-ink-soft">
                 <p>
                   O ClubMed nasceu de uma constatação simples: emergências acontecem raramente,
                   mas o cuidado precisa existir todos os dias. Por isso, o ClubMed é um clube de
@@ -186,7 +186,7 @@ export default function ConhecerMaisPage() {
             <Reveal delay={0.15}>
               <Link
                 href="/clubmed"
-                className="mt-8 inline-flex items-center gap-1.5 rounded-full bg-navy-50 px-5 py-2.5 text-sm font-medium text-navy-700 transition-colors hover:bg-navy-100"
+                className="mt-8 inline-flex items-center gap-1.5 rounded-md bg-accent-tint px-5 py-2.5 text-sm font-medium text-accent transition-colors hover:bg-mist-deep"
               >
                 Conhecer os planos do ClubMed
                 <ArrowRight className="size-3.5" />

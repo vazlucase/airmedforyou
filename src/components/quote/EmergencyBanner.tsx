@@ -5,23 +5,24 @@ import { emergencyCallHref, emergencyWhatsAppLink } from "@/lib/whatsapp";
 
 export function EmergencyBanner() {
   return (
-    <div className="flex flex-col items-start gap-4 rounded-2xl border border-red-500/15 bg-red-50 p-5 sm:flex-row sm:items-center sm:justify-between md:p-6">
-      <div className="flex items-start gap-3.5">
-        <span className="relative flex size-10 shrink-0 items-center justify-center rounded-full bg-red-500 text-white">
-          <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-red-500 opacity-60" />
-          <PhoneCall className="relative size-4" strokeWidth={2} />
+    <div className="flex flex-col items-start gap-4 rounded-[20px] bg-[#002b60] p-6 text-white sm:flex-row sm:items-center sm:justify-between md:p-8">
+      <div className="flex items-start gap-4">
+        <span className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
+          <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-white/20 opacity-60" />
+          <PhoneCall className="relative size-5" strokeWidth={2} />
         </span>
         <div>
-          <p className="text-[0.95rem] font-semibold text-navy-900">É uma emergência agora?</p>
-          <p className="text-sm leading-snug text-granite-600">
-            Não preencha o formulário — fale direto com a nossa central, {CONTACT.hours.toLowerCase()}.
+          <p className="font-heading text-xl font-semibold">É uma emergência agora?</p>
+          <p className="mt-1 text-sm leading-snug text-[#f8f8ff]/75">
+            Não preencha o formulário — fale direto com a nossa central,{" "}
+            {CONTACT.hours.toLowerCase()}.
           </p>
         </div>
       </div>
       <div className="flex w-full shrink-0 gap-2.5 sm:w-auto">
         <a
           href={emergencyCallHref()}
-          className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-navy-800 px-5 text-sm font-medium text-white transition-colors hover:bg-navy-900 sm:flex-none"
+          className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-white/40 px-6 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:flex-none"
         >
           <PhoneCall className="size-4" />
           Ligar agora
@@ -30,7 +31,7 @@ export function EmergencyBanner() {
           href={emergencyWhatsAppLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-whatsapp px-5 text-sm font-medium text-white transition-colors hover:bg-whatsapp-dark sm:flex-none"
+          className="whatsapp-gradient inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white transition-all hover:brightness-105 sm:flex-none"
         >
           <WhatsAppIcon className="size-4" />
           WhatsApp

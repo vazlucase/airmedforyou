@@ -45,27 +45,28 @@ export default function SobrePage() {
     <>
       <PageHero
         eyebrow="SOBRE A AIRMEDPLAN"
+        crumb="Sobre"
         title="Nascemos no comando de operações aéreas — não em uma sala de reunião."
         description="Hoje somos um ecossistema completo de UTI aérea, voos executivos e benefícios, guiado pela mesma disciplina do primeiro voo."
         image={operacaoResgate}
         imageAlt={OPERATION_IMAGE.alt}
       />
 
-      <section className="bg-white py-24 md:py-32">
-        <Container className="grid grid-cols-1 items-center gap-14 md:grid-cols-2 md:gap-16">
+      <section className="bg-canvas py-24 md:py-32">
+        <Container className="grid grid-cols-1 items-center gap-16 md:grid-cols-2 md:gap-20">
           <div>
             <Reveal>
-              <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-navy-400">
+              <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-accent">
                 A ORIGEM
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-navy-900 sm:text-4xl font-heading">
+              <h2 className="text-balance mt-4 text-3xl font-medium leading-[1.15] tracking-tight text-ink sm:text-4xl font-heading">
                 Uma trajetória construída no ar, antes de ser construída como empresa.
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-granite-600 md:text-lg">
+              <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-ink-muted md:text-lg">
                 A AirMedPlan foi fundada pelo Cmte. Tadeu Pessoa, com trajetória em comando de
                 operações aéreas. Essa vivência — decisões sob pressão, rotas complexas e
                 logística exigente — é a base de como operamos até hoje: cada remoção
@@ -73,7 +74,7 @@ export default function SobrePage() {
               </p>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="text-pretty mt-4 max-w-lg text-base leading-relaxed text-granite-600 md:text-lg">
+              <p className="text-pretty mt-4 max-w-lg text-base leading-relaxed text-ink-muted md:text-lg">
                 Esse know-how se expandiu para os voos executivos e, mais recentemente, para o
                 ClubMed — um clube de benefícios que leva o mesmo cuidado para o dia a dia de
                 quem confia na gente.
@@ -94,8 +95,8 @@ export default function SobrePage() {
         </Container>
       </section>
 
-      <section className="relative overflow-hidden bg-navy-900 py-20 md:py-24">
-        <div className="pointer-events-none absolute inset-0 hex-bg opacity-30" aria-hidden />
+      <section className="relative overflow-hidden bg-ink-panel py-24 md:py-28">
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-teal-600/20 via-transparent to-transparent" aria-hidden />
         <Container>
           <div className="grid grid-cols-2 gap-y-10 md:grid-cols-4 md:gap-8">
             {STATS.map((stat, i) => (
@@ -107,7 +108,7 @@ export default function SobrePage() {
         </Container>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow="NOSSOS VALORES"

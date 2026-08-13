@@ -53,6 +53,23 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Voos Executivos", href: "/voos-executivos" },
   { label: "ClubMed", href: "/clubmed" },
   { label: "Conhecer Mais", href: "/conhecer-mais" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Sobre", href: "/sobre" },
+  { label: "Contato", href: "/contato" },
+];
+
+/** Itens principais exibidos direto no header desktop */
+export const NAV_PRIMARY: NavItem[] = [
+  { label: "Início", href: "/" },
+  { label: "UTI Aérea", href: "/uti-aerea" },
+  { label: "Voos Executivos", href: "/voos-executivos" },
+  { label: "ClubMed", href: "/clubmed" },
+];
+
+/** Itens secundários agrupados no menu "Mais" do header desktop */
+export const NAV_MORE: NavItem[] = [
+  { label: "Conhecer Mais", href: "/conhecer-mais" },
+  { label: "FAQ", href: "/faq" },
   { label: "Sobre", href: "/sobre" },
   { label: "Contato", href: "/contato" },
 ];
@@ -60,6 +77,7 @@ export const NAV_ITEMS: NavItem[] = [
 export const FOOTER_LINKS: NavItem[] = [
   ...NAV_ITEMS,
   { label: "Cote seu Voo", href: "/cote-seu-voo" },
+  { label: "Perguntas frequentes", href: "/faq" },
   { label: "Política de Privacidade", href: "/politica-de-privacidade" },
 ];
 

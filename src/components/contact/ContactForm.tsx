@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Send, Loader2 } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import { whatsappHref } from "@/lib/constants";
 
@@ -17,6 +16,9 @@ const contactSchema = z.object({
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
+
+const inputClass =
+  "w-full border border-[#002b60] bg-transparent px-4 py-3 text-[0.95rem] text-[#002b60] placeholder:text-[#94a6c4] outline-none transition-colors focus:bg-white/60 focus:border-[#002b60]";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
@@ -40,12 +42,14 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl bg-navy-50 p-8 text-center">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-navy-100">
-          <Send className="size-6 text-navy-600" />
+      <div className="rounded-[20px] border border-[#d9e2f0] bg-white p-8 text-center">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[#e0edff]">
+          <Send className="size-6 text-[#002b60]" />
         </div>
-        <h3 className="mt-5 text-xl font-semibold text-navy-900 font-heading">Mensagem enviada!</h3>
-        <p className="mt-2 text-sm text-granite-600">
+        <h3 className="mt-5 font-heading text-xl font-semibold text-[#002b60]">
+          Mensagem enviada!
+        </h3>
+        <p className="mt-2 text-sm text-[#5a6f92]">
           Você será redirecionado ao WhatsApp para finalizar.
         </p>
       </div>
@@ -53,28 +57,25 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-granite-700">
+        <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-[#002b60]">
           Nome completo
         </label>
         <input
           id="name"
           {...register("name")}
           placeholder="Seu nome"
-          className={cn(
-            "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
-            errors.name && "border-red-400 focus:border-red-400 focus:ring-red-100"
-          )}
+          className={cn(inputClass, errors.name && "border-ember-500")}
         />
         {errors.name ? (
-          <p className="mt-1 text-xs text-red-500">{errors.name.message}</p>
+          <p className="mt-1 text-xs text-ember-600">{errors.name.message}</p>
         ) : null}
       </div>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-granite-700">
+          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-[#002b60]">
             E-mail
           </label>
           <input
@@ -82,61 +83,56 @@ export function ContactForm() {
             type="email"
             {...register("email")}
             placeholder="seu@email.com"
-            className={cn(
-              "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
-              errors.email && "border-red-400 focus:border-red-400 focus:ring-red-100"
-            )}
+            className={cn(inputClass, errors.email && "border-ember-500")}
           />
           {errors.email ? (
-            <p className="mt-1 text-xs text-red-500">{errors.email.message}</p>
+            <p className="mt-1 text-xs text-ember-600">{errors.email.message}</p>
           ) : null}
         </div>
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-granite-700">
+          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-[#002b60]">
             Telefone
           </label>
           <input
             id="phone"
             {...register("phone")}
             placeholder="(91) 99999-9999"
-            className={cn(
-              "w-full rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
-              errors.phone && "border-red-400 focus:border-red-400 focus:ring-red-100"
-            )}
+            className={cn(inputClass, errors.phone && "border-ember-500")}
           />
           {errors.phone ? (
-            <p className="mt-1 text-xs text-red-500">{errors.phone.message}</p>
+            <p className="mt-1 text-xs text-ember-600">{errors.phone.message}</p>
           ) : null}
         </div>
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-granite-700">
+        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-[#002b60]">
           Mensagem
         </label>
         <textarea
           id="message"
           {...register("message")}
           rows={4}
-          placeholder="Como podemos ajudar?"
-          className={cn(
-            "w-full resize-none rounded-xl border bg-white px-4 py-3 text-sm text-granite-800 outline-none transition-colors placeholder:text-granite-300 focus:border-navy-400 focus:ring-2 focus:ring-navy-100",
-            errors.message && "border-red-400 focus:border-red-400 focus:ring-red-100"
-          )}
+          placeholder="Digite sua mensagem..."
+          className={cn(inputClass, "resize-none", errors.message && "border-ember-500")}
         />
         {errors.message ? (
-          <p className="mt-1 text-xs text-red-500">{errors.message.message}</p>
+          <p className="mt-1 text-xs text-ember-600">{errors.message.message}</p>
         ) : null}
       </div>
 
-      <Button type="submit" variant="secondary" size="lg" disabled={isSubmitting}>
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-[7px] bg-[#002b60] px-8 text-base font-bold text-[#e0edff] transition-colors duration-300 hover:bg-teal-700 disabled:pointer-events-none disabled:opacity-50"
+      >
         {isSubmitting ? (
           <Loader2 className="size-4 animate-spin" />
         ) : (
           <Send className="size-4" />
         )}
-        {isSubmitting ? "Enviando..." : "Enviar mensagem"}
-      </Button>
+        {isSubmitting ? "Enviando..." : "Enviar"}
+      </button>
     </form>
   );
 }

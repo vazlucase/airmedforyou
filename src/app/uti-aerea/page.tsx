@@ -1,5 +1,15 @@
 import type { Metadata } from "next";
-import { Baby, HeartPulse, Plane, ShieldCheck, Stethoscope, Users } from "lucide-react";
+import {
+  Baby,
+  CheckCircle2,
+  ClipboardList,
+  HeartPulse,
+  PhoneCall,
+  Plane,
+  ShieldCheck,
+  Stethoscope,
+  Users,
+} from "lucide-react";
 import { PageHero } from "@/components/layout/PageHero";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -53,24 +63,40 @@ const CAPABILITIES = [
 
 const STEPS = [
   {
-    title: "Contato e regulação médica",
+    icon: PhoneCall,
+    title: "Solicitação de remoção",
     description:
-      "Você aciona a AirMedPlan pelo site, telefone ou WhatsApp. Nossa equipe de regulação avalia o caso com o hospital de origem.",
+      "Paciente, familiar ou representante entra em contato com nossa Central de Fretamento, disponível 24 horas por dia, 7 dias por semana, para solicitar um orçamento.",
   },
   {
-    title: "Definição da aeronave e equipe",
+    icon: Stethoscope,
+    title: "Regulação médica",
     description:
-      "Com base na condição clínica e na distância, escolhemos a aeronave, os equipamentos e a equipe médica ideais para a missão.",
+      "Nossos médicos reguladores avaliam o caso em comunicação com a equipe do hospital de origem, garantindo uma remoção aérea segura e adequada ao quadro clínico.",
   },
   {
-    title: "Embarque e monitorização contínua",
+    icon: ClipboardList,
+    title: "Planejamento da missão",
     description:
-      "O paciente é transferido com estabilidade, sob monitorização contínua durante todo o trajeto — do solo ao ar e do ar ao solo.",
+      "Definimos a aeronave, a escala da tripulação, a equipe médica e o acionamento das ambulâncias de origem e destino, com todas as autorizações e o planejamento operacional.",
   },
   {
-    title: "Chegada e transferência ao destino",
+    icon: Plane,
+    title: "Execução do voo",
     description:
-      "Nossa equipe entrega o paciente diretamente à equipe do hospital de destino, com relatório clínico completo da missão.",
+      "Realizamos o transporte aeromédico com suporte completo de UTI aérea. Durante toda a missão, o paciente permanece acompanhado pela equipe médica que monitora continuamente o quadro clínico.",
+  },
+  {
+    icon: HeartPulse,
+    title: "Entrega ao destino",
+    description:
+      "O paciente é transferido com estabilidade para a equipe do hospital de destino, em protocolo bed-to-bed — do leito de origem ao leito de destino, sem interrupção do cuidado.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Pós-voo e acompanhamento",
+    description:
+      "Após a conclusão da missão, elaboramos todos os relatórios operacionais e médicos referentes ao voo e realizamos pesquisas de satisfação para melhoria contínua.",
   },
 ];
 
@@ -79,13 +105,14 @@ export default function UtiAereaPage() {
     <>
       <PageHero
         eyebrow="REMOÇÃO AEROMÉDICA · 24 HORAS"
+        crumb="UTI Aérea"
         title="UTI aérea completa, em qualquer lugar do Brasil."
         description="Transferimos pacientes críticos com o mesmo padrão de cuidado de uma UTI hospitalar — do leito de origem ao leito de destino."
         image={heroEmergencia}
         imageAlt="Equipe médica embarcando paciente em maca em jato de remoção aeromédica"
       />
 
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-canvas py-14 md:py-16">
         <Container>
           <Reveal>
             <EmergencyBanner />
@@ -93,7 +120,7 @@ export default function UtiAereaPage() {
         </Container>
       </section>
 
-      <section className="bg-white pb-24 md:pb-32">
+      <section className="bg-canvas pb-24 md:pb-32">
         <Container>
           <SectionHeading
             eyebrow="CAPACIDADE CLÍNICA"
@@ -106,18 +133,23 @@ export default function UtiAereaPage() {
         </Container>
       </section>
 
-      <section className="bg-navy-50 py-24 md:py-32">
-        <Container className="grid grid-cols-1 gap-16 lg:grid-cols-2">
+      {/* Fluxo de Atendimento — 6 etapas em 2 linhas de 3 */}
+      <section className="border-t border-[rgba(0,43,96,0.3)] bg-[#f4f8ff] py-24 md:py-32">
+        <Container>
           <SectionHeading
             eyebrow="COMO FUNCIONA"
-            title="Do primeiro contato à chegada ao destino."
-            description="Um processo desenhado para reduzir tempo de resposta sem abrir mão de segurança."
+            title="Fluxo de Atendimento"
+            description="Um processo desenhado para reduzir o tempo de resposta sem abrir mão de segurança — da solicitação ao pós-voo."
+            align="center"
+            className="mx-auto items-center text-center"
           />
-          <ProcessSteps steps={STEPS} />
+          <div className="mt-16">
+            <ProcessSteps steps={STEPS} />
+          </div>
         </Container>
       </section>
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container className="max-w-3xl">
           <SectionHeading eyebrow="DÚVIDAS FREQUENTES" title="Perguntas sobre a UTI Aérea" />
           <div className="mt-12">

@@ -52,13 +52,14 @@ export default function VoosExecutivosPage() {
     <>
       <PageHero
         eyebrow="AVIAÇÃO EXECUTIVA"
+        crumb="Voos Executivos"
         title="Sua agenda não espera. Seu voo, sob medida."
         description="Fretamento executivo com a pontualidade e a segurança de quem também opera missões médicas críticas."
         image={heroExecutive}
         imageAlt="Interior de jato executivo com poltronas de couro"
       />
 
-      <section className="bg-white py-24 md:py-32">
+      <section className="bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow="POR QUE VOAR COM A AIRMEDPLAN"
@@ -71,10 +72,10 @@ export default function VoosExecutivosPage() {
         </Container>
       </section>
 
-      <section className="bg-navy-900 py-24 md:py-32">
+      <section className="bg-ink-panel py-24 md:py-28">
         <Container className="grid grid-cols-1 items-center gap-12 md:grid-cols-2">
           <Reveal>
-            <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white/50">
+            <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-teal-300/80">
               PARA QUEM É
             </span>
             <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl font-heading">
