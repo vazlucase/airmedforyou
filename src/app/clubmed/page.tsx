@@ -19,33 +19,33 @@ export const metadata: Metadata = {
 const BENEFITS = [
   {
     icon: PhoneCall,
-    title: "Assistência de urgência 24h",
-    description: "Uma central sempre disponível para orientar você nos momentos que não podem esperar.",
+    title: "Bem estar e lazer",
+    description: "desfrute você e sua familía de nossos resorts de alto nivel durante suas viagens",
   },
   {
     icon: Stethoscope,
-    title: "Telemedicina",
-    description: "Orientação médica por vídeo ou telefone, a qualquer hora, para você e sua família.",
+    title: "assitencia medica remota 24h",
+    description: "Sua saúde em primeiro lugar através da nossa plataforma de telemedicina 24h.",
   },
   {
     icon: Percent,
-    title: "Condições especiais em remoção aeromédica",
-    description: "Membros do ClubMed contam com condições diferenciadas em missões de UTI aérea.",
+    title: "Segurança 24h com nossa UTI Aérea",
+    description: "A sua segurança em suas viagens através de nossa UTI Aéria 24h.",
   },
   {
     icon: Umbrella,
-    title: "Bem-estar e lazer",
-    description: "Vantagens em parceiros selecionados de saúde, bem-estar e experiências de lazer.",
+    title: "Renda Extra",
+    description: "Você aproveita os benefícios, compartilha uma solução que pode interessar a outras pessoas e ainda pode transformar suas indicações em uma nova fonte de renda.",
   },
   {
     icon: HeartHandshake,
     title: "Cuidado para a família toda",
-    description: "Planos pensados para incluir dependentes, do jeito que a sua família funciona.",
+    description: "Planos pensados para incluir dependentes, do jeito que a sua família necessita",
   },
   {
     icon: Plane,
-    title: "Parte do ecossistema AirMedPlan",
-    description: "O mesmo time que opera UTIs aéreas cuida da experiência do ClubMed, do início ao fim.",
+    title: "QUERO CONHECER O A CLUB MED →",
+    description: "botão call to action"
   },
 ];
 
@@ -64,9 +64,9 @@ export default function ClubMedPage() {
       <section className="bg-canvas py-24 md:py-32">
         <Container>
           <SectionHeading
-            eyebrow="O QUE VOCÊ GANHA"
-            title="Um clube pensado para o seu dia a dia."
-            description="Benefícios que você usa continuamente, com a segurança de saber que a AirMedPlan está por trás de cada um deles."
+            eyebrow="alt"
+            title="Club Med pensando no seu dia a dia."
+            description="É uma combinação poderosa: Experiências + Resorts + Assistência + Segurança Aeromédica + Oportunidade de Renda."
           />
           <div className="mt-14">
             <FeatureGrid items={BENEFITS} />
@@ -90,19 +90,17 @@ export default function ClubMedPage() {
           <div>
             <Reveal>
               <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-accent">
-                COMPLEMENTA, NÃO SUBSTITUI
+                Conheça todos os benefícios
               </span>
             </Reveal>
             <Reveal delay={0.05}>
               <h2 className="text-balance mt-4 text-3xl font-medium leading-[1.15] tracking-tight text-ink sm:text-4xl font-heading">
-                O ClubMed não substitui um plano de saúde.
+                ClubMed
               </h2>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-ink-muted md:text-lg">
-                Ele foi desenhado para complementar sua cobertura atual, somando assistência de
-                urgência, telemedicina e vantagens de bem-estar — o suporte que, muitas vezes,
-                falta no dia a dia.
+                Um clube para viajar melhor, viver novas experiências, proteger quem você ama e criar novas oportunidades.
               </p>
             </Reveal>
           </div>
@@ -113,7 +111,10 @@ export default function ClubMedPage() {
         title="Quer conhecer os planos do ClubMed?"
         description="Conte um pouco sobre você e nossa equipe apresenta a melhor opção para sua família."
         quoteLabel="Conhecer o ClubMed"
-        whatsappMessage="Olá! Gostaria de conhecer os planos do ClubMed."
+        whatsappMessage="Olá, Quero Conhecer Melhor o Club Med.
+        Pode entrar em contato comigo.
+        Aguardo seu contato.
+        Obrigado."
       />
     </>
   );
