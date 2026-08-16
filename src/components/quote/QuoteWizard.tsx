@@ -218,7 +218,7 @@ export function QuoteWizard({
         ) : (
           <MotionConfig reducedMotion="user">
             {/* Progresso anônimo: barra fina, sem números nem etapas */}
-            <div aria-hidden className="mb-6 h-1 w-full overflow-hidden rounded-full bg-hairline">
+            <div aria-hidden className="mb-6 h-1 w-full overflow-hidden rounded-full bg-hairline max-sm:mb-4">
               <motion.div
                 className="h-full rounded-full bg-accent"
                 animate={{ width: `${progress}%` }}
@@ -285,12 +285,12 @@ export function QuoteWizard({
 
             {/* Rodapé por seção */}
             {active === 0 ? (
-              <p className="mt-7 text-center text-sm text-ink-muted">
+              <p className="mt-6 text-center text-sm text-ink-muted max-sm:mt-5">
                 Toque em uma opção para continuar — leva menos de um minuto.
               </p>
             ) : null}
             {active === 1 ? (
-              <div className="mt-7 flex flex-col gap-2 border-t border-hairline pt-6">
+              <div className="mt-7 flex flex-col gap-2 border-t border-hairline pt-6 max-sm:mt-5 max-sm:pt-4">
                 <button
                   type="button"
                   onClick={() => void handleContinue()}
@@ -305,7 +305,7 @@ export function QuoteWizard({
               </div>
             ) : null}
             {active === 2 ? (
-              <div className="mt-7 flex flex-col gap-2 border-t border-hairline pt-6">
+              <div className="mt-7 flex flex-col gap-2 border-t border-hairline pt-6 max-sm:mt-5 max-sm:pt-4">
                 <button
                   type="button"
                   disabled={sending}

@@ -109,7 +109,7 @@ export function SectionRequestType({
   return (
     <fieldset>
       <legend className="sr-only">Tipo de solicitação</legend>
-      <div className="mb-5">
+      <div className="mb-5 max-sm:mb-4">
         <SectionHeading
           headingId="quote-request-heading"
           icon={AlertTriangle}
@@ -201,7 +201,7 @@ export function SectionRoute({ form }: { form: UseFormReturn<QuoteFormSchema> })
     return (
       <fieldset>
         <legend className="sr-only">Sua cidade</legend>
-        <div className="mb-5">
+        <div className="mb-5 max-sm:mb-4">
           <SectionHeading
             headingId="quote-route-heading"
             icon={LocateFixed}
@@ -380,7 +380,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
   return (
     <fieldset className="flex flex-col gap-4">
       <legend className="sr-only">Contato</legend>
-      <div className="mb-1">
+      <div className="mb-1 max-sm:mb-0.5">
         <SectionHeading
           headingId="quote-contact-heading"
           icon={UserRound}
@@ -389,7 +389,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
         />
       </div>
 
-      <div className="flex flex-col gap-1.5">
+      <div className="flex flex-col gap-1.5 max-sm:gap-1">
         <label htmlFor="fullName" className={labelClass}>
           Nome completo
         </label>
@@ -404,8 +404,8 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
         <FieldError id="fullName-error" message={errors.fullName?.message} />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 max-sm:gap-3">
+        <div className="flex flex-col gap-1.5 max-sm:gap-1">
           <label htmlFor="phone" className={labelClass}>
             WhatsApp
           </label>
@@ -430,7 +430,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
           />
           <FieldError id="phone-error" message={errors.phone?.message} />
         </div>
-        <div className="flex flex-col gap-1.5">
+        <div className="flex flex-col gap-1.5 max-sm:gap-1">
           <label htmlFor="email" className={labelClass}>
             E-mail <span className="text-ink-faint">(opcional)</span>
           </label>
@@ -447,7 +447,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
         </div>
       </div>
 
-      <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-xl border border-hairline bg-mist p-4">
+      <label className="mt-3 flex cursor-pointer items-start gap-3 rounded-xl border border-hairline bg-mist p-4 max-sm:mt-2 max-sm:p-3.5">
         <input
           type="checkbox"
           className="mt-px size-4 shrink-0 accent-accent"
@@ -466,7 +466,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
       </label>
       <FieldError id="consent-error" message={errors.consent?.message} />
 
-      <div className="flex items-center gap-2 text-xs text-ink-muted">
+      <div className="mt-1 flex items-center gap-2 text-xs text-ink-muted">
         <Clock className="size-3.5" />
         Tempo médio de resposta: poucos minutos, 24 horas por dia.
       </div>
