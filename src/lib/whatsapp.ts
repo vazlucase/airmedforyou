@@ -8,10 +8,11 @@ const REQUEST_TYPE_LABEL: Record<QuoteFormSchema["requestType"], string> = {
   clubmed: "ClubMed — quero conhecer",
 };
 
-const MOBILITY_LABEL: Record<
-  Exclude<QuoteFormSchema["patientMobility"], undefined | null>,
-  string
-> = {
+const TRIP_TYPE_LABEL: Record<QuoteFormSchema["tripType"], string> = {
+  percurso: "Percurso",
+};
+
+const MOBILITY_LABEL: Record<Exclude<QuoteFormSchema["patientMobility"], undefined | null>, string> = {
   autonomo: "Autônomo(a), sem restrições",
   "cadeira-de-rodas": "Necessita cadeira de rodas",
   leito: "Necessita maca / leito",
@@ -29,12 +30,14 @@ export function buildQuoteMessage(values: QuoteFormSchema): string {
   lines.push("");
   lines.push(`*Tipo de solicitação:* ${REQUEST_TYPE_LABEL[values.requestType]}`);
 
-  if (values.requestType !== "clubmed") {
+  if (values.requestType === "clubmed") {
+    if (values.origin?.trim()) {
+      lines.push(`*Cidade:* ${values.origin.trim()}`);
+    }
+  } else {
     lines.push(`*Origem:* ${values.origin}`);
     lines.push(`*Destino:* ${values.destination}`);
-    lines.push(
-      `*Trecho:* ${values.tripType === "ida-e-volta" ? "Ida e volta" : "Só ida"}`
-    );
+    lines.push(`*Percurso:* ${TRIP_TYPE_LABEL[values.tripType]}`);
     if (values.preferredDate) {
       lines.push(`*Data desejada:* ${formatDateBR(values.preferredDate)}`);
     }

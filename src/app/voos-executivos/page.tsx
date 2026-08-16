@@ -78,7 +78,7 @@ export default function VoosExecutivosPage() {
             <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-teal-300/80">
               PARA QUEM É
             </span>
-            <h2 className="text-balance mt-4 text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl font-heading">
+            <h2 className="text-balance mt-4 font-heading text-3xl font-semibold leading-[1.15] tracking-tight text-white sm:text-4xl">
               De viagens corporativas a ocasiões que não podem esperar.
             </h2>
           </Reveal>

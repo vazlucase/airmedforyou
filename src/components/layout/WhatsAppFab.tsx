@@ -16,7 +16,7 @@ export function WhatsAppFab({ className }: { className?: string }) {
       target="_blank"
       rel="noopener noreferrer"
       className={cn(
-        "whatsapp-gradient fixed bottom-6 right-6 z-40 hidden size-14 items-center justify-center rounded-full text-white shadow-[0_4px_24px_0_rgba(0,0,0,0.35)] transition-all duration-300 hover:translate-x-1 hover:brightness-105 active:scale-95 md:bottom-8 md:right-8 lg:flex",
+        "fixed bottom-6 right-6 z-40 hidden size-14 items-center justify-center rounded-full bg-whatsapp-deep text-white shadow-[0_4px_24px_0_rgba(0,0,0,0.35)] transition-all duration-300 hover:translate-x-1 hover:brightness-110 active:scale-95 md:bottom-8 md:right-8 lg:flex",
         className
       )}
       aria-label="Falar no WhatsApp"

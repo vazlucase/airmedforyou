@@ -61,7 +61,7 @@ export default function SobrePage() {
               </span>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="text-balance mt-4 text-3xl font-medium leading-[1.15] tracking-tight text-ink sm:text-4xl font-heading">
+              <h2 className="text-balance mt-4 font-heading text-3xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-4xl">
                 Uma trajetória construída no ar, antes de ser construída como empresa.
               </h2>
             </Reveal>

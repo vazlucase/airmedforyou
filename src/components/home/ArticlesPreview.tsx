@@ -18,7 +18,7 @@ export function ArticlesPreview() {
           <Reveal delay={0.1}>
             <Link
               href="/conhecer-mais"
-              className="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-[#002b60]/35 px-5 py-2.5 text-sm font-medium text-[#002b60] transition-colors hover:border-[#002b60] hover:bg-[#f4f8ff]"
+              className="inline-flex shrink-0 items-center gap-1.5 rounded-xl border border-hairline-strong px-5 py-2.5 text-sm font-semibold text-ink transition-colors hover:border-accent hover:bg-mist"
             >
               Ver todos os conteúdos
               <ArrowRight className="size-3.5" />
@@ -31,27 +31,27 @@ export function ArticlesPreview() {
             <Reveal key={article.slug} delay={i * 0.08}>
               <Link
                 href={`/conhecer-mais#${article.slug}`}
-                className="group flex h-full flex-col justify-between rounded-[20px] border border-[#d9e2f0] bg-canvas p-8 transition-all duration-300 hover:shadow-card hover:border-[#b7c8e4]"
+                className="group flex h-full flex-col justify-between rounded-2xl border border-hairline bg-canvas p-8 transition-all duration-300 hover:shadow-card hover:border-hairline-strong"
               >
                 <div>
                   <div className="flex items-center justify-between">
-                    <span className="flex size-11 items-center justify-center rounded-[5px] bg-[#d2e3fb] text-[#002b60]">
+                    <span className="flex size-11 items-center justify-center rounded-xl bg-accent-tint text-accent">
                       <BookOpen className="size-4" strokeWidth={1.75} />
                     </span>
-                    <span className="font-mono text-2xs uppercase tracking-[0.1em] text-[#5a6f92]">
+                    <span className="font-mono text-2xs uppercase tracking-[0.1em] text-ink-muted">
                       {article.category}
                     </span>
                   </div>
-                  <h3 className="text-balance mt-6 font-heading text-xl font-semibold leading-snug text-[#002b60]">
+                  <h3 className="text-balance mt-6 font-heading text-xl font-semibold leading-snug text-ink">
                     {article.title}
                   </h3>
-                  <p className="text-pretty mt-3 text-sm leading-relaxed text-[#5a6f92]">
+                  <p className="text-pretty mt-3 text-sm leading-relaxed text-ink-muted">
                     {article.excerpt}
                   </p>
                 </div>
                 <div className="mt-8 flex items-center justify-between text-sm">
-                  <span className="text-[#5a6f92]">{article.readTime} de leitura</span>
-                  <span className="inline-flex items-center gap-1 font-medium text-[#002b60]">
+                  <span className="text-ink-muted">{article.readTime} de leitura</span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-accent">
                     Continuar lendo
                     <ArrowRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-1" />
                   </span>

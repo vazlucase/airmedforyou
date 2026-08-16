@@ -24,26 +24,26 @@ export function PageHero({
   compact?: boolean;
 }) {
   return (
-    <section className="bg-canvas pt-32 md:pt-40">
+    <section className="bg-paper pt-32 md:pt-40">
       <Container>
         {/* Breadcrumb */}
-        <nav aria-label="Trilha de navegação" className="text-sm text-[#002b60]">
+        <nav aria-label="Trilha de navegação" className="text-sm text-ink-muted">
           <ol className="flex flex-wrap items-center gap-1.5">
             <li>
-              <Link href="/" className="transition-opacity hover:opacity-70">
+              <Link href="/" className="text-ink-muted transition-opacity hover:opacity-70">
                 Home
               </Link>
             </li>
             <li aria-hidden>
-              <ChevronRight className="size-3.5 text-[#002b60]/50" />
+              <ChevronRight className="size-3.5 text-ink-faint" />
             </li>
             <li>
-              <Link href="/#servicos" className="transition-opacity hover:opacity-70">
+              <Link href="/#servicos" className="text-ink-muted transition-opacity hover:opacity-70">
                 Serviços
               </Link>
             </li>
             <li aria-hidden>
-              <ChevronRight className="size-3.5 text-[#002b60]/50" />
+              <ChevronRight className="size-3.5 text-ink-faint" />
             </li>
             <li aria-current="page">
               <strong>{crumb ?? eyebrow}</strong>
@@ -58,23 +58,23 @@ export function PageHero({
         >
           <div>
             <h1
-              className={`text-balance text-[#002b60] font-heading ${
+              className={`text-balance font-heading ${
                 compact
                   ? "text-[clamp(1.9rem,5vw,2.6rem)]"
-                  : "text-[clamp(2.1rem,6vw,3rem)]"
-              } leading-[1.12] tracking-tight`}
+                  : "text-[clamp(2.1rem,6vw,3.4rem)]"
+              } font-semibold leading-[1.08] tracking-tight text-ink`}
             >
               {title}
             </h1>
             {description ? (
-              <p className="text-pretty mt-5 max-w-xl text-base leading-relaxed text-[#002b60]/85 md:text-lg">
+              <p className="text-pretty mt-5 max-w-xl text-base leading-relaxed text-ink-muted md:text-lg">
                 {description}
               </p>
             ) : null}
             {children ? <div className="mt-8">{children}</div> : null}
           </div>
 
-          <div className="relative w-full max-w-[660px] justify-self-center overflow-hidden shadow-[0_2px_8px_rgba(0,43,96,0.05),0_20px_50px_-20px_rgba(0,43,96,0.2)]">
+          <div className="relative w-full max-w-[660px] justify-self-center overflow-hidden rounded-2xl shadow-elevated">
             <Image
               src={image}
               alt={imageAlt}

@@ -24,16 +24,16 @@ export function FeatureGrid({
       {items.map((item, i) => (
         <div
           key={item.title}
-          className="group rounded-[20px] border border-[#d9e2f0] bg-canvas p-8 transition-all duration-300 hover:shadow-card hover:border-[#b7c8e4]"
+          className="group rounded-2xl border border-hairline bg-canvas p-8 transition-all duration-300 hover:shadow-card hover:border-hairline-strong"
         >
-          <span className="flex size-11 items-center justify-center rounded-[5px] bg-[#d2e3fb] text-[#002b60] transition-colors group-hover:bg-[#bcd7ff]">
+          <span className="flex size-11 items-center justify-center rounded-xl bg-accent-tint text-accent transition-colors group-hover:bg-accent-soft">
             <item.icon className="size-5" strokeWidth={1.75} />
           </span>
-          <h3 className="mt-5 font-heading text-2xl font-semibold leading-snug text-[#002b60]">
+          <h3 className="mt-5 font-heading text-xl font-semibold leading-snug text-ink">
             {item.title}
           </h3>
           {item.description ? (
-            <p className="mt-2.5 text-[0.95rem] leading-relaxed text-[#5a6f92]">
+            <p className="mt-2.5 text-[0.95rem] leading-relaxed text-ink-muted">
               {item.description}
             </p>
           ) : null}

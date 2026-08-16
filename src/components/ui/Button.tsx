@@ -6,13 +6,13 @@ type Variant = "primary" | "secondary" | "outline" | "ghost" | "urgent" | "whats
 type Size = "sm" | "md" | "lg";
 
 const VARIANT_CLASSES: Record<Variant, string> = {
-  primary: "bg-[#002b60] text-white hover:bg-teal-700 active:bg-teal-800",
+  primary: "bg-accent text-white hover:bg-accent-strong active:bg-teal-800",
   secondary:
-    "bg-[#002b60] text-white hover:bg-teal-700 active:bg-teal-800",
+    "bg-accent text-white hover:bg-accent-strong active:bg-teal-800",
   outline:
-    "border border-[#002b60]/35 bg-canvas text-[#002b60] hover:border-[#002b60] hover:bg-[#f4f8ff] active:bg-mist",
-  ghost: "text-[#002b60] hover:bg-[#e0edff] active:bg-[#d2e3fb]",
-  urgent: "bg-[#c63a30] text-white hover:bg-ember-700 active:bg-ember-700",
+    "border border-hairline-strong bg-canvas text-ink hover:border-accent hover:bg-mist active:bg-mist-deep",
+  ghost: "text-accent hover:bg-mist active:bg-mist-deep",
+  urgent: "bg-ember-500 text-white hover:bg-ember-600 active:bg-ember-700",
   whatsapp: "whatsapp-gradient text-white hover:brightness-105 active:brightness-95",
 };
 
@@ -23,10 +23,10 @@ const SIZE_CLASSES: Record<Size, string> = {
 };
 
 const baseClasses =
-  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-full font-medium uppercase tracking-[0.05em] " +
+  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-xl font-semibold " +
   "transition-all duration-300 ease-[var(--ease-fluid)] active:scale-[0.97] " +
   "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 " +
-  "focus-visible:outline-offset-2 focus-visible:outline-teal-600";
+  "focus-visible:outline-offset-2 focus-visible:outline-accent";
 
 interface CommonProps {
   variant?: Variant;

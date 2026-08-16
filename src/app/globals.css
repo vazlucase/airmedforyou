@@ -1,50 +1,58 @@
 @import "tailwindcss";
 
+/* =========================================================
+   PALETA — AEROMÉDICO INSTITUCIONAL · ESTILO EXECUTIVO PREMIUM
+   Referência: airmedtaxiaereo.com.br (fretamento executivo)
+   - Fundos claros cinza-azulados (#f1f4f7) em vez de branco puro
+   - Painéis escuros quase pretos (#0a1220) com navy como accent
+   - Accent navy #002b60 = cor única de marca
+   - Vermelho/ember reservado para estados de erro (não é cor de marca)
+========================================================= */
 @theme {
-  /* =========================================================
-     PALETA — AEROMÉDICO INSTITUCIONAL (referência Sete Táxi Aéreo)
-     Azul-marinho #002B60 como cor única de marca, azuis claros
-     para superfícies e chips, verde gradiente para WhatsApp.
-  ========================================================= */
-  --color-canvas: #ffffff;        /* superfície principal */
-  --color-paper: #f4f8ff;         /* fundo alternativo (azul bem claro) */
-  --color-mist: #e0edff;          /* fundo de seções destacadas */
-  --color-mist-deep: #d2e3fb;     /* chips de ícones / hover */
+  /* Superfícies (estilo referência: claras com leve matiz azul) */
+  --color-canvas: #ffffff;        /* superfície principal (cards) */
+  --color-paper: #f1f4f7;         /* fundo alternativo (referência bg) */
+  --color-mist: #e6ecf2;          /* fundo de seções destacadas */
+  --color-mist-deep: #d8e2ec;     /* chips de ícones / hover */
 
-  --color-ink: #002b60;           /* títulos / texto principal (navy) */
-  --color-ink-soft: #0e2e5c;      /* corpo com força */
-  --color-ink-muted: #5a6f92;     /* texto secundário */
-  --color-ink-faint: #94a6c4;     /* metadados / captions */
-  --color-hairline: #d9e2f0;      /* bordas / divisórias */
-  --color-hairline-strong: #b7c8e4; /* bordas em destaque/hover */
+  /* Tinta (referência: quase preto, não navy para texto) */
+  --color-ink: #0a1220;           /* títulos / texto principal */
+  --color-ink-soft: #1a2634;      /* corpo com força */
+  --color-ink-muted: #5b6b7e;     /* texto secundário */
+  --color-ink-faint: #55657a;    /* metadados / captions (AA: ~5.9:1 sobre branco) */
+  --color-hairline: #e1e6ec;      /* bordas / divisórias */
+  --color-hairline-strong: #c9d2dc; /* bordas em destaque/hover */
 
-  /* Painéis escuros — o navy é a cor de marca */
-  --color-ink-panel: #002b60;
-  --color-ink-panel-soft: #0a3a6e;
+  /* Painéis escuros — quase preto com matiz navy (referência) */
+  --color-ink-panel: #0a1220;
+  --color-ink-panel-soft: #101c30;
 
-  /* Acento sobre superfícies (texto/ícones em fundo claro) */
-  --color-accent: #002b60;
-  --color-accent-tint: #e0edff;
+  /* Acento sobre superfícies */
+  --color-accent: #002b60;        /* navy — cor de marca */
+  --color-accent-strong: #001a3d;
+  --color-accent-tint: #e4edf8;   /* chip de ícone sobre claro */
+  --color-accent-soft: #cfe0f5;   /* hover de chips */
+  --color-accent-bright: #5d8fd4; /* detalhes sobre painéis escuros */
 
   /* Escala navy/azul (token `teal` mantido p/ compatibilidade) */
-  --color-teal-950: #00152b;
-  --color-teal-900: #001c3c;
-  --color-teal-800: #002349;
-  --color-teal-700: #00264f;
+  --color-teal-950: #050a14;
+  --color-teal-900: #071020;
+  --color-teal-800: #08152b;
+  --color-teal-700: #001c3d;
   --color-teal-600: #002b60;
   --color-teal-500: #0f3e7e;
   --color-teal-400: #35649f;
-  --color-teal-300: #97c3ff;
+  --color-teal-300: #8fb4e6;
   --color-teal-200: #bcd7ff;
   --color-teal-100: #e0edff;
   --color-teal-50: #f4f8ff;
 
-  /* Urgência (carmim — só onde importa) */
-  --color-ember-700: #8f1d16;
+  /* Urgência (estados de erro — não é cor de marca) */
+  --color-ember-700: #7f1d1d;
   --color-ember-600: #b3271e;
   --color-ember-500: #c63a30;
-  --color-ember-100: #faddda;
-  --color-ember-50: #fbf1f0;
+  --color-ember-100: #fbe9e7;
+  --color-ember-50: #fdf4f3;
 
   /* Apoio / confiança técnica */
   --color-sky-700: #1d4b8f;
@@ -52,35 +60,35 @@
   --color-sky-100: #dce9fa;
   --color-sky-50: #f2f7fd;
 
-  /* WhatsApp (gradiente verde da referência) */
+  /* WhatsApp (cor oficial — usada só em elementos-chave) */
   --color-whatsapp: #25d366;
   --color-whatsapp-dark: #128c7e;
   --color-whatsapp-deep: #148e45;
 
   /* =========================================================
-     TIPOGRAFIA — Playfair Display (títulos serif) + Roboto (corpo)
+     TIPOGRAFIA — Montserrat (display + corpo, estilo referência)
   ========================================================= */
-  --font-sans: var(--font-roboto), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-heading: var(--font-playfair), ui-serif, Georgia, serif;
-  --font-mono: "SF Mono", ui-monospace, "Fira Code", monospace;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "Fira Code", monospace;
 
   /* =========================================================
-     RAIO — botões pill, cartões levemente arredondados
+     RAIO — cards rounded-2xl, botões levemente arredondados
   ========================================================= */
   --radius-xs: 4px;
   --radius-sm: 8px;
   --radius-md: 10px;
-  --radius-lg: 14px;
-  --radius-xl: 18px;
-  --radius-2xl: 20px;
+  --radius-lg: 12px;
+  --radius-xl: 14px;
+  --radius-2xl: 16px;
   --radius-pill: 999px;
 
   /* =========================================================
-     SOMBRAS — discretas, com hairline
+     SOMBRAS — discretas, com hairline (referência)
   ========================================================= */
   --shadow-hairline: 0 0 0 1px var(--color-hairline);
-  --shadow-card: 0 1px 3px rgba(0, 43, 96, 0.06), 0 8px 24px -12px rgba(0, 43, 96, 0.1);
-  --shadow-elevated: 0 2px 8px rgba(0, 43, 96, 0.05), 0 20px 50px -20px rgba(0, 43, 96, 0.18);
+  --shadow-card: 0 1px 2px rgba(10, 18, 32, 0.04), 0 8px 20px -12px rgba(10, 18, 32, 0.08);
+  --shadow-elevated: 0 2px 8px rgba(10, 18, 32, 0.05), 0 24px 48px -20px rgba(10, 18, 32, 0.16);
 
   /* =========================================================
      EASING / ANIMAÇÕES
@@ -138,7 +146,7 @@
 
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-canvas);
+    background-color: var(--color-paper);
     color: var(--color-ink-soft);
     font-optical-sizing: auto;
     -webkit-font-smoothing: antialiased;
@@ -148,7 +156,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-heading);
     letter-spacing: -0.01em;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--color-ink);
   }
 
@@ -190,22 +198,29 @@
     border-bottom: 1px solid var(--color-hairline);
   }
 
-  /* Sobreposição editorial navy sobre imagens */
+  /* Sobreposição editorial sobre imagens (tonalidade navy suave) */
   .editorial-overlay {
     background: linear-gradient(
       to bottom,
-      rgba(0, 43, 96, 0.06) 0%,
-      rgba(0, 43, 96, 0.38) 55%,
-      rgba(0, 43, 96, 0.86) 100%
+      rgba(2, 10, 20, 0.05) 0%,
+      rgba(2, 10, 20, 0.35) 55%,
+      rgba(2, 10, 20, 0.88) 100%
     );
   }
 
-  /* Botão/faixa WhatsApp no gradiente verde da referência */
+  /* Botão/faixa WhatsApp — verde oficial só em elementos-chave */
   .whatsapp-gradient {
-    background: linear-gradient(90deg, #148e45, #00f562);
+    background: linear-gradient(90deg, #0b7339, #10803f);
   }
 
-  /* Divisória navy translúcida (30% de alpha) */
+  /* Dropdown de sugestões (autocomplete) — eleva sobre qualquer conteúdo */
+  .dropdown-panel {
+    box-shadow:
+      0 24px 50px -12px rgba(10, 18, 32, 0.28),
+      0 4px 12px -2px rgba(10, 18, 32, 0.12);
+  }
+
+  /* Divisória translúcida (30% de alpha) */
   .navy-divider {
     background-color: rgba(0, 43, 96, 0.3);
     height: 1px;

@@ -20,7 +20,7 @@ export function MobileActionBar() {
       <div className="grid h-16 grid-cols-3">
         <a
           href={`tel:${CONTACT.phoneDigits}`}
-          className="flex items-center justify-center gap-2 border-r border-hairline text-sm font-medium text-[#002b60] transition-colors active:bg-mist"
+          className="flex items-center justify-center gap-2 border-r border-hairline text-sm font-semibold text-ink transition-colors active:bg-mist"
         >
           <Phone className="size-4" fill="currentColor" strokeWidth={0} />
           Ligar
@@ -29,14 +29,14 @@ export function MobileActionBar() {
           href={whatsappHref(MESSAGE)}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 border-r border-hairline text-sm font-medium text-[#002b60] transition-colors active:bg-mist"
+          className="flex items-center justify-center gap-2 border-r border-hairline text-sm font-semibold text-ink transition-colors active:bg-mist"
         >
-          <WhatsAppIcon className="size-4 text-[#25d366]" />
+          <WhatsAppIcon className="size-4 text-whatsapp-deep" />
           WhatsApp
         </a>
         <Link
           href="/cote-seu-voo"
-          className="flex items-center justify-center gap-2 bg-[#002b60] text-sm font-medium text-white transition-colors active:bg-teal-700"
+          className="flex items-center justify-center gap-2 bg-accent text-sm font-semibold text-white transition-colors active:bg-accent-strong"
         >
           <Send className="size-4" />
           Cotar

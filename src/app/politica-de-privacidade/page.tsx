@@ -53,7 +53,7 @@ export default function PoliticaDePrivacidadePage() {
         <span className="font-heading text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-accent">
           LGPD
         </span>
-        <h1 className="mt-4 text-3xl font-medium tracking-tight text-ink sm:text-4xl font-heading">
+        <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink sm:text-4xl font-heading">
           Política de Privacidade
         </h1>
         <p className="mt-4 text-sm text-ink-muted">Última atualização: julho de 2026</p>

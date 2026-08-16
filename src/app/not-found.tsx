@@ -24,7 +24,7 @@ export default function NotFound() {
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-[#002b60] px-7 text-sm font-medium uppercase tracking-[0.05em] text-white transition-all hover:bg-teal-700 active:scale-[0.96]"
+            className="inline-flex h-12 items-center justify-center rounded-xl bg-accent px-7 text-sm font-semibold uppercase tracking-[0.05em] text-white transition-all hover:bg-accent-strong active:scale-[0.96]"
           >
             Voltar para a home
           </Link>
@@ -32,7 +32,7 @@ export default function NotFound() {
             href={whatsappHref("Olá! Cheguei a uma página que não encontrei no site da AirMedPlan e preciso de ajuda.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#002b60]/35 px-7 text-sm font-medium text-[#002b60] transition-colors hover:bg-[#f4f8ff]"
+            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-accent/35 px-7 text-sm font-semibold text-accent transition-colors hover:bg-paper"
           >
             <WhatsAppIcon className="size-4" />
             Falar no WhatsApp

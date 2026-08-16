@@ -46,12 +46,12 @@ export function StatCounter({ stat }: { stat: StatItem }) {
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
-        className="font-heading text-4xl font-medium leading-none text-[#97c3ff] md:text-5xl tabular-nums"
+        className="font-heading text-4xl font-semibold leading-none text-teal-300 md:text-5xl tabular-nums"
       >
         {count}
         {stat.suffix ?? ""}
       </motion.span>
-      <span className="text-sm font-medium text-[#f8f8ff]/75">{stat.label}</span>
+      <span className="text-sm font-medium text-white/70">{stat.label}</span>
     </div>
   );
 }
@@ -59,11 +59,11 @@ export function StatCounter({ stat }: { stat: StatItem }) {
 export function StatItemStatic({ stat, className }: { stat: StatItem; className?: string }) {
   return (
     <div className={cn("flex flex-col items-center gap-1 text-center", className)}>
-      <span className="font-heading text-4xl font-medium leading-none text-[#002b60] md:text-5xl tabular-nums">
+      <span className="font-heading text-4xl font-semibold leading-none text-accent md:text-5xl tabular-nums">
         {stat.value}
         {stat.suffix ?? ""}
       </span>
-      <span className="text-sm font-medium text-[#5a6f92]">{stat.label}</span>
+      <span className="text-sm font-medium text-ink-muted">{stat.label}</span>
     </div>
   );
 }

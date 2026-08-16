@@ -5,24 +5,24 @@ import { emergencyCallHref, emergencyWhatsAppLink } from "@/lib/whatsapp";
 
 export function EmergencyBanner() {
   return (
-    <div className="flex flex-col items-start gap-4 rounded-[20px] bg-[#002b60] p-6 text-white sm:flex-row sm:items-center sm:justify-between md:p-8">
+    <div className="flex flex-col items-start gap-4 rounded-2xl bg-[#0d1728] p-5 text-white sm:flex-row sm:items-center sm:justify-between md:p-7">
       <div className="flex items-start gap-4">
         <span className="relative flex size-11 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
           <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-white/20 opacity-60" />
           <PhoneCall className="relative size-5" strokeWidth={2} />
         </span>
         <div>
-          <p className="font-heading text-xl font-semibold">É uma emergência agora?</p>
-          <p className="mt-1 text-sm leading-snug text-[#f8f8ff]/75">
+          <p className="font-heading text-xl font-bold">É uma emergência agora?</p>
+          <p className="mt-1 text-sm leading-snug text-white/70">
             Não preencha o formulário — fale direto com a nossa central,{" "}
             {CONTACT.hours.toLowerCase()}.
           </p>
         </div>
       </div>
-      <div className="flex w-full shrink-0 gap-2.5 sm:w-auto">
+      <div className="flex w-full shrink-0 flex-col gap-2.5 sm:w-auto sm:flex-row">
         <a
           href={emergencyCallHref()}
-          className="inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full border border-white/40 px-6 text-sm font-medium text-white transition-colors hover:bg-white/10 sm:flex-none"
+          className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/25 px-5 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:w-auto sm:flex-none sm:px-6"
         >
           <PhoneCall className="size-4" />
           Ligar agora
@@ -31,7 +31,7 @@ export function EmergencyBanner() {
           href={emergencyWhatsAppLink()}
           target="_blank"
           rel="noopener noreferrer"
-          className="whatsapp-gradient inline-flex h-12 flex-1 items-center justify-center gap-2 rounded-full px-6 text-sm font-medium text-white transition-all hover:brightness-105 sm:flex-none"
+          className="whatsapp-gradient inline-flex h-12 w-full items-center justify-center gap-2 rounded-xl px-5 text-sm font-semibold text-white transition-all hover:brightness-105 sm:w-auto sm:flex-none sm:px-6"
         >
           <WhatsAppIcon className="size-4" />
           WhatsApp

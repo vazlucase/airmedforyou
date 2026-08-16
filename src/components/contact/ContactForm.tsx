@@ -18,7 +18,7 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const inputClass =
-  "w-full border border-[#002b60] bg-transparent px-4 py-3 text-[0.95rem] text-[#002b60] placeholder:text-[#94a6c4] outline-none transition-colors focus:bg-white/60 focus:border-[#002b60]";
+  "w-full rounded-lg border border-hairline-strong bg-white px-4 py-3 text-[0.95rem] text-ink placeholder:text-ink-faint outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
@@ -42,14 +42,14 @@ export function ContactForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-[20px] border border-[#d9e2f0] bg-white p-8 text-center">
-        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-[#e0edff]">
-          <Send className="size-6 text-[#002b60]" />
+      <div className="rounded-2xl border border-hairline bg-white p-8 text-center">
+        <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-accent-tint">
+          <Send className="size-6 text-accent" />
         </div>
-        <h3 className="mt-5 font-heading text-xl font-semibold text-[#002b60]">
+        <h3 className="mt-5 font-heading text-xl font-semibold text-ink">
           Mensagem enviada!
         </h3>
-        <p className="mt-2 text-sm text-[#5a6f92]">
+        <p className="mt-2 text-sm text-ink-muted">
           Você será redirecionado ao WhatsApp para finalizar.
         </p>
       </div>
@@ -59,7 +59,7 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-[#002b60]">
+        <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-ink">
           Nome completo
         </label>
         <input
@@ -75,7 +75,7 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-[#002b60]">
+          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink">
             E-mail
           </label>
           <input
@@ -90,7 +90,7 @@ export function ContactForm() {
           ) : null}
         </div>
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-medium text-[#002b60]">
+          <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold text-ink">
             Telefone
           </label>
           <input
@@ -106,7 +106,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-[#002b60]">
+        <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-ink">
           Mensagem
         </label>
         <textarea
@@ -124,7 +124,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-[7px] bg-[#002b60] px-8 text-base font-bold text-[#e0edff] transition-colors duration-300 hover:bg-teal-700 disabled:pointer-events-none disabled:opacity-50"
+        className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-xl bg-accent px-8 text-base font-semibold text-white transition-colors duration-300 hover:bg-accent-strong disabled:pointer-events-none disabled:opacity-50"
       >
         {isSubmitting ? (
           <Loader2 className="size-4 animate-spin" />

@@ -5,15 +5,18 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { Phone, X } from "lucide-react";
+import { ChevronDown, Phone, X } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
 import { cn } from "@/lib/utils";
-import { NAV_ITEMS, CONTACT, whatsappHref } from "@/lib/constants";
+import { NAV_PRIMARY, NAV_MORE, CONTACT, whatsappHref } from "@/lib/constants";
 import logoWhite from "@/assets/images/logo-white.svg";
 
 export function Header() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [moreOpen, setMoreOpen] = React.useState(false);
   const pathname = usePathname();
+  const moreRef = React.useRef<HTMLDivElement>(null);
+  const moreButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
   const panelRef = React.useRef<HTMLDivElement>(null);
@@ -33,15 +36,31 @@ export function Header() {
 
   // Esc para fechar
   React.useEffect(() => {
-    if (!mobileOpen) return;
+    if (!mobileOpen && !moreOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setMobileOpen(false);
+      if (e.key === "Escape") {
+        setMobileOpen(false);
+        setMoreOpen(false);
+      }
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [mobileOpen]);
+  }, [mobileOpen, moreOpen]);
+
+  // Fecha o menu "Mais" ao clicar fora
+  React.useEffect(() => {
+    if (!moreOpen) return;
+    const onClick = (e: MouseEvent) => {
+      if (!moreRef.current?.contains(e.target as Node)) setMoreOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, [moreOpen]);
 
   const closeMobileMenu = () => setMobileOpen(false);
+
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
     <>
@@ -49,15 +68,15 @@ export function Header() {
         initial={{ opacity: 0, y: -16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-x-0 top-0 z-50 bg-[#002b60]"
+        className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0a1220]/95 backdrop-blur-md"
       >
         <div className="relative mx-auto flex h-[4.5rem] w-full max-w-[1250px] items-center justify-between gap-4 px-5 md:px-10">
-          {/* Hamburger */}
+          {/* Hamburger (mobile) */}
           <button
             ref={closeButtonRef}
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex size-10 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-[#f5f5f5] transition-opacity duration-200 hover:opacity-75"
+            className="flex size-10 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white transition-opacity duration-200 hover:opacity-75 lg:hidden"
             aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobileOpen}
             aria-controls="navegacao-mobile"
@@ -66,18 +85,18 @@ export function Header() {
               <X className="size-6" />
             ) : (
               <>
-                <span className="block h-[2px] w-[26px] bg-[#f5f5f5]" />
-                <span className="block h-[2px] w-[26px] bg-[#f5f5f5]" />
-                <span className="block h-[2px] w-[26px] bg-[#f5f5f5]" />
+                <span className="block h-[2px] w-[26px] bg-white" />
+                <span className="block h-[2px] w-[26px] bg-white" />
+                <span className="block h-[2px] w-[26px] bg-white" />
               </>
             )}
           </button>
 
-          {/* Logo central */}
+          {/* Logo (esquerda — desktop) */}
           <Link
             href="/"
             onClick={closeMobileMenu}
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 py-1"
+            className="flex items-center py-1"
             aria-label="AirMedPlan — início"
           >
             <Image
@@ -88,21 +107,88 @@ export function Header() {
             />
           </Link>
 
+          {/* Nav desktop */}
+          <nav className="hidden items-center gap-7 lg:flex" aria-label="Navegação principal">
+            {NAV_PRIMARY.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "relative text-[0.9rem] font-medium text-white/80 transition-colors duration-200 hover:text-white",
+                  "after:absolute after:-bottom-1.5 after:left-0 after:h-0.5 after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 hover:after:scale-x-100",
+                  isActive(item.href) && "text-white after:scale-x-100"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
+
+            {/* Menu "Mais" */}
+            <div ref={moreRef} className="relative">
+              <button
+                ref={moreButtonRef}
+                type="button"
+                onClick={() => setMoreOpen((v) => !v)}
+                aria-expanded={moreOpen}
+                aria-haspopup="menu"
+                className={cn(
+                  "flex items-center gap-1 text-[0.9rem] font-medium text-white/80 transition-colors duration-200 hover:text-white",
+                  NAV_MORE.some((m) => isActive(m.href)) && "text-white"
+                )}
+              >
+                Mais
+                <ChevronDown
+                  className={cn(
+                    "size-3.5 transition-transform duration-200",
+                    moreOpen && "rotate-180"
+                  )}
+                />
+              </button>
+              <AnimatePresence>
+                {moreOpen ? (
+                  <motion.div
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 8 }}
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute right-0 top-full z-50 mt-3 w-56 overflow-hidden rounded-xl border border-hairline bg-white p-1.5 shadow-elevated"
+                    role="menu"
+                  >
+                    {NAV_MORE.map((item) => (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        role="menuitem"
+                        onClick={() => setMoreOpen(false)}
+                        className={cn(
+                          "block rounded-lg px-4 py-2.5 text-[0.9rem] text-ink-muted transition-colors duration-150 hover:bg-mist hover:text-ink",
+                          isActive(item.href) && "bg-mist font-medium text-ink"
+                        )}
+                      >
+                        {item.label}
+                      </Link>
+                    ))}
+                  </motion.div>
+                ) : null}
+              </AnimatePresence>
+            </div>
+          </nav>
+
           {/* CTAs à direita */}
-          <div className="flex shrink-0 items-center gap-3 md:gap-5">
+          <div className="flex shrink-0 items-center gap-3 md:gap-4">
+            <a
+              href={`tel:${CONTACT.phoneDigits}`}
+              className="hidden items-center gap-2 text-[0.9rem] font-medium text-white/70 transition-colors hover:text-white md:flex"
+            >
+              <Phone className="size-4" fill="currentColor" strokeWidth={0} />
+              {CONTACT.phoneDisplay}
+            </a>
             <Link
               href="/cote-seu-voo"
-              className="text-[0.95rem] font-normal uppercase tracking-[0.02em] text-white transition-transform duration-300 hover:translate-x-1 sm:text-base"
+              className="hidden rounded-full bg-white px-5 py-2.5 text-[0.78rem] font-semibold uppercase tracking-[0.08em] text-[#0a1220] transition-all duration-300 hover:bg-white/90 active:scale-[0.97] sm:inline-flex"
             >
               Cote seu Voo
             </Link>
-            <a
-              href={`tel:${CONTACT.phoneDigits}`}
-              className="hidden items-center gap-2 rounded-full border border-white px-4 py-[7px] text-[0.95rem] font-normal uppercase tracking-[0.02em] text-white transition-transform duration-300 hover:translate-x-1 sm:flex"
-            >
-              <Phone className="size-3.5" fill="currentColor" strokeWidth={0} />
-              {CONTACT.phoneDisplay}
-            </a>
           </div>
         </div>
       </motion.header>
@@ -117,7 +203,7 @@ export function Header() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 z-[60] bg-black/50"
+            className="fixed inset-0 z-[60] bg-black/60"
             onClick={closeMobileMenu}
           >
             <motion.div
@@ -132,7 +218,7 @@ export function Header() {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-hairline px-6 py-5">
-                <span className="font-heading text-lg text-ink">Menu</span>
+                <span className="text-lg font-semibold text-ink">Menu</span>
                 <button
                   type="button"
                   onClick={closeMobileMenu}
@@ -144,17 +230,17 @@ export function Header() {
               </div>
 
               <nav className="flex flex-col px-3 py-4" aria-label="Navegação principal">
-                {NAV_ITEMS.map((item) => {
-                  const active = pathname === item.href;
+                {NAV_PRIMARY.concat(NAV_MORE).map((item) => {
+                  const active = isActive(item.href);
                   return (
                     <Link
                       key={item.href}
                       href={item.href}
                       onClick={closeMobileMenu}
                       className={cn(
-                        "rounded-md px-4 py-3 text-[0.95rem] transition-colors",
+                        "rounded-lg px-4 py-3 text-[0.95rem] transition-colors",
                         active
-                          ? "bg-[#e0edff] font-medium text-[#002b60]"
+                          ? "bg-mist font-medium text-ink"
                           : "text-ink-muted hover:bg-mist hover:text-ink"
                       )}
                     >
@@ -168,7 +254,7 @@ export function Header() {
                 <a
                   href={`tel:${CONTACT.phoneDigits}`}
                   onClick={closeMobileMenu}
-                  className="flex items-center justify-center gap-2 rounded-full border border-[#002b60] px-5 py-3 text-sm font-medium uppercase tracking-[0.02em] text-[#002b60]"
+                  className="flex items-center justify-center gap-2 rounded-full border border-hairline-strong px-5 py-3 text-sm font-medium text-ink"
                 >
                   <Phone className="size-4" />
                   {CONTACT.phoneDisplay}
@@ -178,7 +264,7 @@ export function Header() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={closeMobileMenu}
-                  className="flex items-center justify-center gap-2 rounded-full bg-[#25d366] px-5 py-3 text-sm font-medium text-white"
+                  className="whatsapp-gradient flex items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-medium text-white"
                 >
                   <WhatsAppIcon className="size-4" />
                   Falar no WhatsApp
@@ -186,7 +272,7 @@ export function Header() {
                 <Link
                   href="/cote-seu-voo"
                   onClick={closeMobileMenu}
-                  className="flex items-center justify-center rounded-full bg-[#002b60] px-5 py-3 text-sm font-medium text-white"
+                  className="flex items-center justify-center rounded-full bg-accent px-5 py-3 text-sm font-medium text-white"
                 >
                   Cote seu Voo
                 </Link>

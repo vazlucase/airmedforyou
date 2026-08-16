@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Playfair_Display, Roboto } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { WhatsAppFab } from "@/components/layout/WhatsAppFab";
@@ -7,19 +7,11 @@ import { MobileActionBar } from "@/components/layout/MobileActionBar";
 import { CONTACT, SITE } from "@/lib/constants";
 import "./globals.css";
 
-const playfair = Playfair_Display({
+const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-playfair",
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-});
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-roboto",
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-montserrat",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -62,7 +54,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#002b60",
+  themeColor: "#0a1220",
 };
 
 export default function RootLayout({
@@ -89,15 +81,15 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="pt-BR" className={`${playfair.variable} ${roboto.variable}`}>
-      <body className="flex min-h-svh flex-col pb-[calc(4rem+env(safe-area-inset-bottom))] antialiased lg:pb-0">
+    <html lang="pt-BR" className={`${montserrat.variable}`}>
+      <body className="flex min-h-svh flex-col bg-paper pb-[calc(4rem+env(safe-area-inset-bottom))] antialiased lg:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <a
             href="#conteudo"
-            className="sr-only z-[60] rounded-md bg-teal-600 px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
+            className="sr-only z-[60] rounded-md bg-accent px-4 py-2 text-sm font-medium text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4"
           >
             Pular para o conteúdo
           </a>

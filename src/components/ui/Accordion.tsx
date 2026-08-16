@@ -21,8 +21,8 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
           <div
             key={item.question}
             className={cn(
-              "border-b border-[rgba(0,43,96,0.3)] transition-colors duration-300 first:border-t",
-              isOpen && "border-[#002b60]"
+              "border-b border-hairline transition-colors duration-300 first:border-t",
+              isOpen && "border-accent"
             )}
           >
             <button
@@ -31,12 +31,12 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
               onClick={() => setOpen(isOpen ? null : item.question)}
               className="flex w-full items-center justify-between gap-4 px-1 py-5 text-left sm:px-2"
             >
-              <span className="font-heading text-lg font-semibold leading-snug text-[#002b60]">
+              <span className="font-heading text-base font-semibold leading-snug text-ink sm:text-lg">
                 {item.question}
               </span>
               <ChevronDown
                 className={cn(
-                  "size-4 shrink-0 text-[#002b60]/50 transition-transform duration-300",
+                  "size-4 shrink-0 text-ink-faint transition-transform duration-300",
                   isOpen && "rotate-180"
                 )}
               />
@@ -51,7 +51,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
                   className="overflow-hidden"
                 >
                   <div className="px-1 pb-6 sm:px-2">
-                    <p className="max-w-2xl text-[0.95rem] leading-relaxed text-[#5a6f92]">
+                    <p className="max-w-2xl text-[0.95rem] leading-relaxed text-ink-muted">
                       {item.answer}
                     </p>
                   </div>

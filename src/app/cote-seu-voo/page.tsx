@@ -14,7 +14,7 @@ import type { QuoteRequestType } from "@/types";
 export const metadata: Metadata = {
   title: "Cote seu Voo",
   description:
-    "Solicite sua cotação de UTI aérea, voo executivo ou ClubMed em poucos passos. Resposta direta pelo WhatsApp, 24 horas por dia.",
+    "Solicite sua cotação de UTI aérea, voo executivo ou ClubMed em um único formulário. Resposta direta pelo WhatsApp, 24 horas por dia.",
 };
 
 const QUOTE_FAQS = [
@@ -63,13 +63,13 @@ export default async function CoteSeuVooPage({
         compact
       />
 
-      <section className="bg-paper py-24 md:py-32">
-        <Container className="grid grid-cols-1 gap-14 lg:grid-cols-[1.15fr_0.85fr] lg:gap-20">
+      <section className="bg-paper py-20 md:py-28">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:gap-20">
           <Reveal>
             <QuoteWizard defaultRequestType={tipo} />
           </Reveal>
 
-          <div className="flex flex-col gap-6 lg:sticky lg:top-32 lg:self-start">
+          <div className="flex flex-col gap-5 lg:sticky lg:top-28 lg:self-start">
             <Reveal delay={0.1}>
               <div className="rounded-2xl border border-hairline bg-canvas p-6 shadow-card">
                 <Badge>O QUE ACONTECE DEPOIS</Badge>
@@ -119,7 +119,7 @@ export default async function CoteSeuVooPage({
       <section className="bg-canvas py-24 md:py-32">
         <Container className="max-w-3xl">
           <Reveal>
-            <h2 className="text-balance text-3xl font-medium tracking-tight text-ink sm:text-4xl font-heading">
+            <h2 className="text-balance text-3xl font-semibold tracking-tight text-ink sm:text-4xl font-heading">
               Perguntas sobre a cotação
             </h2>
           </Reveal>

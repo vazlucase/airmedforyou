@@ -36,10 +36,10 @@ export function FAQSection() {
               aria-selected={selected}
               onClick={() => setActive(cat.id)}
               className={cn(
-                "rounded-full border px-5 py-2 text-sm font-medium transition-colors duration-200",
+                "rounded-full border px-5 py-2 text-sm font-semibold transition-colors duration-200",
                 selected
-                  ? "border-[#002b60] bg-[#002b60] text-white"
-                  : "border-[#b7c8e4] bg-canvas text-[#5a6f92] hover:border-[#002b60] hover:text-[#002b60]"
+                  ? "border-accent bg-accent text-white"
+                  : "border-hairline-strong bg-white text-ink-muted hover:border-accent hover:text-accent"
               )}
             >
               {cat.label}

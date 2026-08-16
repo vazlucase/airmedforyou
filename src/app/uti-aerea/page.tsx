@@ -134,7 +134,7 @@ export default function UtiAereaPage() {
       </section>
 
       {/* Fluxo de Atendimento — 6 etapas em 2 linhas de 3 */}
-      <section className="border-t border-[rgba(0,43,96,0.3)] bg-[#f4f8ff] py-24 md:py-32">
+      <section className="border-t border-hairline bg-paper py-24 md:py-32">
         <Container>
           <SectionHeading
             eyebrow="COMO FUNCIONA"

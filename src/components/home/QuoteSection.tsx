@@ -14,7 +14,7 @@ const POINTS = [
 
 export function QuoteSection() {
   return (
-    <section className="relative overflow-hidden bg-ink-panel py-24 md:py-28">
+    <section className="relative overflow-hidden bg-[#0d1728] py-24 md:py-28">
       <Image
         src={heroExecutive}
         alt=""
@@ -31,7 +31,7 @@ export function QuoteSection() {
             <Badge tone="light">COTE SEU VOO</Badge>
           </Reveal>
           <Reveal delay={0.05}>
-            <h2 className="text-balance mt-5 text-3xl font-medium leading-[1.1] tracking-tight text-white sm:text-4xl md:text-4xl font-heading">
+            <h2 className="text-balance mt-5 font-heading text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl">
               Faça sua cotação agora mesmo.
             </h2>
           </Reveal>

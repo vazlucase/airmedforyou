@@ -33,7 +33,7 @@ export function Hero() {
 
   return (
     <section
-      className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#002b60]"
+      className="relative flex min-h-[100svh] items-end overflow-hidden bg-[#0a1220]"
       aria-roledescription="carrossel"
       aria-label="Destaques AirMedPlan"
     >
@@ -66,9 +66,9 @@ export function Hero() {
             </motion.div>
           </motion.div>
         </AnimatePresence>
-        {/* Overlay editorial navy */}
+        {/* Overlay editorial escuro */}
         <div className="absolute inset-0 editorial-overlay" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#002b60]/65 via-[#002b60]/15 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a1220]/75 via-[#0a1220]/25 to-transparent" />
       </div>
 
       <Container className="relative flex w-full flex-col gap-10 pb-16 pt-40 md:pb-20 md:pt-48">
@@ -81,14 +81,14 @@ export function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-2xl"
           >
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/12 px-4 py-1.5 font-medium text-[0.68rem] uppercase tracking-[0.12em] text-white backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1.5 font-semibold uppercase tracking-[0.14em] text-white text-[0.68rem] backdrop-blur-sm">
               <span className="relative flex size-1.5">
-                <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-[#97c3ff]" />
-                <span className="relative inline-flex size-1.5 rounded-full bg-[#97c3ff]" />
+                <span className="absolute inline-flex h-full w-full animate-pulse-soft rounded-full bg-teal-300" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-teal-300" />
               </span>
               {slide.eyebrow}
             </span>
-            <h1 className="text-balance mt-6 font-heading text-[clamp(2rem,6vw,2.6rem)] font-medium leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl">
+            <h1 className="text-balance mt-6 font-heading text-[clamp(2.1rem,6vw,3.4rem)] font-semibold leading-[1.06] tracking-tight text-white sm:text-5xl md:text-6xl">
               {slide.title}
             </h1>
             <p className="text-pretty mt-5 max-w-lg text-base leading-relaxed text-white/80 md:text-lg">
@@ -97,7 +97,7 @@ export function Hero() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href={slide.ctaHref}
-                className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-medium uppercase tracking-[0.05em] text-[#002b60] transition-all duration-300 hover:bg-[#e0edff] active:scale-[0.97]"
+                className="inline-flex h-13 items-center justify-center gap-2 rounded-xl bg-white px-7 py-3.5 text-sm font-semibold text-[#0a1220] transition-all duration-300 hover:bg-white/90 active:scale-[0.97]"
               >
                 {slide.ctaLabel}
                 <ArrowRight className="size-4" />
@@ -106,7 +106,7 @@ export function Hero() {
                 href={whatsappHref("Olá! Vim pelo site da AirMedPlan e gostaria de falar com um atendente.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="whatsapp-gradient inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-medium uppercase tracking-[0.05em] text-white transition-all duration-300 hover:brightness-105 active:scale-[0.97]"
+                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/10 active:scale-[0.97]"
               >
                 <WhatsAppIcon className="size-4" />
                 Falar agora

@@ -38,6 +38,33 @@ export function maskPhoneInput(value: string): string {
   return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
 }
 
+/**
+ * Máscara com preservação de caret: `maskPhoneInput` com reposicionamento do
+ * cursor após a remascaração. Retorna o texto mascarado e a posição onde o
+ * caret deve ficar — evita o "teleporte" do cursor para o fim ao editar o
+ * meio do número (ex.: corrigir o 4º dígito).
+ */
+export function maskPhoneCaret(
+  value: string,
+  selectionStart: number | null
+): { masked: string; caret: number } {
+  const masked = maskPhoneInput(value);
+  const digitsBefore = value.slice(0, selectionStart ?? 0).replace(/\D/g, "").length;
+  let caret = masked.length;
+  let seen = 0;
+  for (let i = 0; i < masked.length; i++) {
+    const ch = masked[i];
+    if (ch && /\d/.test(ch)) {
+      seen++;
+      if (seen === digitsBefore) {
+        caret = i + 1;
+        break;
+      }
+    }
+  }
+  return { masked, caret };
+}
+
 export function slugify(input: string): string {
   return input
     .normalize("NFD")

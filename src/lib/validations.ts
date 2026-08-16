@@ -7,15 +7,22 @@ export const quoteFormSchema = z
     }),
     origin: z.string(),
     destination: z.string(),
-    tripType: z.enum(["so-ida", "ida-e-volta"]),
-    preferredDate: z.string(),
-    patientMobility: z
-      .enum(["autonomo", "cadeira-de-rodas", "leito", "uti"])
-      .nullish(),
-    passengers: z.string(),
+    tripType: z.enum(["percurso"]),
+    patientMobility: z.enum(["autonomo", "cadeira-de-rodas", "leito", "uti"]).nullish(),
+    passengers: z.string().refine(
+      (v) => v === "" || /^(0|[1-9]|1[0-2])$/.test(v.trim()),
+      "Informe um número entre 0 e 12."
+    ),
     notes: z.string().max(500, "Máximo de 500 caracteres."),
     fullName: z.string().trim().min(3, "Informe seu nome completo."),
-    phone: z.string().trim().min(14, "Informe um telefone com DDD válido."),
+    phone: z.string().trim().refine(
+      (v) => v.replace(/\D/g, "").length === 11,
+      "Informe um telefone celular com DDD (11 dígitos)."
+    ),
+    preferredDate: z.string().refine(
+      (v) => v === "" || new Date(`${v}T23:59:59`) >= new Date(),
+      "A data desejada precisa ser futura."
+    ),
     email: z.string(),
     consent: z.boolean(),
   })
@@ -55,13 +62,12 @@ export const quoteFormSchema = z
 
 export type QuoteFormSchema = z.infer<typeof quoteFormSchema>;
 
-/** Campos avaliados em cada etapa do assistente — usados com trigger() do react-hook-form. */
-export const STEP_FIELDS = {
+/** Campos avaliados em cada seção do assistente — fonte única usada com trigger() do react-hook-form. */
+export const SECTION_FIELDS: { 0: (keyof QuoteFormSchema)[]; 1: (keyof QuoteFormSchema)[]; 2: (keyof QuoteFormSchema)[] } = {
   0: ["requestType"],
-  1: ["origin", "destination", "tripType", "preferredDate", "patientMobility", "passengers"],
-  2: ["notes"],
-  3: ["fullName", "phone", "email", "consent"],
-} as const;
+  1: ["origin", "destination", "preferredDate", "patientMobility", "passengers", "notes"],
+  2: ["fullName", "phone", "email", "consent"],
+};
 
 export const contactFormSchema = z
   .object({

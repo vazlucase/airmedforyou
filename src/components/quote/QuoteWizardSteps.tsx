@@ -7,24 +7,67 @@ import {
   CalendarDays,
   Clock,
   Heart,
+  LocateFixed,
   Plane,
-  Sparkles,
-  Users,
+  Plus,
+  Route,
+  UserRound,
 } from "lucide-react";
-import { cn, maskPhoneInput } from "@/lib/utils";
+import { cn, maskPhoneCaret } from "@/lib/utils";
 import type { QuoteFormSchema } from "@/lib/validations";
+import { AIRSTRIPS, airstripHintCities } from "@/lib/airstrips";
+import { LocationInput } from "@/components/quote/LocationInput";
 
 const inputClass =
-  "h-12 w-full border border-[#002b60] bg-transparent px-4 text-[0.95rem] text-[#002b60] placeholder:text-[#94a6c4] outline-none transition-colors focus:bg-white/60";
+  "h-12 w-full rounded-lg border border-hairline-strong bg-white px-4 text-base text-ink placeholder:text-ink-muted outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15 sm:text-[0.95rem]";
 
-const labelClass = "text-sm font-medium text-[#002b60]";
+const labelClass = "text-sm font-semibold text-ink";
 
-function FieldError({ message }: { message?: string }) {
-  return <p className="mt-1.5 min-h-4 text-xs text-ember-600">{message ?? ""}</p>;
+function FieldError({ id, message }: { id?: string; message?: string }) {
+  return (
+    <p id={id} role="alert" className="mt-1.5 min-h-4 text-xs text-ember-600">
+      {message ?? ""}
+    </p>
+  );
 }
 
 /* ---------------------------------------------------------- */
-/* Etapa 0 — Tipo de solicitação                                */
+/* Head de seção — marcador por ícone (sem "etapas" numeradas)  */
+/* ---------------------------------------------------------- */
+
+function SectionHeading({
+  headingId,
+  icon: Icon,
+  title,
+  description,
+}: {
+  headingId: string;
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  description?: string;
+}) {
+  return (
+    <div className="flex items-start gap-3">
+      <span
+        aria-hidden
+        className="flex size-7 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent"
+      >
+        <Icon className="size-3.5" />
+      </span>
+      <div>
+        <h2 id={headingId} className="font-heading text-lg font-semibold text-ink">
+          {title}
+        </h2>
+        {description ? (
+          <p className="mt-0.5 text-sm leading-relaxed text-ink-muted">{description}</p>
+        ) : null}
+      </div>
+    </div>
+  );
+}
+
+/* ---------------------------------------------------------- */
+/* Bloco 1 — Solicitação (tipo)                                 */
 /* ---------------------------------------------------------- */
 
 const REQUEST_OPTIONS = [
@@ -54,14 +97,26 @@ const REQUEST_OPTIONS = [
   },
 ];
 
-export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
+export function SectionRequestType({
+  form,
+  onSelect,
+}: {
+  form: UseFormReturn<QuoteFormSchema>;
+  /** Chamado ao escolher um tipo — o wizard avança sozinho para o percurso. */
+  onSelect?: () => void;
+}) {
   const selected = form.watch("requestType");
   return (
     <fieldset>
-        <legend className="mb-1 font-heading text-lg font-medium text-[#002b60]">
-          Como podemos ajudar agora?
-        </legend>
-        <p className="mb-6 text-sm text-[#5a6f92]">Selecione a opção que melhor descreve sua solicitação.</p>
+      <legend className="sr-only">Tipo de solicitação</legend>
+      <div className="mb-5">
+        <SectionHeading
+          headingId="quote-request-heading"
+          icon={AlertTriangle}
+          title="Como podemos ajudar agora?"
+          description="Selecione a opção que melhor descreve sua solicitação."
+        />
+      </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
         {REQUEST_OPTIONS.map((option) => {
           const Icon = option.icon;
@@ -70,31 +125,38 @@ export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema>
             <label
               key={option.value}
               className={cn(
-                "flex cursor-pointer items-start gap-3.5 rounded-[15px] border p-4 transition-all duration-200",
+                "flex cursor-pointer items-start gap-3.5 rounded-xl border p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent",
                 active
-                  ? "border-[#002b60] bg-[#e0edff] ring-4 ring-[#002b60]/10"
-                  : "border-[#d9e2f0] bg-canvas hover:border-[#b7c8e4] hover:bg-[#f4f8ff]"
+                  ? "border-accent bg-accent-tint ring-4 ring-accent/10"
+                  : "border-hairline bg-canvas hover:border-hairline-strong hover:bg-mist"
               )}
             >
               <input
                 type="radio"
                 value={option.value}
                 className="sr-only"
-                {...form.register("requestType")}
+                {...form.register("requestType", {
+                  onChange: (e) => {
+                    // Só avança quando o usuário escolhe de fato: a montagem
+                    // inicial com defaultRequestType (ex.: ?tipo=) não dispara
+                    // a transição automática.
+                    if (e.target.value !== selected) onSelect?.();
+                  },
+                })}
               />
               <span
                 className={cn(
                   "flex size-10 shrink-0 items-center justify-center rounded-full transition-colors",
-                  active ? "bg-[#002b60] text-white" : "bg-[#e0edff] text-[#5a6f92]"
+                  active ? "bg-accent text-white" : "bg-mist-deep text-ink-muted"
                 )}
               >
                 <Icon className="size-[1.1rem]" strokeWidth={1.75} />
               </span>
               <span>
-                <span className="block text-[0.95rem] font-medium text-[#002b60]">
+                <span className="block text-[0.95rem] font-semibold text-ink">
                   {option.title}
                 </span>
-                <span className="mt-0.5 block text-[0.83rem] leading-snug text-[#5a6f92]">
+                <span className="mt-0.5 block text-[0.83rem] leading-snug text-ink-muted">
                   {option.desc}
                 </span>
               </span>
@@ -102,13 +164,13 @@ export function StepRequestType({ form }: { form: UseFormReturn<QuoteFormSchema>
           );
         })}
       </div>
-      <FieldError message={form.formState.errors.requestType?.message} />
+      <FieldError id="requestType-error" message={form.formState.errors.requestType?.message} />
     </fieldset>
   );
 }
 
 /* ---------------------------------------------------------- */
-/* Etapa 1 — Rota / detalhes                                    */
+/* Bloco 2 — Percurso (rota / detalhes)                         */
 /* ---------------------------------------------------------- */
 
 const MOBILITY_OPTIONS = [
@@ -118,105 +180,108 @@ const MOBILITY_OPTIONS = [
   { value: "uti" as const, label: "Suporte de UTI" },
 ];
 
-export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
+/** Data de hoje em formato ISO (YYYY-MM-DD) para o atributo `min` do input date. */
+function todayISO(): string {
+  const d = new Date();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+
+export function SectionRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
   const requestType = form.watch("requestType");
+  const tripType = form.watch("tripType");
+  const [showNotes, setShowNotes] = React.useState(false);
   const {
-    register,
     formState: { errors },
   } = form;
 
   if (requestType === "clubmed") {
     return (
       <fieldset>
-        <legend className="mb-1 font-heading text-lg font-medium text-[#002b60]">Ótima escolha.</legend>
-        <p className="mb-6 text-sm text-[#5a6f92]">
-          Para te apresentar o ClubMed, só precisamos saber de onde você fala.
-        </p>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="origin" className={labelClass}>
-            Sua cidade
-          </label>
-          <input
-            id="origin"
-            placeholder="Ex.: Belém, PA"
-            className={inputClass}
-            {...register("origin")}
+        <legend className="sr-only">Sua cidade</legend>
+        <div className="mb-5">
+          <SectionHeading
+            headingId="quote-route-heading"
+            icon={LocateFixed}
+            title="Ótima escolha."
+            description="Para te apresentar o ClubMed, só precisamos saber de onde você fala."
           />
         </div>
+        <LocationInput
+          id="origin"
+          label="Sua cidade"
+          placeholder="Ex.: Belém, PA"
+          value={form.watch("origin") ?? ""}
+          onChange={(v) => form.setValue("origin", v, { shouldValidate: true })}
+        />
       </fieldset>
     );
   }
 
   return (
     <fieldset className="flex flex-col gap-5">
-      <div>
-        <legend className="mb-1 font-heading text-lg font-medium text-[#002b60]">Para onde vamos?</legend>
-        <p className="text-sm text-[#5a6f92]">Nos diga a origem, o destino e a data desejada.</p>
+      <legend className="sr-only">Percurso</legend>
+      <div className="mb-1">
+        <SectionHeading
+          headingId="quote-route-heading"
+          icon={Route}
+          title="Para onde vamos?"
+          description="De onde para onde, sem burocracia."
+        />
       </div>
 
-      <div className="flex flex-wrap gap-2">
-        {(["so-ida", "ida-e-volta"] as const).map((value) => {
-          const active = form.watch("tripType") === value;
-          return (
-            <label
-              key={value}
-              className={cn(
-                "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors",
-                active
-                  ? "bg-[#002b60] border-[#002b60] text-white"
-                  : "border-[#b7c8e4] text-[#5a6f92] hover:border-[#002b60] hover:text-[#002b60]"
-              )}
-            >
-              <input type="radio" value={value} className="sr-only" {...register("tripType")} />
-              {value === "so-ida" ? "Só ida" : "Ida e volta"}
-            </label>
-          );
-        })}
+      {/* Origem / Destino */}
+      <div className="flex flex-col gap-4">
+        <LocationInput
+          id="origin"
+          label="Origem"
+          placeholder="Cidade, aeroporto ou pista"
+          value={form.watch("origin") ?? ""}
+          onChange={(v) => form.setValue("origin", v, { shouldValidate: true })}
+          onBlur={() => form.trigger("origin")}
+          error={errors.origin?.message}
+          focusedOnSelect={() => {
+            // Chain: ao escolher a origem, foca o destino.
+            const el = document.getElementById("destination") as HTMLInputElement | null;
+            el?.focus();
+          }}
+        />
+        <LocationInput
+          id="destination"
+          label="Destino"
+          placeholder="Cidade, aeroporto ou pista"
+          value={form.watch("destination") ?? ""}
+          onChange={(v) => form.setValue("destination", v, { shouldValidate: true })}
+          onBlur={() => form.trigger("destination")}
+          error={errors.destination?.message}
+        />
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="origin" className={labelClass}>
-            Origem
-          </label>
-          <input
-            id="origin"
-            placeholder="Cidade ou aeroporto"
-            className={inputClass}
-            {...register("origin")}
-          />
-          <FieldError message={errors.origin?.message} />
-        </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="destination" className={labelClass}>
-            Destino
-          </label>
-          <input
-            id="destination"
-            placeholder="Cidade ou aeroporto"
-            className={inputClass}
-            {...register("destination")}
-          />
-          <FieldError message={errors.destination?.message} />
-        </div>
-      </div>
+      {/* Dica de pistas regionais — linha única */}
+      <p className="text-xs leading-relaxed text-ink-muted">
+        Também pousamos em pistas regionais, como{" "}
+        <span className="font-semibold text-ink">{airstripHintCities().join(", ")}</span>.
+      </p>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="preferredDate" className={labelClass}>
-            <CalendarDays className="mr-1 inline size-3.5 -translate-y-px" />
+      
+      {/* Data / Acompanhantes */}
+      <div className="grid grid-cols-2 items-end gap-2.5">
+        <div className="flex min-w-0 flex-col gap-1">
+          <label htmlFor="preferredDate" className="text-xs font-semibold text-ink">
             Data desejada
           </label>
           <input
             id="preferredDate"
             type="date"
+            min={todayISO()}
             className={inputClass}
-            {...register("preferredDate")}
+            {...form.register("preferredDate")}
           />
         </div>
-        <div className="flex flex-col gap-1.5">
-          <label htmlFor="passengers" className={labelClass}>
-            <Users className="mr-1 inline size-3.5 -translate-y-px" />
+        <div className="flex min-w-0 flex-col gap-1">
+          <label htmlFor="passengers" className="text-xs font-semibold text-ink">
             Acompanhantes
           </label>
           <input
@@ -226,32 +291,39 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
             max={12}
             placeholder="0"
             className={inputClass}
-            {...register("passengers")}
+            {...form.register("passengers")}
           />
         </div>
       </div>
 
       {requestType !== "executivo" ? (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1.5">
           <span className={labelClass}>Mobilidade do paciente</span>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid grid-cols-2 gap-2">
             {MOBILITY_OPTIONS.map((opt) => {
               const active = form.watch("patientMobility") === opt.value;
               return (
                 <label
                   key={opt.value}
                   className={cn(
-                    "cursor-pointer rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                    "flex cursor-pointer items-center gap-2 rounded-lg border px-2.5 py-2 text-[0.83rem] font-medium transition-colors focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent",
                     active
-                      ? "border-[#002b60] bg-[#e0edff] text-[#002b60]"
-                      : "border-[#b7c8e4] text-[#5a6f92] hover:border-[#002b60] hover:text-[#002b60]"
+                      ? "border-accent bg-accent-tint text-accent"
+                      : "border-hairline-strong bg-white text-ink-muted hover:border-accent hover:text-accent"
                   )}
                 >
                   <input
                     type="radio"
                     value={opt.value}
                     className="sr-only"
-                    {...register("patientMobility")}
+                    {...form.register("patientMobility")}
+                  />
+                  <span
+                    aria-hidden
+                    className={cn(
+                      "block size-2.5 shrink-0 rounded-full border",
+                      active ? "border-accent bg-accent" : "border-hairline-strong bg-white"
+                    )}
                   />
                   {opt.label}
                 </label>
@@ -260,54 +332,45 @@ export function StepRoute({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
           </div>
         </div>
       ) : null}
-    </fieldset>
-  );
-}
 
-/* ---------------------------------------------------------- */
-/* Etapa 2 — Observações                                        */
-/* ---------------------------------------------------------- */
-
-export function StepNotes({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
-  const notes = form.watch("notes") ?? "";
-  return (
-    <fieldset>
-      <legend className="mb-1 font-heading text-lg font-medium text-[#002b60]">Mais algum detalhe?</legend>
-      <p className="mb-6 text-sm text-[#5a6f92]">
-        Conte o que for importante para a nossa equipe médica já chegar preparada. Este campo é
-        opcional.
-      </p>
-      <div className="flex flex-col gap-1.5">
-        <label htmlFor="notes" className={labelClass}>
-          Observações
-        </label>
-        <textarea
-          id="notes"
-          rows={5}
-          maxLength={500}
-          placeholder="Ex.: paciente em pós-operatório, necessidade de oxigênio contínuo, horário preferencial..."
-          className={cn(inputClass, "h-auto resize-none py-3 leading-relaxed")}
-          {...form.register("notes")}
-        />
-        <span className="self-end text-xs text-ink-faint">{notes.length}/500</span>
-      </div>
-
-      <div className="mt-2 flex items-start gap-3 rounded-[15px] bg-[#e0edff] p-4">
-        <Sparkles className="mt-0.5 size-4 shrink-0 text-[#002b60]" />
-        <p className="text-[0.83rem] leading-relaxed text-[#5a6f92]">
-          Quanto mais contexto você nos der, mais rápida e precisa será a nossa resposta —
-          especialmente em casos clínicos.
-        </p>
+      {/* Observações — recolhidas por padrão */}
+      <div className="rounded-xl border border-hairline bg-white">
+        <button
+          type="button"
+          onClick={() => setShowNotes((s) => !s)}
+          aria-expanded={showNotes}
+          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+        >
+          <span className="flex items-center gap-2 text-sm font-semibold text-ink">
+            <Plus className="size-4 text-accent" />
+            Mais algum detalhe? <span className="font-normal text-ink-muted">(opcional)</span>
+          </span>
+        </button>
+        {showNotes ? (
+          <div className="border-t border-hairline p-4">
+            <textarea
+              id="notes"
+              rows={4}
+              maxLength={500}
+              placeholder="Ex.: paciente em pós-operatório, necessidade de oxigênio contínuo, horário preferencial..."
+              className={cn(inputClass, "h-auto resize-none py-3 leading-relaxed")}
+              {...form.register("notes")}
+            />
+            <span aria-live="polite" className="mt-1 flex justify-end text-xs text-ink-muted">
+              {(form.watch("notes") ?? "").length}/500
+            </span>
+          </div>
+        ) : null}
       </div>
     </fieldset>
   );
 }
 
 /* ---------------------------------------------------------- */
-/* Etapa 3 — Contato                                            */
+/* Bloco 3 — Contato                                           */
 /* ---------------------------------------------------------- */
 
-export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
+export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) {
   const {
     register,
     setValue,
@@ -316,11 +379,14 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
 
   return (
     <fieldset className="flex flex-col gap-4">
-      <div>
-        <legend className="mb-1 font-heading text-lg font-medium text-[#002b60]">Quase lá.</legend>
-        <p className="text-sm text-[#5a6f92]">
-          Precisamos só do seu contato para enviar a cotação pelo WhatsApp.
-        </p>
+      <legend className="sr-only">Contato</legend>
+      <div className="mb-1">
+        <SectionHeading
+          headingId="quote-contact-heading"
+          icon={UserRound}
+          title="Para finalizar, seu contato."
+          description="Enviaremos a resposta da cotação direto no seu WhatsApp."
+        />
       </div>
 
       <div className="flex flex-col gap-1.5">
@@ -331,9 +397,11 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
           id="fullName"
           placeholder="Seu nome"
           className={inputClass}
+          aria-invalid={errors.fullName ? true : undefined}
+          aria-describedby={errors.fullName ? "fullName-error" : undefined}
           {...register("fullName")}
         />
-        <FieldError message={errors.fullName?.message} />
+        <FieldError id="fullName-error" message={errors.fullName?.message} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -347,44 +415,58 @@ export function StepContact({ form }: { form: UseFormReturn<QuoteFormSchema> }) 
             placeholder="(00) 00000-0000"
             className={inputClass}
             {...register("phone", {
-              onChange: (e) => setValue("phone", maskPhoneInput(e.target.value)),
+              onChange: (e) => {
+                const { masked, caret } = maskPhoneCaret(e.target.value, e.target.selectionStart ?? 0);
+                setValue("phone", masked);
+                // Preserva a posição do cursor ao editar o meio do número
+                requestAnimationFrame(() => {
+                  e.target.selectionStart = caret;
+                  e.target.selectionEnd = caret;
+                });
+              },
             })}
+            aria-invalid={errors.phone ? true : undefined}
+            aria-describedby={errors.phone ? "phone-error" : undefined}
           />
-          <FieldError message={errors.phone?.message} />
+          <FieldError id="phone-error" message={errors.phone?.message} />
         </div>
         <div className="flex flex-col gap-1.5">
           <label htmlFor="email" className={labelClass}>
-            E-mail <span className="text-[#5a6f92]">(opcional)</span>
+            E-mail <span className="text-ink-faint">(opcional)</span>
           </label>
           <input
             id="email"
             type="email"
             placeholder="voce@email.com"
             className={inputClass}
+            aria-invalid={errors.email ? true : undefined}
+            aria-describedby={errors.email ? "email-error" : undefined}
             {...register("email")}
           />
-          <FieldError message={errors.email?.message} />
+          <FieldError id="email-error" message={errors.email?.message} />
         </div>
       </div>
 
-      <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-[15px] border border-[#d9e2f0] bg-[#f4f8ff] p-4">
+      <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-xl border border-hairline bg-mist p-4">
         <input
           type="checkbox"
-          className="mt-0.5 size-4 shrink-0 accent-[#002b60]"
+          className="mt-0.5 size-4 shrink-0 accent-accent"
+          aria-invalid={errors.consent ? true : undefined}
+          aria-describedby={errors.consent ? "consent-error" : undefined}
           {...register("consent")}
         />
-        <span className="text-[0.83rem] leading-relaxed text-[#5a6f92]">
+        <span className="text-[0.83rem] leading-relaxed text-ink-muted">
           Concordo com o uso dos meus dados para que a AirMedPlan entre em contato sobre esta
           solicitação, conforme a{" "}
-          <a href="/politica-de-privacidade" className="font-medium text-[#002b60] underline underline-offset-2">
+          <a href="/politica-de-privacidade" className="font-semibold text-accent underline underline-offset-2">
             Política de Privacidade
           </a>
           .
         </span>
       </label>
-      <FieldError message={errors.consent?.message} />
+      <FieldError id="consent-error" message={errors.consent?.message} />
 
-      <div className="flex items-center gap-2 text-xs text-[#5a6f92]">
+      <div className="flex items-center gap-2 text-xs text-ink-muted">
         <Clock className="size-3.5" />
         Tempo médio de resposta: poucos minutos, 24 horas por dia.
       </div>

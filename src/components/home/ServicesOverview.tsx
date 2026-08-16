@@ -8,7 +8,7 @@ import { SERVICES } from "@/lib/constants";
 
 export function ServicesOverview() {
   return (
-    <section id="servicos" className="scroll-mt-24 bg-canvas py-24 md:py-32">
+    <section id="servicos" className="scroll-mt-24 bg-canvas py-14 md:py-16">
       <Container>
         <SectionHeading
           eyebrow="O QUE FAZEMOS"
@@ -16,12 +16,12 @@ export function ServicesOverview() {
           description="De uma remoção crítica a uma viagem executiva ou um benefício para o dia a dia — a mesma equipe, o mesmo padrão de segurança."
         />
 
-        <div className="mt-16 grid grid-cols-1 gap-8 md:mt-20 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-3">
           {SERVICES.map((service, i) => (
             <Reveal key={service.slug} delay={i * 0.08}>
               <Link
                 href={service.href}
-                className="group relative flex h-full min-h-[440px] flex-col justify-end overflow-hidden rounded-[20px] shadow-[0_1px_3px_rgba(0,43,96,0.06),0_8px_24px_-12px_rgba(0,43,96,0.1)] transition-shadow duration-300 hover:shadow-[0_2px_8px_rgba(0,43,96,0.05),0_20px_50px_-20px_rgba(0,43,96,0.18)]"
+                className="group relative flex h-full min-h-[360px] flex-col justify-end overflow-hidden rounded-2xl shadow-card transition-shadow duration-300 hover:shadow-elevated"
               >
                 <Image
                   src={service.image}
@@ -31,7 +31,7 @@ export function ServicesOverview() {
                   className="object-cover transition-transform duration-700 ease-[var(--ease-fluid)] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 editorial-overlay transition-opacity duration-500" />
-                <div className="relative flex flex-col gap-4 p-9">
+                <div className="relative flex flex-col gap-4 p-7">
                   <span className="text-[0.65rem] font-medium uppercase tracking-[0.14em] text-white/75">
                     {service.eyebrow}
                   </span>
@@ -41,7 +41,7 @@ export function ServicesOverview() {
                   <p className="text-pretty text-sm leading-relaxed text-white/80">
                     {service.description}
                   </p>
-                  <span className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/30 bg-white/10 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-sm transition-colors duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[#002b60]">
+                  <span className="mt-2 inline-flex w-fit items-center gap-1.5 rounded-full border border-white/25 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur-sm transition-colors duration-300 group-hover:border-white group-hover:bg-white group-hover:text-[#0a1220]">
                     Saiba mais
                     <ArrowUpRight className="size-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </span>
