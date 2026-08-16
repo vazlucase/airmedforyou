@@ -19,7 +19,7 @@ import { AIRSTRIPS, airstripHintCities } from "@/lib/airstrips";
 import { LocationInput } from "@/components/quote/LocationInput";
 
 const inputClass =
-  "h-12 w-full rounded-lg border border-hairline-strong bg-white px-4 text-base text-ink placeholder:text-ink-muted outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15 sm:text-[0.95rem]";
+  "h-12 w-full rounded-lg border border-hairline-strong bg-white px-4 text-base text-ink placeholder:text-ink-muted outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15 max-sm:h-11 sm:text-[0.95rem]";
 
 const labelClass = "text-sm font-semibold text-ink";
 
@@ -55,7 +55,7 @@ function SectionHeading({
         <Icon className="size-3.5" />
       </span>
       <div>
-        <h2 id={headingId} className="font-heading text-lg font-semibold text-ink">
+        <h2 id={headingId} className="font-heading text-lg font-semibold text-ink max-sm:text-base">
           {title}
         </h2>
         {description ? (
@@ -221,7 +221,7 @@ export function SectionRoute({ form }: { form: UseFormReturn<QuoteFormSchema> })
   }
 
   return (
-    <fieldset className="flex flex-col gap-5">
+    <fieldset className="flex flex-col gap-5 max-sm:gap-3.5">
       <legend className="sr-only">Percurso</legend>
       <div className="mb-1">
         <SectionHeading
@@ -378,7 +378,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
   } = form;
 
   return (
-    <fieldset className="flex flex-col gap-4">
+    <fieldset className="flex flex-col gap-4 max-sm:gap-3">
       <legend className="sr-only">Contato</legend>
       <div className="mb-1 max-sm:mb-0.5">
         <SectionHeading
