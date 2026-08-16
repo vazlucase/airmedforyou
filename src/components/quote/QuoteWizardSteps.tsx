@@ -117,7 +117,7 @@ export function SectionRequestType({
           description="Selecione a opção que melhor descreve sua solicitação."
         />
       </div>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 max-sm:gap-2">
         {REQUEST_OPTIONS.map((option) => {
           const Icon = option.icon;
           const active = selected === option.value;
@@ -125,7 +125,7 @@ export function SectionRequestType({
             <label
               key={option.value}
               className={cn(
-                "flex cursor-pointer items-start gap-3.5 rounded-xl border p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent",
+                "flex cursor-pointer items-start gap-3.5 rounded-xl border p-4 transition-all duration-200 focus-within:ring-2 focus-within:ring-accent/30 focus-within:border-accent max-sm:p-3",
                 active
                   ? "border-accent bg-accent-tint ring-4 ring-accent/10"
                   : "border-hairline bg-canvas hover:border-hairline-strong hover:bg-mist"
@@ -267,7 +267,7 @@ export function SectionRoute({ form }: { form: UseFormReturn<QuoteFormSchema> })
 
       
       {/* Data / Acompanhantes */}
-      <div className="grid grid-cols-2 items-end gap-2.5">
+      <div className="grid grid-cols-2 items-end gap-2.5 max-sm:gap-2">
         <div className="flex min-w-0 flex-col gap-1">
           <label htmlFor="preferredDate" className="text-xs font-semibold text-ink">
             Data desejada
@@ -339,7 +339,7 @@ export function SectionRoute({ form }: { form: UseFormReturn<QuoteFormSchema> })
           type="button"
           onClick={() => setShowNotes((s) => !s)}
           aria-expanded={showNotes}
-          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left"
+          className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left max-sm:py-2.5"
         >
           <span className="flex items-center gap-2 text-sm font-semibold text-ink">
             <Plus className="size-4 text-accent" />
@@ -450,7 +450,7 @@ export function SectionContact({ form }: { form: UseFormReturn<QuoteFormSchema> 
       <label className="mt-2 flex cursor-pointer items-start gap-3 rounded-xl border border-hairline bg-mist p-4">
         <input
           type="checkbox"
-          className="mt-0.5 size-4 shrink-0 accent-accent"
+          className="mt-px size-4 shrink-0 accent-accent"
           aria-invalid={errors.consent ? true : undefined}
           aria-describedby={errors.consent ? "consent-error" : undefined}
           {...register("consent")}

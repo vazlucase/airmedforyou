@@ -62,6 +62,14 @@ export const quoteFormSchema = z
 
 export type QuoteFormSchema = z.infer<typeof quoteFormSchema>;
 
+/**
+ * Tipo do estado interno do assistente: `requestType` começa vazio (null) para
+ * que nenhuma opção apareça pré-selecionada — o visitante escolhe de verdade.
+ */
+export type QuoteFormState = Omit<QuoteFormSchema, "requestType"> & {
+  requestType: QuoteFormSchema["requestType"] | null;
+};
+
 /** Campos avaliados em cada seção do assistente — fonte única usada com trigger() do react-hook-form. */
 export const SECTION_FIELDS: { 0: (keyof QuoteFormSchema)[]; 1: (keyof QuoteFormSchema)[]; 2: (keyof QuoteFormSchema)[] } = {
   0: ["requestType"],

@@ -6,14 +6,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { AnimatePresence, MotionConfig, motion, type Variants } from "motion/react";
 import { ArrowRight, CheckCircle2, ChevronLeft, RotateCcw, Send } from "lucide-react";
 import { WhatsAppIcon } from "@/components/ui/icons/WhatsAppIcon";
-import { quoteFormSchema, SECTION_FIELDS, type QuoteFormSchema } from "@/lib/validations";
+import {
+  quoteFormSchema,
+  SECTION_FIELDS,
+  type QuoteFormSchema,
+  type QuoteFormState,
+} from "@/lib/validations";
 import { buildQuoteWhatsAppLink } from "@/lib/whatsapp";
 import { EmergencyBanner } from "@/components/quote/EmergencyBanner";
 import { SectionRequestType, SectionRoute, SectionContact } from "@/components/quote/QuoteWizardSteps";
 import { cn } from "@/lib/utils";
 
-const DEFAULT_VALUES: QuoteFormSchema = {
-  requestType: "emergencia",
+/* Estado inicial: nenhum tipo pré-selecionado — o visitante escolhe de verdade. */
+const DEFAULT_VALUES: QuoteFormState = {
+  requestType: null,
   origin: "",
   destination: "",
   tripType: "percurso",
@@ -66,6 +72,8 @@ export function QuoteWizard({
   const [sending, setSending] = React.useState(false);
   const [active, setActive] = React.useState<0 | 1 | 2>(defaultRequestType ? 1 : 0);
   const [direction, setDirection] = React.useState<1 | -1>(1);
+  /** Flag de primeira validação (onMount) — garante que nenhum campo pré-preenchido seja exibido como "já validado" antes do toque do usuário. */
+  const firstValidation = React.useRef(false);
 
   const formRef = React.useRef<HTMLDivElement>(null);
   const requestRef = React.useRef<HTMLElement>(null);
@@ -73,12 +81,12 @@ export function QuoteWizard({
   const contactRef = React.useRef<HTMLElement>(null);
   const successRef = React.useRef<HTMLHeadingElement>(null);
 
-  const form = useForm<QuoteFormSchema>({
+  const form = useForm<QuoteFormSchema, unknown, QuoteFormSchema>({
     resolver: zodResolver(quoteFormSchema),
     defaultValues: {
-      ...DEFAULT_VALUES,
-      requestType: defaultRequestType ?? DEFAULT_VALUES.requestType,
-    },
+      ...(DEFAULT_VALUES as unknown as QuoteFormSchema),
+      requestType: defaultRequestType ?? (null as QuoteFormSchema["requestType"] | null),
+    } as QuoteFormSchema,
     mode: "onTouched",
   });
 
@@ -145,12 +153,17 @@ export function QuoteWizard({
   }
 
   /** Escolher o tipo de solicitação avança sozinho para o percurso. */
+  /** Escolher o tipo de solicitação avança sozinho para o percurso. */
   function handleTypeSelect() {
+    // O schema exige requestType válido; como nenhum tipo nasce pré-selecionado,
+    // ao escolher o valor já é válido — o trigger limpa o erro antes de avançar.
+    void form.trigger("requestType");
     window.setTimeout(() => goTo(1, 1), 220);
   }
 
   function startOver() {
-    form.reset({ ...DEFAULT_VALUES, requestType: defaultRequestType ?? DEFAULT_VALUES.requestType });
+    firstValidation.current = true;
+    form.reset({ ...(DEFAULT_VALUES as unknown as QuoteFormSchema) });
     setSubmitted(false);
     setActive(defaultRequestType ? 1 : 0);
     setDirection(1);
@@ -160,10 +173,10 @@ export function QuoteWizard({
   const progress = ((active + 1) / 3) * 100;
 
   return (
-    <div ref={formRef} className={cn("flex scroll-mt-24 flex-col gap-6", className)}>
+    <div ref={formRef} className={cn("flex scroll-mt-24 flex-col gap-4", className)}>
       {showEmergencyBanner ? <EmergencyBanner /> : null}
 
-      <div className="rounded-2xl border border-hairline bg-white p-5 shadow-elevated sm:p-7 md:p-9">
+      <div className="rounded-2xl border border-hairline bg-white p-4 shadow-elevated sm:p-6 md:p-8">
         {submitted ? (
           <div aria-live="polite" className="flex flex-col items-center py-6 text-center">
             <span className="flex size-16 items-center justify-center rounded-full bg-accent-tint text-accent">
