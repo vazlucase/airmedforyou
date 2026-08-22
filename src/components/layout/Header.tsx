@@ -18,17 +18,22 @@ export function Header() {
   const moreRef = React.useRef<HTMLDivElement>(null);
   const moreButtonRef = React.useRef<HTMLButtonElement>(null);
 
-  const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+  const menuButtonRef = React.useRef<HTMLButtonElement>(null);
   const panelRef = React.useRef<HTMLDivElement>(null);
+  const wasMobileOpen = React.useRef(false);
 
-  // Trava o scroll do body enquanto o menu abre
+  // Trava o scroll do documento e restaura o foco somente após fechar o drawer.
   React.useEffect(() => {
     document.documentElement.style.overflow = mobileOpen ? "hidden" : "";
+
     if (mobileOpen) {
+      wasMobileOpen.current = true;
       panelRef.current?.querySelector<HTMLElement>("a,button")?.focus();
-    } else {
-      closeButtonRef.current?.focus();
+    } else if (wasMobileOpen.current) {
+      menuButtonRef.current?.focus();
+      wasMobileOpen.current = false;
     }
+
     return () => {
       document.documentElement.style.overflow = "";
     };
@@ -70,13 +75,13 @@ export function Header() {
         transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
         className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0a1220]/95 backdrop-blur-md"
       >
-        <div className="relative mx-auto flex h-[4.5rem] w-full max-w-[1250px] items-center justify-between gap-4 px-5 md:px-10">
+        <div className="relative mx-auto flex h-[4.5rem] w-full max-w-[1250px] items-center justify-between gap-3 px-[max(1.25rem,env(safe-area-inset-left))] pr-[max(1.25rem,env(safe-area-inset-right))] md:gap-4 md:px-[max(2.5rem,env(safe-area-inset-left))] md:pr-[max(2.5rem,env(safe-area-inset-right))]">
           {/* Hamburger (mobile) */}
           <button
-            ref={closeButtonRef}
+            ref={menuButtonRef}
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            className="flex size-10 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white transition-opacity duration-200 hover:opacity-75 lg:hidden"
+            className="flex size-11 shrink-0 flex-col items-center justify-center gap-[5px] rounded-md text-white transition-opacity duration-200 hover:opacity-75 lg:hidden"
             aria-label={mobileOpen ? "Fechar menu" : "Abrir menu"}
             aria-expanded={mobileOpen}
             aria-controls="navegacao-mobile"
@@ -178,7 +183,7 @@ export function Header() {
           <div className="flex shrink-0 items-center gap-3 md:gap-4">
             <a
               href={`tel:${CONTACT.phoneDigits}`}
-              className="hidden items-center gap-2 text-[0.9rem] font-medium text-white/70 transition-colors hover:text-white md:flex"
+              className="hidden items-center gap-2 text-[0.9rem] font-medium text-white/70 transition-colors hover:text-white xl:flex"
             >
               <Phone className="size-4" fill="currentColor" strokeWidth={0} />
               {CONTACT.phoneDisplay}
@@ -214,7 +219,7 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="flex h-full w-[19rem] max-w-[85vw] flex-col overflow-y-auto bg-white"
+              className="flex h-[100dvh] w-[19rem] max-w-[85vw] flex-col overflow-y-auto bg-white pt-[env(safe-area-inset-top)]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex items-center justify-between border-b border-hairline px-6 py-5">
@@ -222,7 +227,7 @@ export function Header() {
                 <button
                   type="button"
                   onClick={closeMobileMenu}
-                  className="flex size-9 items-center justify-center rounded-md text-ink transition-colors hover:bg-mist"
+                  className="flex size-11 items-center justify-center rounded-md text-ink transition-colors hover:bg-mist"
                   aria-label="Fechar menu"
                 >
                   <X className="size-5" />

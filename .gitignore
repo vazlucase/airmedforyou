@@ -16,11 +16,14 @@
 # misc
 .DS_Store
 *.pem
+.e2e-tmp/
 
 # debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+build-log.txt
+dev-server.log
 
 # local env files
 .env*.local

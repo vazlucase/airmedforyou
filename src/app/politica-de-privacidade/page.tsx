@@ -22,7 +22,7 @@ const SECTIONS = [
   },
   {
     title: "4. Base legal",
-    body: "O tratamento dos seus dados é fundamentado no seu consentimento, fornecido ao marcar a caixa de concordância nos formulários deste site, e no legítimo interesse da AirMedPlan em responder a solicitações de atendimento e cotação.",
+    body: "O tratamento dos dados informados nos formulários é fundamentado no consentimento do titular. Quando a solicitação envolver informações de saúde, o consentimento é específico para essa finalidade e para o envio pelo WhatsApp/Meta. Em situações de urgência, também podem ser aplicáveis as bases legais de proteção da vida e tutela da saúde, nos termos da LGPD.",
   },
   {
     title: "5. Compartilhamento de dados",

@@ -109,18 +109,19 @@ export function LocationInput({
   }
 
   return (
-    <div className="flex flex-col gap-1.5" ref={rootRef}>
-      <label htmlFor={id} className="text-sm font-semibold text-ink">
+    <div className="grid min-w-0 gap-1" ref={rootRef}>
+      <label htmlFor={id} className="text-[0.8125rem] font-semibold leading-none text-ink">
         {label}
       </label>
       <div className="relative">
         <input
           id={id}
-          autoComplete="off"
+          autoComplete={id === "origin" || id === "destination" ? "address-level2" : "off"}
           placeholder={placeholder}
+          maxLength={120}
           className={cn(
-            "h-12 w-full rounded-lg border border-hairline-strong bg-white px-4 pr-10 text-base text-ink placeholder:text-ink-muted outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15 sm:text-[0.95rem]",
-            error && "border-ember-500"
+            "h-11 w-full rounded-lg border border-hairline-strong bg-white px-3.5 pr-10 text-base text-ink placeholder:text-ink-muted outline-none transition-[border-color,box-shadow,background-color] duration-200 focus:border-accent focus:ring-2 focus:ring-accent/15",
+            error && "border-ember-500 ring-2 ring-ember-500/10"
           )}
           value={value}
           onChange={(e) => {
@@ -157,7 +158,7 @@ export function LocationInput({
             ref={listRef}
             role="listbox"
             aria-label={`Sugestões para ${label}`}
-            className="dropdown-panel absolute left-0 right-0 z-30 mt-2 max-h-72 overflow-y-auto rounded-xl border border-hairline bg-white p-1.5 [scrollbar-width:thin]"
+            className="dropdown-panel absolute left-0 right-0 z-30 mt-2 max-h-[min(18rem,calc(100dvh-12rem))] overflow-y-auto rounded-xl border border-hairline bg-white p-1.5 [scrollbar-width:thin]"
           >
             {results.length === 0 ? (
               <li
@@ -166,7 +167,7 @@ export function LocationInput({
                   aria-selected={false}
                   className="cursor-default px-3 py-2.5 text-sm text-ink-muted"
                 >
-                  Nenhum aeroporto encontrado — pode digitar o local livremente.
+                  Nenhum aeroporto encontrado. Você pode digitar o local livremente.
                 </li>
             ) : (
               results.map((item, i) => {
@@ -183,7 +184,7 @@ export function LocationInput({
                     onMouseEnter={() => setActiveIndex(i)}
                     onClick={() => selectItem(item)}
                     className={cn(
-                      "flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-colors",
+                      "flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 transition-colors",
                       active ? "bg-accent-tint" : "hover:bg-paper"
                     )}
                   >

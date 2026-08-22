@@ -354,6 +354,7 @@ export default function ClubMedPage() {
                   href={quickWhatsAppLink("ClubMed — quero saber mais sobre os parceiros e o resort")}
                   variant="whatsapp"
                   icon={<WhatsAppIcon />}
+                  className="w-full sm:w-auto"
                 >
                   Quero aproveitar esses benefícios
                 </Button>
@@ -451,22 +452,22 @@ export default function ClubMedPage() {
             </p>
             <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
               <Button
-                href="/cote-seu-voo?tipo=clubmed"
+                href={quickWhatsAppLink("ClubMed - quero conhecer melhor o clube")}
                 size="lg"
-                icon={<ArrowRight />}
-                iconPosition="right"
-                className="bg-gradient-to-r from-amber-400 to-yellow-500 text-[#241605] hover:brightness-105 focus-visible:outline-amber-300"
+                icon={<WhatsAppIcon />}
+                className="w-full bg-gradient-to-r from-amber-400 to-yellow-500 text-[#241605] hover:brightness-105 focus-visible:outline-amber-300 sm:w-auto"
               >
                 Quero conhecer o ClubMed
               </Button>
               <Button
-                href={quickWhatsAppLink("ClubMed — quero conhecer melhor o clube")}
+                href="/clubmed#beneficios"
                 variant="outline"
                 size="lg"
-                icon={<WhatsAppIcon />}
-                className="border-white/40 bg-white/80 text-[#0a1220] hover:border-white/60 hover:bg-white/90 active:bg-white/80"
+                icon={<ArrowRight />}
+                iconPosition="right"
+                className="w-full border-white/40 bg-white/80 text-[#0a1220] hover:border-white/60 hover:bg-white/90 active:bg-white/80 sm:w-auto"
               >
-                Falar no WhatsApp
+                Ver benefícios
               </Button>
             </div>
             <p className="text-sm text-white/70">Atendimento 24 horas · Sem compromisso</p>

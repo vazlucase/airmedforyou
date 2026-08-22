@@ -17,16 +17,16 @@ const VARIANT_CLASSES: Record<Variant, string> = {
 };
 
 const SIZE_CLASSES: Record<Size, string> = {
-  sm: "h-10 px-5 text-[0.78rem] gap-1.5",
-  md: "h-12 px-7 text-[0.85rem] gap-2",
-  lg: "h-14 px-9 text-[0.9rem] gap-2.5",
+  sm: "min-h-11 px-5 py-2 text-[0.78rem] gap-1.5",
+  md: "min-h-12 px-7 py-2.5 text-[0.85rem] gap-2",
+  lg: "min-h-14 px-7 py-3 text-[0.9rem] gap-2.5 sm:px-9",
 };
 
 const baseClasses =
-  "inline-flex select-none items-center justify-center whitespace-nowrap rounded-xl font-semibold " +
+  "inline-flex max-w-full select-none items-center justify-center rounded-xl text-center font-semibold leading-snug whitespace-normal " +
   "transition-all duration-300 ease-[var(--ease-fluid)] active:scale-[0.97] " +
   "disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-2 " +
-  "focus-visible:outline-offset-2 focus-visible:outline-accent";
+  "focus-visible:outline-offset-2 focus-visible:outline-accent sm:whitespace-nowrap";
 
 interface CommonProps {
   variant?: Variant;

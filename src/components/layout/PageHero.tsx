@@ -30,7 +30,7 @@ export function PageHero({
         <nav aria-label="Trilha de navegação" className="text-sm text-ink-muted">
           <ol className="flex flex-wrap items-center gap-1.5">
             <li>
-              <Link href="/" className="text-ink-muted transition-opacity hover:opacity-70">
+              <Link href="/" className="inline-flex min-h-11 items-center text-ink-muted transition-opacity hover:opacity-70">
                 Home
               </Link>
             </li>
@@ -38,7 +38,7 @@ export function PageHero({
               <ChevronRight className="size-3.5 text-ink-faint" />
             </li>
             <li>
-              <Link href="/#servicos" className="text-ink-muted transition-opacity hover:opacity-70">
+              <Link href="/#servicos" className="inline-flex min-h-11 items-center text-ink-muted transition-opacity hover:opacity-70">
                 Serviços
               </Link>
             </li>

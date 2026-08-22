@@ -14,7 +14,7 @@ import type { QuoteRequestType } from "@/types";
 export const metadata: Metadata = {
   title: "Cote seu Voo",
   description:
-    "Solicite sua cotação de UTI aérea, voo executivo ou ClubMed em um único formulário. Resposta direta pelo WhatsApp, 24 horas por dia.",
+    "Solicite sua cotação de UTI aérea ou voo executivo em um único formulário. Resposta direta pelo WhatsApp, 24 horas por dia.",
 };
 
 const QUOTE_FAQS = [
@@ -39,7 +39,7 @@ const QUOTE_FAQS = [
   },
 ];
 
-const VALID_TYPES: QuoteRequestType[] = ["emergencia", "transferencia", "executivo", "clubmed"];
+const VALID_TYPES: QuoteRequestType[] = ["emergencia", "transferencia", "executivo"];
 
 export default async function CoteSeuVooPage({
   searchParams,
@@ -57,14 +57,14 @@ export default async function CoteSeuVooPage({
         eyebrow="COTAÇÃO SEM COMPROMISSO"
         crumb="Cote seu Voo"
         title="Cote seu voo em menos de 2 minutos."
-        description="Emergência, transferência agendada, voo executivo ou ClubMed — um só formulário, resposta direta no seu WhatsApp."
+        description="Emergência, transferência agendada ou voo executivo em um só formulário, com resposta direta no seu WhatsApp."
         image={heroExecutive}
         imageAlt="Interior de jato executivo com poltronas de couro"
         compact
       />
 
       <section className="bg-paper py-20 md:py-28">
-        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:gap-20">
+        <Container className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(28rem,0.9fr)_minmax(18rem,0.65fr)] lg:items-start lg:gap-14 xl:gap-16">
           <Reveal>
             <QuoteWizard defaultRequestType={tipo} />
           </Reveal>

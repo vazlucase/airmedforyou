@@ -18,7 +18,7 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const inputClass =
-  "w-full rounded-lg border border-hairline-strong bg-white px-4 py-3 text-[0.95rem] text-ink placeholder:text-ink-faint outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15";
+  "w-full rounded-lg border border-hairline-strong bg-white px-4 py-3 text-base text-ink placeholder:text-ink-faint outline-none transition-all focus:border-accent focus:ring-2 focus:ring-accent/15";
 
 export function ContactForm() {
   const [submitted, setSubmitted] = React.useState(false);
@@ -59,11 +59,12 @@ export function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div>
-        <label htmlFor="name" className="mb-1.5 block text-sm font-semibold text-ink">
+        <label htmlFor="contact-name" className="mb-1.5 block text-sm font-semibold text-ink">
           Nome completo
         </label>
         <input
-          id="name"
+          id="contact-name"
+          autoComplete="name"
           {...register("name")}
           placeholder="Seu nome"
           className={cn(inputClass, errors.name && "border-ember-500")}
@@ -75,12 +76,14 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
-          <label htmlFor="email" className="mb-1.5 block text-sm font-semibold text-ink">
+          <label htmlFor="contact-email" className="mb-1.5 block text-sm font-semibold text-ink">
             E-mail
           </label>
           <input
-            id="email"
+            id="contact-email"
             type="email"
+            inputMode="email"
+            autoComplete="email"
             {...register("email")}
             placeholder="seu@email.com"
             className={cn(inputClass, errors.email && "border-ember-500")}
@@ -90,11 +93,14 @@ export function ContactForm() {
           ) : null}
         </div>
         <div>
-          <label htmlFor="phone" className="mb-1.5 block text-sm font-semibold text-ink">
+          <label htmlFor="contact-phone" className="mb-1.5 block text-sm font-semibold text-ink">
             Telefone
           </label>
           <input
-            id="phone"
+            id="contact-phone"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
             {...register("phone")}
             placeholder="(91) 99999-9999"
             className={cn(inputClass, errors.phone && "border-ember-500")}
@@ -106,11 +112,11 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="mb-1.5 block text-sm font-semibold text-ink">
+        <label htmlFor="contact-message" className="mb-1.5 block text-sm font-semibold text-ink">
           Mensagem
         </label>
         <textarea
-          id="message"
+          id="contact-message"
           {...register("message")}
           rows={4}
           placeholder="Digite sua mensagem..."
@@ -124,7 +130,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex h-12 items-center justify-center gap-2 self-start rounded-xl bg-accent px-8 text-base font-semibold text-white transition-colors duration-300 hover:bg-accent-strong disabled:pointer-events-none disabled:opacity-50"
+        className="inline-flex min-h-12 w-full items-center justify-center gap-2 self-stretch rounded-xl bg-accent px-8 py-3 text-base font-semibold text-white transition-colors duration-300 hover:bg-accent-strong disabled:pointer-events-none disabled:opacity-50 sm:w-auto sm:self-start"
       >
         {isSubmitting ? (
           <Loader2 className="size-4 animate-spin" />

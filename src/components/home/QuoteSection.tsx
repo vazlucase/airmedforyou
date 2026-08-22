@@ -25,7 +25,7 @@ export function QuoteSection() {
       />
       <div className="absolute inset-0 bg-gradient-to-b from-ink-panel via-ink-panel/95 to-ink-panel" />
 
-      <Container className="relative grid grid-cols-1 gap-16 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+      <Container className="relative grid grid-cols-1 gap-16 lg:grid-cols-[minmax(0,0.72fr)_minmax(34rem,1.28fr)] lg:gap-14">
         <div className="lg:sticky lg:top-32 lg:self-start">
           <Reveal>
             <Badge tone="light">COTE SEU VOO</Badge>

@@ -14,10 +14,10 @@ const MESSAGE = "Olá! Vim pelo site da AirMedPlan e gostaria de falar com um at
 export function MobileActionBar() {
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 bg-white shadow-[0_-1px_0_rgba(0,43,96,0.1)] lg:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 bg-white pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)] shadow-[0_-1px_0_rgba(0,43,96,0.1)] lg:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="grid h-16 grid-cols-3">
+      <div className="grid min-h-16 grid-cols-3">
         <a
           href={`tel:${CONTACT.phoneDigits}`}
           className="flex items-center justify-center gap-2 border-r border-hairline text-sm font-semibold text-ink transition-colors active:bg-mist"

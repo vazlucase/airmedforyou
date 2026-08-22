@@ -14,7 +14,7 @@ export function EmergencyBanner() {
         <div>
           <p className="font-heading text-xl font-bold">É uma emergência agora?</p>
           <p className="mt-1 text-sm leading-snug text-white/70">
-            Não preencha o formulário — fale direto com a nossa central,{" "}
+            Não preencha o formulário. Fale direto com a nossa central,{" "}
             {CONTACT.hours.toLowerCase()}.
           </p>
         </div>

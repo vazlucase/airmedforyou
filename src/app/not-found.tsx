@@ -21,10 +21,10 @@ export default function NotFound() {
           A página que você procura não existe ou foi movida. Vamos te levar de volta para um
           destino conhecido.
         </p>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
           <Link
             href="/"
-            className="inline-flex h-12 items-center justify-center rounded-xl bg-accent px-7 text-sm font-semibold uppercase tracking-[0.05em] text-white transition-all hover:bg-accent-strong active:scale-[0.96]"
+            className="inline-flex min-h-12 items-center justify-center rounded-xl bg-accent px-7 py-3 text-sm font-semibold uppercase tracking-[0.05em] text-white transition-all hover:bg-accent-strong active:scale-[0.96] sm:w-auto"
           >
             Voltar para a home
           </Link>
@@ -32,7 +32,7 @@ export default function NotFound() {
             href={whatsappHref("Olá! Cheguei a uma página que não encontrei no site da AirMedPlan e preciso de ajuda.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-accent/35 px-7 text-sm font-semibold text-accent transition-colors hover:bg-paper"
+            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-accent/35 px-7 py-3 text-sm font-semibold text-accent transition-colors hover:bg-paper sm:w-auto"
           >
             <WhatsAppIcon className="size-4" />
             Falar no WhatsApp

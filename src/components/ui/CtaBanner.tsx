@@ -31,8 +31,15 @@ export function CtaBanner({
                 {description}
               </p>
             ) : null}
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-3">
-              <Button href={quoteHref} variant="primary" size="lg" icon={<ArrowRight />} iconPosition="right">
+            <div className="mt-2 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center">
+              <Button
+                href={quoteHref}
+                variant="primary"
+                size="lg"
+                icon={<ArrowRight />}
+                iconPosition="right"
+                className="w-full sm:w-auto"
+              >
                 {quoteLabel}
               </Button>
               <Button
@@ -40,6 +47,7 @@ export function CtaBanner({
                 variant="whatsapp"
                 size="lg"
                 icon={<WhatsAppIcon />}
+                className="w-full sm:w-auto"
               >
                 Falar no WhatsApp
               </Button>

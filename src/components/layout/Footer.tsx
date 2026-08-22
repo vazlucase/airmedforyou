@@ -43,33 +43,33 @@ export function Footer() {
                   href={whatsappHref("Olá! Vim pelo site da AirMedPlan e gostaria de falar com um atendente.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 text-ink"
+                  className="group flex min-h-11 items-center gap-3 text-ink"
                 >
                   <WhatsAppIcon className="size-4 shrink-0 text-whatsapp-deep" />
-                  <span className="text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
+                  <span className="min-w-0 break-words text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
                     +55 {CONTACT.whatsappDisplay}
                   </span>
                 </a>
               </li>
               <li>
-                <a href={`tel:${CONTACT.phoneDigits}`} className="group flex items-center gap-3 text-ink">
+                <a href={`tel:${CONTACT.phoneDigits}`} className="group flex min-h-11 items-center gap-3 text-ink">
                   <Phone className="size-4 shrink-0" />
-                  <span className="text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
+                  <span className="min-w-0 break-words text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
                     {CONTACT.phoneDisplay}
                   </span>
                 </a>
               </li>
               <li>
-                <a href={`mailto:${CONTACT.email}`} className="group flex items-center gap-3 text-ink">
+                <a href={`mailto:${CONTACT.email}`} className="group flex min-h-11 items-center gap-3 text-ink">
                   <Mail className="size-4 shrink-0" />
-                  <span className="text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
+                  <span className="min-w-0 break-all text-[0.95rem] transition-colors duration-200 group-hover:text-accent">
                     {CONTACT.email}
                   </span>
                 </a>
               </li>
               <li className="flex items-start gap-3 text-ink">
                 <MapPin className="mt-1 size-4 shrink-0" />
-                <span className="text-[0.95rem] leading-relaxed">
+                <span className="min-w-0 break-words text-[0.95rem] leading-relaxed">
                   {CONTACT.addressLine1}
                   <br />
                   {CONTACT.addressLine2} — {CONTACT.city}/{CONTACT.state}
@@ -89,7 +89,7 @@ export function Footer() {
       {/* Banda 2 — Navegação escura */}
       <div className="bg-[#0a1220] py-20">
         <Container>
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[1.2fr_0.8fr_0.9fr_1fr]">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.2fr_0.8fr_0.9fr_1fr]">
             <div className="flex flex-col gap-5">
               <Image src={logoWhite} alt={SITE.name} className="h-8 w-auto" />
               <p className="max-w-xs text-pretty text-sm leading-relaxed text-white/65">
@@ -115,7 +115,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
+                      className="inline-flex min-h-11 items-center text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
                     >
                       {item.label}
                     </Link>
@@ -133,7 +133,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
+                      className="inline-flex min-h-11 items-center text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
                     >
                       {item.label}
                     </Link>
@@ -151,7 +151,7 @@ export function Footer() {
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
+                      className="inline-flex min-h-11 items-center text-sm text-white/70 transition-colors duration-200 hover:text-teal-300"
                     >
                       {item.label}
                     </Link>

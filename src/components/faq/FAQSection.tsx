@@ -24,19 +24,18 @@ export function FAQSection() {
 
   return (
     <div>
-      {/* Filter tabs */}
-      <div className="flex flex-wrap gap-2" role="tablist" aria-label="Categorias de perguntas">
+      {/* Filtros de categoria; não são abas porque substituem a lista exibida. */}
+      <div className="flex flex-wrap gap-2" aria-label="Categorias de perguntas">
         {categories.map((cat) => {
           const selected = cat.id === active;
           return (
             <button
               key={cat.id}
               type="button"
-              role="tab"
-              aria-selected={selected}
+              aria-pressed={selected}
               onClick={() => setActive(cat.id)}
               className={cn(
-                "rounded-full border px-5 py-2 text-sm font-semibold transition-colors duration-200",
+                "min-h-11 rounded-full border px-5 py-2 text-sm font-semibold transition-colors duration-200",
                 selected
                   ? "border-accent bg-accent text-white"
                   : "border-hairline-strong bg-white text-ink-muted hover:border-accent hover:text-accent"

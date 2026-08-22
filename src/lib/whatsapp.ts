@@ -2,10 +2,9 @@ import { CONTACT, whatsappHref } from "@/lib/constants";
 import type { QuoteFormSchema } from "@/lib/validations";
 
 const REQUEST_TYPE_LABEL: Record<QuoteFormSchema["requestType"], string> = {
-  emergencia: "UTI Aérea — Emergência",
-  transferencia: "UTI Aérea — Transferência agendada",
+  emergencia: "UTI Aérea - Emergência",
+  transferencia: "UTI Aérea - Transferência agendada",
   executivo: "Voo Executivo",
-  clubmed: "ClubMed — quero conhecer",
 };
 
 const TRIP_TYPE_LABEL: Record<QuoteFormSchema["tripType"], string> = {
@@ -30,23 +29,19 @@ export function buildQuoteMessage(values: QuoteFormSchema): string {
   lines.push("");
   lines.push(`*Tipo de solicitação:* ${REQUEST_TYPE_LABEL[values.requestType]}`);
 
-  if (values.requestType === "clubmed") {
-    if (values.origin?.trim()) {
-      lines.push(`*Cidade:* ${values.origin.trim()}`);
-    }
-  } else {
-    lines.push(`*Origem:* ${values.origin}`);
-    lines.push(`*Destino:* ${values.destination}`);
-    lines.push(`*Percurso:* ${TRIP_TYPE_LABEL[values.tripType]}`);
-    if (values.preferredDate) {
-      lines.push(`*Data desejada:* ${formatDateBR(values.preferredDate)}`);
-    }
-    if (values.patientMobility) {
-      lines.push(`*Paciente:* ${MOBILITY_LABEL[values.patientMobility]}`);
-    }
-    if (values.passengers) {
-      lines.push(`*Acompanhantes:* ${values.passengers}`);
-    }
+  lines.push(`*Origem:* ${values.origin}`);
+  lines.push(`*Destino:* ${values.destination}`);
+  lines.push(`*Percurso:* ${TRIP_TYPE_LABEL[values.tripType]}`);
+  if (values.preferredDate) {
+    lines.push(`*Data desejada:* ${formatDateBR(values.preferredDate)}`);
+  }
+  if (values.requestType !== "executivo" && values.patientMobility) {
+    lines.push(`*Paciente:* ${MOBILITY_LABEL[values.patientMobility]}`);
+  }
+  if (values.passengers) {
+    lines.push(
+      `*${values.requestType === "executivo" ? "Passageiros" : "Acompanhantes"}:* ${values.passengers}`
+    );
   }
 
   if (values.notes?.trim()) {
@@ -74,7 +69,7 @@ export function quickWhatsAppLink(context: string): string {
 
 export function emergencyWhatsAppLink(): string {
   return whatsappHref(
-    "EMERGÊNCIA — preciso de UTI Aérea agora. Podem me chamar imediatamente?"
+    "EMERGÊNCIA: preciso de UTI Aérea agora. Podem me chamar imediatamente?"
   );
 }
 

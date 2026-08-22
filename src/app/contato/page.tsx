@@ -76,9 +76,9 @@ export default function ContatoPage() {
                 <span className="flex size-12 shrink-0 items-center justify-center rounded-full bg-accent-tint text-accent">
                   <Mail className="size-5" />
                 </span>
-                <div>
+                <div className="min-w-0">
                   <p className="text-sm text-ink-muted">E-mail</p>
-                  <p className="text-[1.05rem] font-semibold text-ink">{CONTACT.email}</p>
+                  <p className="min-w-0 break-all text-[1.05rem] font-semibold text-ink">{CONTACT.email}</p>
                 </div>
               </a>
             </Reveal>

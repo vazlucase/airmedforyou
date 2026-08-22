@@ -26,7 +26,7 @@ export function ArticlesPreview() {
           </Reveal>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-3">
+        <div className="mt-16 grid grid-cols-1 gap-6 md:mt-20 md:grid-cols-2 lg:grid-cols-3">
           {ARTICLES.map((article, i) => (
             <Reveal key={article.slug} delay={i * 0.08}>
               <Link

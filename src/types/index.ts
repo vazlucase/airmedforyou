@@ -48,8 +48,4 @@ export interface FaqItem {
 }
 
 /** Tipos de solicitação no assistente de cotação */
-export type QuoteRequestType =
-  | "emergencia"
-  | "transferencia"
-  | "executivo"
-  | "clubmed";
+export type QuoteRequestType = "emergencia" | "transferencia" | "executivo";

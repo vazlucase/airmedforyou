@@ -11,7 +11,12 @@ export function Container({
   as?: React.ElementType;
 }) {
   return (
-    <Tag className={cn("mx-auto w-full max-w-[1250px] px-6 md:px-10", className)}>
+    <Tag
+      className={cn(
+        "mx-auto w-full max-w-[1250px] px-[max(1.5rem,env(safe-area-inset-left))] pr-[max(1.5rem,env(safe-area-inset-right))] md:px-[max(2.5rem,env(safe-area-inset-left))] md:pr-[max(2.5rem,env(safe-area-inset-right))]",
+        className
+      )}
+    >
       {children}
     </Tag>
   );

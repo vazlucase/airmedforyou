@@ -16,7 +16,7 @@ export function ServicesOverview() {
           description="De uma remoção crítica a uma viagem executiva ou um benefício para o dia a dia — a mesma equipe, o mesmo padrão de segurança."
         />
 
-        <div className="mt-10 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-3">
+        <div className="mt-10 grid grid-cols-1 gap-8 md:mt-12 md:grid-cols-2 lg:grid-cols-3">
           {SERVICES.map((service, i) => (
             <Reveal key={service.slug} delay={i * 0.08}>
               <Link
@@ -27,7 +27,7 @@ export function ServicesOverview() {
                   src={service.image}
                   alt={service.imageAlt}
                   fill
-                  sizes="(min-width: 768px) 33vw, 100vw"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   className="object-cover transition-transform duration-700 ease-[var(--ease-fluid)] group-hover:scale-105"
                 />
                 <div className="absolute inset-0 editorial-overlay transition-opacity duration-500" />
